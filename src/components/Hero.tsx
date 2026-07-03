@@ -220,7 +220,7 @@ export default function Hero() {
               className="relative z-10 w-full max-w-[280px] md:max-w-[320px] aspect-square flex items-center justify-center mb-4"
             >
               <img
-                src="https://www.burgerfilms.com.br/images/casino-black-jack-double-burger.jpg"
+                src="https://img.burgerfilms.com.br/casino-black-jack-double-burger.jpg"
                 alt="Casino Black Jack Double Burger"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-contain rounded-2xl border-4 border-bf-yellow shadow-[0_12px_24px_rgba(0,0,0,0.5)] transform group-hover:scale-105 group-hover:rotate-[2deg] transition-all duration-300"

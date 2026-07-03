@@ -264,7 +264,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Combo Patrulha Canina',
     description: '4 burgers coloridos de fraldinha 70g com queijos, bacon, pepperoni, calabresa, cebola, fritas e maionese.',
     price: 129.00,
-    image: 'https://www.burgerfilms.com.br/images/combo-20patrulha-20canina-4hambuegueres.png',
+    image: 'https://img.burgerfilms.com.br/combo-20patrulha-20canina-4hambuegueres.png',
     category: 'combos'
   },
   {
