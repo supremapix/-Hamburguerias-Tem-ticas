@@ -4,7 +4,7 @@ import { MENU_ITEMS } from '../data';
 import { Search, Sparkles, MessageCircle, Info } from 'lucide-react';
 
 export default function MenuSection() {
-  const [activeTab, setActiveTab] = useState<'all' | 'minions' | 'cinema' | 'combos'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'cinema' | 'copa' | 'minions' | 'combos' | 'petiscos' | 'pizzas' | 'bebidas' | 'sobremesas'>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Filtering menu items based on selected tab and search query
@@ -12,12 +12,35 @@ export default function MenuSection() {
     const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           item.description.toLowerCase().includes(searchQuery.toLowerCase());
     
-    if (activeTab === 'all') return matchesSearch;
-    if (activeTab === 'minions') return item.subcategory === 'minions' && matchesSearch;
-    if (activeTab === 'cinema') return item.subcategory === 'cinema' && matchesSearch;
-    if (activeTab === 'combos') return item.category === 'combos' && matchesSearch;
-    return matchesSearch;
+    if (!matchesSearch) return false;
+    if (activeTab === 'all') return true;
+    if (activeTab === 'cinema') return item.subcategory === 'cinema';
+    if (activeTab === 'copa') return item.subcategory === 'copa';
+    if (activeTab === 'minions') return item.subcategory === 'minions';
+    if (activeTab === 'combos') return item.category === 'combos';
+    if (activeTab === 'petiscos') return item.category === 'petiscos';
+    if (activeTab === 'pizzas') return item.category === 'pizzas';
+    if (activeTab === 'bebidas') return item.category === 'bebidas';
+    if (activeTab === 'sobremesas') return item.category === 'sobremesas' || item.category === 'guloseimas';
+    return true;
   });
+
+  const getCategoryLabel = (item: typeof MENU_ITEMS[0]) => {
+    if (item.category === 'combos') return 'Combo';
+    if (item.category === 'pizzas') return 'Pizza';
+    if (item.category === 'petiscos') return 'Petisco';
+    if (item.category === 'bebidas') return 'Bebida';
+    if (item.category === 'sobremesas') return 'Sobremesa';
+    if (item.category === 'guloseimas') return 'Lojinha';
+    return 'Burguer';
+  };
+
+  const getSubcategoryLabel = (item: typeof MENU_ITEMS[0]) => {
+    if (item.subcategory === 'minions') return 'Rodízio';
+    if (item.subcategory === 'cinema') return 'Cinema';
+    if (item.subcategory === 'copa') return 'Copa 2026';
+    return undefined;
+  };
 
   const getWhatsAppLink = (itemName: string) => {
     return `https://wa.me/5547992155989?text=Olá!%20Gostaria%20de%20pedir%20o%20delicioso%20${encodeURIComponent(itemName)}!`;
@@ -42,7 +65,7 @@ export default function MenuSection() {
         </div>
 
         {/* Search Bar & Categories Tabs wrapper */}
-        <div className="flex flex-col gap-6 items-center justify-between mb-12 max-w-4xl mx-auto">
+        <div className="flex flex-col gap-6 items-center justify-between mb-12 max-w-5xl mx-auto">
           
           {/* Search Input Box */}
           <div className="relative w-full max-w-md group">
@@ -59,15 +82,20 @@ export default function MenuSection() {
           {/* Categories Tab Selector (Sticky sticker designs) */}
           <div className="flex flex-wrap items-center justify-center gap-3">
             {[
-              { id: 'all', label: "🎬 Todos", key: "all" },
-              { id: 'minions', label: "🍔 Mini Burgers", key: "minions" },
-              { id: 'cinema', label: "🎥 Burgers de Cinema", key: "cinema" },
-              { id: 'combos', label: "🎉 Combos", key: "combos" }
+              { id: 'all', label: "🎬 Todos" },
+              { id: 'cinema', label: "🎥 Burgers de Cinema" },
+              { id: 'copa', label: "🏆 Copa 2026" },
+              { id: 'minions', label: "🍔 Mini Burgers" },
+              { id: 'combos', label: "🎉 Combos" },
+              { id: 'petiscos', label: "🍟 Petiscos" },
+              { id: 'pizzas', label: "🍕 Pizzas" },
+              { id: 'bebidas', label: "🥤 Bebidas" },
+              { id: 'sobremesas', label: "🍫 Sobremesas & Lojinha" }
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-5 py-3 rounded-full font-baloo-caps text-xs md:text-sm font-extrabold border-3 border-bf-black cursor-pointer transition-all ${
+                className={`px-4 py-2.5 rounded-full font-baloo-caps text-xs md:text-sm font-extrabold border-3 border-bf-black cursor-pointer transition-all ${
                   activeTab === tab.id
                     ? 'bg-bf-yellow text-bf-black shadow-[4px_4px_0_#1A1A1A] -translate-y-[2px]'
                     : 'bg-bf-white text-bf-black hover:bg-bf-cream'
@@ -115,11 +143,11 @@ export default function MenuSection() {
                   {/* Category Pill Overlays */}
                   <div className="absolute top-4 left-4 flex gap-1.5 flex-wrap">
                     <span className="bg-bf-black text-bf-yellow text-[10px] font-baloo-caps font-black px-2.5 py-1 rounded-full border-2 border-bf-black uppercase select-none">
-                      {item.category === 'combos' ? 'Combo' : 'Lanche'}
+                      {getCategoryLabel(item)}
                     </span>
-                    {item.subcategory && (
+                    {getSubcategoryLabel(item) && (
                       <span className="bg-bf-red text-bf-white text-[10px] font-baloo-caps font-black px-2.5 py-1 rounded-full border-2 border-bf-black uppercase select-none">
-                        {item.subcategory === 'minions' ? 'Rodízio' : 'Cinema'}
+                        {getSubcategoryLabel(item)}
                       </span>
                     )}
                   </div>

@@ -4,8 +4,8 @@ export interface MenuItem {
   description: string;
   price: number;
   image: string;
-  category: 'lanches' | 'combos';
-  subcategory?: 'minions' | 'cinema';
+  category: 'lanches' | 'combos' | 'petiscos' | 'pizzas' | 'bebidas' | 'sobremesas' | 'guloseimas';
+  subcategory?: 'minions' | 'cinema' | 'copa';
 }
 
 export interface AgendaItem {
