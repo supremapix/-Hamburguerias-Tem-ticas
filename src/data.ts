@@ -126,7 +126,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Cassino - Black Jack Double Burger',
     description: 'Pão crocante, 2 blends bovinos 90g, mussarela, bacon e barbecue com whisky.',
     price: 44.00,
-    image: 'https://burgerfilms.chefware.com.br/113/600/0/casino-black-jack-double-burger.jpg',
+    image: 'https://img.burgerfilms.com.br/casino-black-jack-double-burger.jpg',
     category: 'lanches',
     subcategory: 'cinema'
   },
@@ -171,7 +171,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Matilda',
     description: 'Pão brioche, burger de linguiça Blumenau 120g, queijo coalho, bacon e doce de leite.',
     price: 39.00,
-    image: 'https://www.burgerfilms.com.br/images/matilda.png',
+    image: 'https://burgerfilms.chefware.com.br/122/600/0/matilda.jpg',
     category: 'lanches',
     subcategory: 'cinema'
   },
@@ -216,7 +216,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Combo Mario E Luigi',
     description: '4 burgers de fraldinha 70g em pães vermelhos, com cheddar, mussarela, pepperoni, cebola e salada.',
     price: 119.00,
-    image: 'https://www.burgerfilms.com.br/images/combo-mario-e-luigi.png',
+    image: 'https://burgerfilms.chefware.com.br/43/600/0/combo-mario-e-luigi.jpg',
     category: 'combos'
   },
   {
@@ -232,7 +232,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Combo Divertidamente',
     description: '4 burgers coloridos temáticos, fritas, maionese e copo colecionável.',
     price: 129.00,
-    image: 'https://www.burgerfilms.com.br/images/combo-divertidamente.png',
+    image: 'https://burgerfilms.chefware.com.br/117/600/0/combo-divertidamente.jpg',
     category: 'combos'
   },
   {
@@ -248,7 +248,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Combo Turma do Sirizinho',
     description: '4 burgers coloridos de fraldinha 70g, 260g de fritas e copo colecionável.',
     price: 114.00,
-    image: 'https://www.burgerfilms.com.br/images/combo-20turma-20do-20sirizinho-pao-vermelho.png',
+    image: 'https://burgerfilms.chefware.com.br/99/600/0/combo-turma-do-sirizinho.jpg',
     category: 'combos'
   },
   {
