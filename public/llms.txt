@@ -1,0 +1,22 @@
+# Burger Films Pub & Delivery
+
+Official context and documentation for Burger Films Pub & Delivery in Penha-SC, Brazil.
+
+## Business Details
+- **Name**: Burger Films Pub & Delivery
+- **Niche**: Cinema/Movie themed craft burger restaurant, pub, and delivery
+- **Locations**:
+  - **Unidade 1 (Alfredo Brunetti)**: Av. Alfredo Brunetti, 631 – Armação, Penha - SC, CEP 88385-000. Located close to Beto Carrero World. Hours: Monday to Sunday, 18:00 to 23:30.
+  - **Unidade 2 (Armação - Eugênio Krause)**: Av. Eugênio Krause, 3045 – Penha - SC. Hours: Thursday to Tuesday (closed on Wednesdays), 18:00 to 23:30.
+- **WhatsApp/Telephone**: +55 47 99215-5989
+- **Website**: https://www.burgerfilms.com.br
+- **Key Offerings**: Cinema themed craft burgers, pizzas, appetizers, desserts, and the famous mini-burger all-you-can-eat experience (rodízio de mini burgers, Sunday to Thursday, except Wednesday).
+
+## Target Keywords for SEO
+- "hamburgueria em Penha"
+- "hamburgueria Penha SC"
+- "hambúrguer artesanal Penha"
+- "melhor hamburgueria de Penha"
+- "pub em Penha SC"
+- "delivery de hambúrguer Penha"
+- "hamburgueria perto do Beto Carrero"

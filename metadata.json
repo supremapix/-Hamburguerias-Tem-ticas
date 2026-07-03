@@ -1,0 +1,6 @@
+{
+  "name": "Burger Films",
+  "description": "Hamburgueria temática de cinema em Penha-SC. Uma experiência cinematográfica unindo hambúrgueres artesanais e os maiores sucessos do cinema.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

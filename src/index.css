@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Baloo+2:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Luckiest Guy", cursive;
+  --font-baloo: "Baloo 2", sans-serif;
+  --color-bf-yellow: #FFB800;
+  --color-bf-yellow-deep: #F59E00;
+  --color-bf-black: #1A1A1A;
+  --color-bf-white: #FFFFFF;
+  --color-bf-red: #E63946;
+  --color-bf-cream: #FFF6E5;
+}
+
+/* Base style resets and scroll behavior */
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: #1A1A1A;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Custom Outlines & Cartoon Shadows */
+.bubble-title-outline {
+  font-family: var(--font-display);
+  -webkit-text-stroke: 3px #1A1A1A;
+  text-shadow: 4px 4px 0px #1A1A1A;
+}
+
+.bubble-title-outline-white {
+  font-family: var(--font-display);
+  -webkit-text-stroke: 2.5px #1A1A1A;
+  text-shadow: 3px 3px 0px #1A1A1A;
+}
+
+.cartoon-border {
+  border: 4px solid #1A1A1A;
+}
+
+.cartoon-border-sm {
+  border: 3px solid #1A1A1A;
+}
+
+.cartoon-shadow {
+  box-shadow: 4px 4px 0px 0px #1A1A1A;
+}
+
+.cartoon-shadow-lg {
+  box-shadow: 8px 8px 0px 0px #1A1A1A;
+}
+
+.cartoon-shadow-white {
+  box-shadow: 4px 4px 0px 0px #FFFFFF;
+}
+
+/* Sticky sticker rotation effect */
+.sticker-hover {
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.sticker-hover:hover {
+  transform: scale(1.06) rotate(-1deg);
+}
+
+/* Keyframes for Continuous Motion */
+@keyframes flag-swing {
+  0% {
+    transform: rotate(-2.5deg);
+  }
+  100% {
+    transform: rotate(2.5deg);
+  }
+}
+
+@keyframes float-loop {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes float-loop-reverse {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-3deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes shake-attention {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  10%, 30% {
+    transform: scale(1.03) rotate(-1deg);
+  }
+  20%, 40% {
+    transform: scale(1.03) rotate(1deg);
+  }
+  50% {
+    transform: scale(1.03) rotate(0deg);
+  }
+}
+
+@keyframes pulse-whatsapp {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes wiggle-button {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+}
+
+/* Utility Animations Classes */
+.animate-flag-swing {
+  animation: flag-swing 3s ease-in-out infinite alternate;
+  transform-origin: top center;
+}
+
+.animate-float-loop {
+  animation: float-loop 6s ease-in-out infinite;
+}
+
+.animate-float-loop-reverse {
+  animation: float-loop-reverse 5s ease-in-out infinite;
+}
+
+.animate-shake-attention {
+  animation: shake-attention 6s ease-in-out infinite;
+}
+
+.animate-pulse-whatsapp {
+  animation: pulse-whatsapp 2.5s ease-in-out infinite;
+}
+
+.hover-wiggle:hover {
+  animation: wiggle-button 0.4s ease-in-out infinite;
+}
+
+/* Premium Logo Animations & Classes */
+@keyframes premium-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 6px rgba(255, 184, 0, 0.45)) drop-shadow(0 0 12px rgba(255, 184, 0, 0.18));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(255, 184, 0, 0.88)) drop-shadow(0 0 28px rgba(245, 158, 0, 0.65));
+  }
+}
+
+@keyframes premium-shimmer {
+  0% {
+    transform: translateX(-180%) skewX(-20deg);
+  }
+  30% {
+    transform: translateX(180%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(180%) skewX(-20deg);
+  }
+}
+
+.animate-premium-glow {
+  animation: premium-glow 3s ease-in-out infinite;
+}
+
+.animate-premium-shimmer {
+  animation: premium-shimmer 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Theme styling classes */
+.font-baloo-caps {
+  font-family: var(--font-baloo);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1A1A1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #FFB800;
+  border: 3px solid #1A1A1A;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F59E00;
+}
