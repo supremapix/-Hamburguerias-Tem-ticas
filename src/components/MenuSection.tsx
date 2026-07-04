@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MENU_ITEMS } from '../data';
 import { Search, Sparkles, MessageCircle, Info } from 'lucide-react';
+import ProductModal from './ProductModal';
 
 export default function MenuSection() {
   const [activeTab, setActiveTab] = useState<'all' | 'cinema' | 'copa' | 'minions' | 'combos' | 'petiscos' | 'pizzas' | 'bebidas' | 'sobremesas'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedItem, setSelectedItem] = useState<typeof MENU_ITEMS[0] | null>(null);
 
   // Filtering menu items based on selected tab and search query
   const filteredItems = MENU_ITEMS.filter((item) => {
@@ -132,13 +134,23 @@ export default function MenuSection() {
               >
                 
                 {/* Product Image Panel with zoom hover */}
-                <div className="relative aspect-video w-full overflow-hidden border-b-3 border-bf-black bg-bf-cream flex items-center justify-center">
+                <div 
+                  onClick={() => setSelectedItem(item)}
+                  className="relative aspect-video w-full overflow-hidden border-b-3 border-bf-black bg-bf-cream flex items-center justify-center cursor-pointer group/img"
+                >
                   <img
                     src={item.image}
                     alt={item.name}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover/img:scale-106 transition-transform duration-500"
                   />
+                  
+                  {/* Hover details overlay */}
+                  <div className="absolute inset-0 bg-bf-black/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                    <span className="bg-bf-yellow text-bf-black text-xs font-baloo-caps font-black px-3.5 py-2 rounded-full border-2 border-bf-black shadow-md uppercase tracking-wide">
+                      🔎 VER DETALHES
+                    </span>
+                  </div>
                   
                   {/* Category Pill Overlays */}
                   <div className="absolute top-4 left-4 flex gap-1.5 flex-wrap">
@@ -163,7 +175,10 @@ export default function MenuSection() {
                 <div className="p-6 md:p-7 flex-1 flex flex-col justify-between">
                   <div>
                     {/* Item Name */}
-                    <h3 className="text-bf-black font-baloo-caps text-lg md:text-xl font-extrabold tracking-wide mb-2 group-hover:text-bf-yellow-deep transition-colors">
+                    <h3 
+                      onClick={() => setSelectedItem(item)}
+                      className="text-bf-black font-baloo-caps text-lg md:text-xl font-extrabold tracking-wide mb-2 hover:text-bf-red transition-colors cursor-pointer"
+                    >
                       {item.name}
                     </h3>
                     
@@ -225,6 +240,17 @@ export default function MenuSection() {
         )}
 
       </div>
+
+      <AnimatePresence>
+        {selectedItem && (
+          <ProductModal 
+            item={selectedItem} 
+            onClose={() => setSelectedItem(null)} 
+            getCategoryLabel={getCategoryLabel}
+            getSubcategoryLabel={getSubcategoryLabel}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

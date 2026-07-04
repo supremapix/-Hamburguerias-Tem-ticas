@@ -411,7 +411,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Edward Mãos De Palito',
     description: 'Bastões De Queijo Empanado. Acompanha Barbecue Artesanal C/ Whisky',
     price: 24.90,
-    image: 'https://images.unsplash.com/photo-1531749668029-2db88e4b76ce?w=600&auto=format&fit=crop&q=80',
+    image: 'https://img.burgerfilms.com.br/edward-maos-de-palito-bastoes-de-queijo-empanado-barbecue-whisky-burger-films.webp',
     category: 'petiscos'
   },
   {
@@ -569,7 +569,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'A Hora Do Brigadeiro',
     description: 'Brigadeiro De Colher 50% Cacau, 80gr',
     price: 13.90,
-    image: 'https://images.unsplash.com/photo-1548848221-0c2e41485315?w=600&auto=format&fit=crop&q=80',
+    image: 'https://img.burgerfilms.com.br/a-hora-do-brigadeiro-brigadeiro-de-colher-50-cacau-burger-films.webp',
     category: 'sobremesas'
   },
 
