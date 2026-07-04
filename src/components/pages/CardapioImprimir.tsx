@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Printer, ArrowLeft, Film, Trophy, Flame, Gift, Star, Clock, Sparkles } from 'lucide-react';
 import { MENU_ITEMS } from '../../data';
+import Logo from '../Logo';
 
 interface PageProps {
   onNavigate: (view: any) => void;
@@ -93,7 +94,18 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
         )}
 
         {/* Header Section */}
-        <div className="text-center border-b-4 border-double border-current pb-6 mb-8 relative">
+        <div className="text-center border-b-4 border-double border-current pb-6 mb-8 relative flex flex-col items-center">
+          {/* Animated Interactive logo for screen view */}
+          <Logo size="lg" className="mb-4 print:hidden" />
+          
+          {/* Static high-resolution logo for actual paper prints */}
+          <img 
+            src="https://img.burgerfilms.com.br/logo.webp" 
+            alt="Burger Films Logo" 
+            className="hidden print:block h-20 w-auto mb-4 object-contain"
+            referrerPolicy="no-referrer"
+          />
+
           <div className="flex justify-center items-center gap-3 mb-2">
             <Film className={`w-8 h-8 ${ecoMode ? 'text-black' : 'text-bf-yellow'} animate-pulse`} />
             <span className={`font-display text-4xl md:text-5xl tracking-widest uppercase ${ecoMode ? 'text-black' : 'text-bf-yellow'}`}>
@@ -124,17 +136,27 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
               </h3>
               <div className="space-y-4">
                 {burgersCinema.map(item => (
-                  <div key={item.id} className="group">
-                    <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
-                      <span className="flex items-center gap-1">
-                        <Star className={`w-3.5 h-3.5 fill-current ${ecoMode ? 'text-yellow-600' : 'text-bf-yellow'}`} />
-                        {item.name}
-                      </span>
-                      <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                  <div key={item.id} className="group flex gap-3.5 items-start">
+                    {item.image && (
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        referrerPolicy="no-referrer"
+                        className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
+                      />
+                    )}
+                    <div className="flex-1">
+                      <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
+                        <span className="flex items-center gap-1">
+                          <Star className={`w-3.5 h-3.5 fill-current ${ecoMode ? 'text-yellow-600' : 'text-bf-yellow'}`} />
+                          {item.name}
+                        </span>
+                        <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                      </div>
+                      <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
+                        {item.description}
+                      </p>
                     </div>
-                    <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
-                      {item.description}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -148,14 +170,24 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
               </h3>
               <div className="space-y-4">
                 {burgersCopa.map(item => (
-                  <div key={item.id}>
-                    <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
-                      <span>{item.name}</span>
-                      <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                  <div key={item.id} className="group flex gap-3.5 items-start">
+                    {item.image && (
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        referrerPolicy="no-referrer"
+                        className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
+                      />
+                    )}
+                    <div className="flex-1">
+                      <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
+                        <span>{item.name}</span>
+                        <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                      </div>
+                      <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
+                        {item.description}
+                      </p>
                     </div>
-                    <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
-                      {item.description}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -172,14 +204,24 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
               </h3>
               <div className="space-y-4">
                 {combos.map(item => (
-                  <div key={item.id}>
-                    <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
-                      <span>{item.name}</span>
-                      <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                  <div key={item.id} className="group flex gap-3.5 items-start">
+                    {item.image && (
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        referrerPolicy="no-referrer"
+                        className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
+                      />
+                    )}
+                    <div className="flex-1">
+                      <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
+                        <span>{item.name}</span>
+                        <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                      </div>
+                      <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
+                        {item.description}
+                      </p>
                     </div>
-                    <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
-                      {item.description}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -193,14 +235,24 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
               </h3>
               <div className="space-y-4">
                 {pizzas.map(item => (
-                  <div key={item.id}>
-                    <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
-                      <span>{item.name}</span>
-                      <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                  <div key={item.id} className="group flex gap-3.5 items-start">
+                    {item.image && (
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        referrerPolicy="no-referrer"
+                        className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
+                      />
+                    )}
+                    <div className="flex-1">
+                      <div className="flex justify-between items-baseline gap-2 font-baloo-caps font-black text-sm uppercase">
+                        <span>{item.name}</span>
+                        <span className="shrink-0">R$ {item.price.toFixed(2)}</span>
+                      </div>
+                      <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
+                        {item.description}
+                      </p>
                     </div>
-                    <p className="text-xs mt-0.5 leading-relaxed font-baloo font-medium opacity-80">
-                      {item.description}
-                    </p>
                   </div>
                 ))}
               </div>
@@ -214,10 +266,20 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                 </h4>
                 <div className="space-y-2.5">
                   {petiscos.map(item => (
-                    <div key={item.id}>
-                      <div className="flex justify-between items-baseline gap-1 font-baloo-caps font-black text-[11px] uppercase">
-                        <span className="truncate max-w-[120px]">{item.name}</span>
-                        <span className="shrink-0">R${item.price.toFixed(1)}0</span>
+                    <div key={item.id} className="group flex gap-2 items-center">
+                      {item.image && (
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          referrerPolicy="no-referrer"
+                          className="w-8 h-8 object-cover rounded-lg border border-current shrink-0 shadow-[1px_1px_0_#1A1A1A]"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <div className="flex justify-between items-baseline gap-1 font-baloo-caps font-black text-[11px] uppercase">
+                          <span className="truncate max-w-[120px]">{item.name}</span>
+                          <span className="shrink-0">R${item.price.toFixed(1)}0</span>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -230,10 +292,20 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                 </h4>
                 <div className="space-y-2.5">
                   {sobremesas.map(item => (
-                    <div key={item.id}>
-                      <div className="flex justify-between items-baseline gap-1 font-baloo-caps font-black text-[11px] uppercase">
-                        <span className="truncate max-w-[120px]">{item.name}</span>
-                        <span className="shrink-0">R${item.price.toFixed(1)}0</span>
+                    <div key={item.id} className="group flex gap-2 items-center">
+                      {item.image && (
+                        <img 
+                          src={item.image} 
+                          alt={item.name} 
+                          referrerPolicy="no-referrer"
+                          className="w-8 h-8 object-cover rounded-lg border border-current shrink-0 shadow-[1px_1px_0_#1A1A1A]"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <div className="flex justify-between items-baseline gap-1 font-baloo-caps font-black text-[11px] uppercase">
+                          <span className="truncate max-w-[120px]">{item.name}</span>
+                          <span className="shrink-0">R${item.price.toFixed(1)}0</span>
+                        </div>
                       </div>
                     </div>
                   ))}
