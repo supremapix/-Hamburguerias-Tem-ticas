@@ -13,6 +13,7 @@ import { SupremaCredit } from './components/SupremaCredit';
 import BackToTop from './components/BackToTop';
 import ShareButton from './components/ShareButton';
 import EnhancedSEO from './components/EnhancedSEO';
+import Celebration from './components/Celebration';
 
 // Import newly created page components
 import QuemSomos from './components/pages/QuemSomos';
@@ -20,6 +21,7 @@ import Contato from './components/pages/Contato';
 import UnidadeAlfredo from './components/pages/UnidadeAlfredo';
 import UnidadeEugenio from './components/pages/UnidadeEugenio';
 import Sitemap from './components/pages/Sitemap';
+import CardapioImprimir from './components/pages/CardapioImprimir';
 
 // Import newly created neighborhood pages
 import BairroCentro from './components/pages/BairroCentro';
@@ -37,6 +39,7 @@ type ViewType =
   | 'unidade-alfredo' 
   | 'unidade-eugenio' 
   | 'sitemap'
+  | 'cardapio-imprimir'
   | 'bairro-centro'
   | 'bairro-armacao'
   | 'bairro-praia-grande'
@@ -51,7 +54,7 @@ const getInitialView = (): ViewType => {
   if (!path) return 'home';
 
   const validViews: ViewType[] = [
-    'home', 'quem-somos', 'contato', 'unidade-alfredo', 'unidade-eugenio', 'sitemap',
+    'home', 'quem-somos', 'contato', 'unidade-alfredo', 'unidade-eugenio', 'sitemap', 'cardapio-imprimir',
     'bairro-centro', 'bairro-armacao', 'bairro-praia-grande', 'bairro-gravata', 
     'bairro-santa-lidia', 'bairro-sao-cristovao', 'bairro-sao-miguel'
   ];
@@ -162,6 +165,10 @@ export default function App() {
               <Sitemap key="sitemap" onNavigate={handleNavigate} />
             )}
 
+            {currentView === 'cardapio-imprimir' && (
+              <CardapioImprimir key="cardapio-imprimir" onNavigate={handleNavigate} />
+            )}
+
             {/* Neighborhood Pages */}
             {currentView === 'bairro-centro' && (
               <BairroCentro key="bairro-centro" onNavigate={handleNavigate} />
@@ -204,6 +211,9 @@ export default function App() {
 
         {/* Persistent share button on the left side with social media sharing options */}
         <ShareButton />
+
+        {/* Global premium order success celebration overlay */}
+        <Celebration />
 
       </div>
     </HelmetProvider>

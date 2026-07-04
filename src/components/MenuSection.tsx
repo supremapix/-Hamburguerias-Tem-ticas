@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MENU_ITEMS } from '../data';
 import { 
@@ -82,6 +82,17 @@ export default function MenuSection() {
   const [activeTab, setActiveTab] = useState<'all' | 'cinema' | 'copa' | 'minions' | 'combos' | 'petiscos' | 'pizzas' | 'bebidas' | 'sobremesas'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<typeof MENU_ITEMS[0] | null>(null);
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    const handleHighlight = () => {
+      setIsHighlighted(true);
+      // Automatically focus search or just pulse title
+      setTimeout(() => setIsHighlighted(false), 2200);
+    };
+    window.addEventListener('highlight-menu', handleHighlight);
+    return () => window.removeEventListener('highlight-menu', handleHighlight);
+  }, []);
 
   // Filtering menu items based on selected tab and search query
   const filteredItems = MENU_ITEMS.filter((item) => {
@@ -128,10 +139,14 @@ export default function MenuSection() {
             <Film className="w-3.5 h-3.5" />
             <span>O SHOW VAI COMEÇAR!</span>
           </span>
-          <h2 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-yellow">
+          <motion.h2 
+            animate={isHighlighted ? { scale: [1, 1.15, 0.95, 1.05, 1], rotate: [0, -3, 3, -1, 0] } : {}}
+            transition={{ type: "spring", stiffness: 200, damping: 10 }}
+            className={`text-4xl md:text-6xl uppercase bubble-title-outline transition-colors duration-300 ${isHighlighted ? 'text-bf-red' : 'text-bf-yellow'}`}
+          >
             NOSSO CARDÁPIO
             <span className="sr-only"> de Hambúrgueres Artesanais em Penha-SC</span>
-          </h2>
+          </motion.h2>
           <p className="text-gray-500 font-baloo text-sm md:text-base max-w-xl mx-auto mt-2 font-medium">
             Selecione uma categoria ou pesquise para encontrar as melhores produções gastronômicas!
           </p>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Phone, MapPin, Clock, MessageCircle, Instagram, Youtube, Heart, AlertTriangle, X } from 'lucide-react';
+import { Phone, MapPin, Clock, MessageCircle, Instagram, Youtube, Heart, AlertTriangle, X, Printer } from 'lucide-react';
 import Logo from './Logo';
 
 const DESFALQUES = [
@@ -223,7 +223,7 @@ const DESFALQUES = [
 ];
 
 interface FooterProps {
-  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
+  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap' | 'cardapio-imprimir') => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
@@ -242,6 +242,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     { label: "Quem Somos", view: "quem-somos" as const },
     { label: "Contatos", view: "contato" as const },
     { label: "Mapa do Site", view: "sitemap" as const },
+    { label: "Cardápio A4 (Imprimir) 🖨️", view: "cardapio-imprimir" as const },
   ];
 
   const orderUrl = "https://wa.me/5547992155989?text=Olá,%20gostaria%20de%20fazer%20um%20pedido%20cinematográfico!";
@@ -358,8 +359,19 @@ export default function Footer({ onNavigate }: FooterProps) {
               ))}
             </ul>
 
-            {/* "Desfalcado" Link requested by the user, highlighted beautifully */}
-            <div className="mt-4 pt-4 border-t border-dashed border-gray-800">
+            {/* Highlighted print menu and desfalque triggers */}
+            <div className="mt-4 pt-4 border-t border-dashed border-gray-800 flex flex-col gap-2.5">
+              <button
+                onClick={() => {
+                  onNavigate('cardapio-imprimir');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="group flex items-center gap-2 text-xs font-baloo-caps font-black text-bf-yellow hover:text-bf-black hover:bg-bf-yellow bg-bf-white/5 border border-bf-yellow px-3.5 py-2 rounded-xl transition-all cursor-pointer focus:outline-none"
+              >
+                <Printer className="w-3.5 h-3.5 shrink-0" />
+                <span>IMPRIMIR CARDÁPIO (A4) 🖨️</span>
+              </button>
+
               <button
                 onClick={() => setShowDesfalqueModal(true)}
                 className="group flex items-center gap-2 text-xs font-baloo-caps font-black text-bf-red hover:text-bf-yellow bg-bf-white/5 border border-bf-red px-3.5 py-2 rounded-xl transition-all cursor-pointer focus:outline-none"

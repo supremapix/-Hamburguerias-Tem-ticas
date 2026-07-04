@@ -1,11 +1,11 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { X, MessageCircle, Home, Film, Utensils, Calendar, MapPin, Phone } from 'lucide-react';
+import { X, MessageCircle, Home, Film, Utensils, Calendar, MapPin, Phone, Printer } from 'lucide-react';
 import Logo from './Logo';
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
+  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap' | 'cardapio-imprimir') => void;
 }
 
 export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuProps) {
@@ -17,9 +17,10 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
     { label: "Unidade 1 - Alfredo", view: "unidade-alfredo" as const, icon: MapPin },
     { label: "Unidade 2 - Eugênio", view: "unidade-eugenio" as const, icon: MapPin },
     { label: "Contato / Fale Conosco", view: "contato" as const, icon: Phone },
+    { label: "Cardápio A4 Imprimir 🖨️", view: "cardapio-imprimir" as const, icon: Printer },
   ];
 
-  const orderUrl = "https://wa.me/5547992155989?text=Olá,%20gostaria%20de%20fazer%20um%20pedido%20cinematográfico!";
+  const orderUrl = "https://burgerfilms.chefware.com.br/";
 
   const handleLinkClick = (link: typeof menuLinks[0]) => {
     onNavigate(link.view);
@@ -117,10 +118,10 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
               href={orderUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 bg-bf-black text-bf-yellow font-baloo-caps text-base py-4 px-8 rounded-full border-3 border-bf-black shadow-[4px_4px_0px_0px_#FFFFFF] hover:shadow-none active:translate-y-1 transition-all focus:outline-none w-full text-center"
+              className="order-button-track flex items-center justify-center gap-3 bg-bf-red text-bf-white hover:bg-bf-black hover:text-bf-yellow font-baloo-caps text-base py-4 px-8 rounded-full border-3 border-bf-black shadow-[5px_5px_0px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all focus:outline-none w-full text-center animate-shake-attention cursor-pointer"
             >
               <MessageCircle className="w-5 h-5 fill-current animate-pulse" />
-              <span className="uppercase font-black">PEÇA SEU LANCHE</span>
+              <span className="uppercase font-black tracking-wider">🎬 PEDIR ONLINE AGORA 🍿</span>
             </a>
           </motion.div>
 

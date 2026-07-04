@@ -30,8 +30,18 @@ export default function Hero() {
     setMousePos({ x: 0, y: 0 });
   };
 
-  // WhatsApp link
-  const orderUrl = "https://wa.me/5547992155989?text=Olá,%20gostaria%20de%20fazer%20um%20pedido%20cinematográfico!";
+  // Chefware link
+  const orderUrl = "https://burgerfilms.chefware.com.br/";
+
+  const handleScrollToMenu = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById('menu');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Dispatch event to activate premium Category Highlight sparkles
+      window.dispatchEvent(new CustomEvent('highlight-menu'));
+    }
+  };
 
   return (
     <section
@@ -77,6 +87,51 @@ export default function Hero() {
           <circle cx="62" cy="60" r="2.5" fill="#FFD166" />
           <circle cx="42" cy="68" r="3" fill="#FFD166" />
           <circle cx="38" cy="60" r="2.5" fill="#FFD166" />
+        </svg>
+      </motion.div>
+
+      {/* --- Floating Ingredient Right: Fresh Crispy Lettuce (Alface) --- */}
+      <motion.div
+        animate={{
+          x: mousePos.x * 25,
+          y: mousePos.y * -25,
+        }}
+        transition={{ type: "spring", stiffness: 45, damping: 15 }}
+        className="absolute top-[14%] right-[-4%] md:top-[16%] md:right-[2%] z-20 w-24 h-24 md:w-36 md:h-36 pointer-events-none filter drop-shadow-[0_12px_8px_rgba(0,0,0,0.2)] animate-float-loop-reverse"
+      >
+        <svg viewBox="0 0 100 100" className="w-full h-full blur-[0.4px]">
+          <defs>
+            <linearGradient id="lettuceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#4AD66D" />
+              <stop offset="100%" stopColor="#2D9B4C" />
+            </linearGradient>
+          </defs>
+          {/* Wavy organic lettuce leaf */}
+          <path 
+            d="M50,15 C65,12 80,22 85,38 C90,54 82,72 70,82 C58,92 42,92 30,82 C18,72 10,54 15,38 C20,22 35,12 50,15 Z" 
+            fill="url(#lettuceGrad)" 
+            stroke="#1A1A1A" 
+            strokeWidth="3" 
+          />
+          {/* Ruffles/curls details around the edges */}
+          <path d="M48,15 C45,8 55,8 52,15" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M65,18 C68,11 76,14 71,20" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M78,28 C84,24 88,32 81,35" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M84,45 C91,44 91,52 83,52" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M80,62 C86,65 82,73 76,69" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M68,76 C72,82 64,86 61,79" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M50,85 C50,92 40,92 42,85" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M32,76 C28,82 20,78 24,71" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M18,58 C11,59 13,50 20,51" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          <path d="M16,38 C9,34 16,26 21,32" fill="none" stroke="#1A1A1A" strokeWidth="2" />
+          {/* Lettuce veins starting from center base and branching out */}
+          <path d="M50,85 C49,60 50,40 50,20" fill="none" stroke="#257E3E" strokeWidth="3.5" strokeLinecap="round" />
+          <path d="M50,65 C58,60 68,55 74,52" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M50,65 C42,60 32,55 26,52" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M50,48 C56,43 65,38 72,35" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M50,48 C44,43 35,38 28,35" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M50,32 C54,28 62,25 66,22" fill="none" stroke="#257E3E" strokeWidth="2" strokeLinecap="round" />
+          <path d="M50,32 C46,28 38,25 34,22" fill="none" stroke="#257E3E" strokeWidth="2" strokeLinecap="round" />
         </svg>
       </motion.div>
 
@@ -176,12 +231,12 @@ export default function Hero() {
               <ArrowRight className="w-4 h-4 stroke-[3px]" />
             </a>
 
-            <a
-              href="#combos"
-              className="flex items-center justify-center w-full sm:w-auto bg-bf-white hover:bg-bf-cream text-bf-black font-baloo-caps text-sm md:text-base px-8 py-4 rounded-full border-3 border-bf-black shadow-[4px_4px_0_#1A1A1A] hover:shadow-[1px_1px_0_#1A1A1A] hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+            <button
+              onClick={handleScrollToMenu}
+              className="flex items-center justify-center w-full sm:w-auto bg-bf-white hover:bg-bf-cream text-bf-black font-baloo-caps text-sm md:text-base px-8 py-4 rounded-full border-3 border-bf-black shadow-[4px_4px_0_#1A1A1A] hover:shadow-[1px_1px_0_#1A1A1A] hover:translate-x-[3px] hover:translate-y-[3px] transition-all cursor-pointer"
             >
               <span>Ver Cardápio</span>
-            </a>
+            </button>
           </motion.div>
 
         </div>
