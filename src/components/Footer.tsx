@@ -1,7 +1,226 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Phone, MapPin, Clock, MessageCircle, Instagram, Youtube, Heart, AlertTriangle, X } from 'lucide-react';
 import Logo from './Logo';
+
+const DESFALQUES = [
+  {
+    title: "Pão de Coringa de Folga",
+    badge: "AUSÊNCIA NO SET",
+    character: "Pão de Coringa",
+    message: "O Pão Vermelho do 'Coringa' se recusou a entrar em cena sem maquiagem e tirou o dia de folga! Exige retoques na cor antes do próximo take."
+  },
+  {
+    title: "Cheddar Mad Max Derretido",
+    badge: "PROBLEMA DE TEMPERATURA",
+    character: "Cheddar Cremoso",
+    message: "O Cheddar Cremoso do 'Mad Max' derreteu de calor no set do deserto e está indisponível hoje! Foi levado às pressas para a câmara de refrigeração."
+  },
+  {
+    title: "Maionese Verde no Oscar",
+    badge: "VIAGEM INTERNACIONAL",
+    character: "Maionese Verde",
+    message: "A Maionese Verde de Cinema foi indicada ao prêmio de melhor coadjuvante e viajou para Los Angeles para desfilar no tapete vermelho!"
+  },
+  {
+    title: "Bacon Poderoso Chefão Ocupado",
+    badge: "NEGOCIAÇÃO SECRETA",
+    character: "Bacon Crocante",
+    message: "O Bacon Crocante do 'O Poderoso Chefão' foi fazer uma oferta que ninguém pode recusar e não grava hoje! Assuntos de família."
+  },
+  {
+    title: "Cebola Caramelizada em Prantos",
+    badge: "DRAMA NO CAMARIM",
+    character: "Cebola Caramelizada",
+    message: "A Cebola Caramelizada chorou tanto lendo o roteiro de drama da nova temporada que precisou de um tempo no camarim para recuperar o visual!"
+  },
+  {
+    title: "Hambúrguer de Costela em Teste",
+    badge: "PROCESSO DE SELEÇÃO",
+    character: "Blend de Costela",
+    message: "O Hambúrguer de Costela foi fazer um teste de elenco secreto para um filme de ação em Hollywood e está indisponível para gravação hoje!"
+  },
+  {
+    title: "Pão de Batman em Gotham",
+    badge: "FILMAGEM EXTERNA",
+    character: "Pão Preto de Cacau",
+    message: "O Pão Preto de Cacau foi selecionado para uma ponta na continuação do 'Batman' e viajou às pressas para Gotham City!"
+  },
+  {
+    title: "Anéis de Cebola Desaparecidos",
+    badge: "MISTÉRIO NA TERRA MÉDIA",
+    character: "Anéis de Cebola",
+    message: "Os Anéis de Cebola decidiram se tornar os lendários 'Anéis de Poder' e sumiram misteriosamente na Terra Média! A equipe de busca foi acionada."
+  },
+  {
+    title: "Molho Barbecue em Comercial",
+    badge: "CONTRATO PUBLICITÁRIO",
+    character: "Molho Barbecue",
+    message: "O Molho Barbecue foi contratado para um comercial internacional de churrasco de alta classe nos EUA e está gravando em Miami!"
+  },
+  {
+    title: "Batata Rústica Antiglamour",
+    badge: "GREVE DE FIGURINO",
+    character: "Batata Rústica",
+    message: "A Batata Rústica decidiu que era rústica demais para o glamour do tapete vermelho e fugiu de volta para o campo. Prefere a simplicidade da terra!"
+  },
+  {
+    title: "Churros Favorito em Ensaio",
+    badge: "CENA DE ROMANCE",
+    character: "Churros Favorito",
+    message: "O seu Churros Favorito está ensaiando para uma cena romântica super doce e cheia de doce de leite. Ele pediu para não ser interrompido!"
+  },
+  {
+    title: "Alface Americana sem Visto",
+    badge: "PROBLEMA DE IMIGRAÇÃO",
+    character: "Alface Americana",
+    message: "A Alface Americana teve problemas com o visto de entrada de elenco e ficou retida na imigração. Ela manda lembranças refrescantes a todos."
+  },
+  {
+    title: "Tomate Italiano de Férias",
+    badge: "FÉRIAS NA TOSCANA",
+    character: "Tomate Italiano",
+    message: "O Tomate Italiano viajou de volta para a Toscana para visitar sua família de molhos artesanais e só retorna para filmar amanhã de manhã!"
+  },
+  {
+    title: "Pão de Brioche Exigente",
+    badge: "EXIGÊNCIA DE DIVA",
+    character: "Pão de Brioche",
+    message: "O Pão de Brioche exigiu um camarim privativo com toalhas de linho e água importada. Como não atendemos a tempo, ele entrou em greve de silêncio!"
+  },
+  {
+    title: "Blend Veggie em Meditação",
+    badge: "RETIRO ESPIRITUAL",
+    character: "Hambúrguer de Grão-de-Bico",
+    message: "O Blend Vegetariano foi meditar na Índia para encontrar sua paz interior e alinhar seus chakras antes de encarar o calor da nossa chapa!"
+  },
+  {
+    title: "Queijo Provolone em Dublagem",
+    badge: "CURSO DE IDIOMAS",
+    character: "Queijo Provolone",
+    message: "O Queijo Provolone está fazendo um curso intensivo de dublagem clássica na Itália e não pôde comparecer ao set de filmagens de hoje!"
+  },
+  {
+    title: "Picles Agridoce em Terapia",
+    badge: "CRISE EXISTENCIAL",
+    character: "Picles Agridoce",
+    message: "O Picles Agridoce disse que a vida anda muito ácida ultimamente e decidiu passar o dia em um retiro de terapia existencial para se acalmar."
+  },
+  {
+    title: "Maionese de Bacon Dublê",
+    badge: "DEPARTAMENTO MÉDICO",
+    character: "Maionese de Bacon",
+    message: "A Maionese de Bacon foi contratada como dublê em uma cena de perseguição de carros explosiva e está descansando após uma manobra arriscada!"
+  },
+  {
+    title: "Frango Crocante na Marvel",
+    badge: "SUPER-HERÓI",
+    character: "Frango Empanado",
+    message: "O Frango Crocante assinou um contrato multimilionário com a Marvel para o próximo filme de ação e está ocupado vestindo sua armadura!"
+  },
+  {
+    title: "Banana Caramelizada Acidentada",
+    badge: "ACIDENTE DE TRABALHO",
+    character: "Banana Caramelizada",
+    message: "A Banana Caramelizada escorregou na própria casca durante os ensaios da cena de sobremesa e está sob cuidados do departamento médico!"
+  },
+  {
+    title: "Ovo Frito Gema Mole Nervoso",
+    badge: "DEMISSÃO NO SET",
+    character: "Ovo Frito",
+    message: "O Ovo Frito de gema mole reclamou que a sua cena estava muito 'mexida' e que as câmeras estavam invadindo sua privacidade. Ele pediu as contas!"
+  },
+  {
+    title: "Queijo Coalho no Nordeste",
+    badge: "FESTIVAL REGIONAL",
+    character: "Queijo Coalho",
+    message: "O Queijo Coalho viajou para curtir as festas de São João no Nordeste e tirou uma folga regulamentar para dançar um forró arretado!"
+  },
+  {
+    title: "Pão Australiano Perdido",
+    badge: "VOO ATRASADO",
+    character: "Pão Australiano",
+    message: "O Pão Australiano viajou para Sydney para visitar seus parentes cangurus e acabou perdendo o voo de volta devido ao fuso horário!"
+  },
+  {
+    title: "Gorgonzola Forte Demais",
+    badge: "DIVERGÊNCIA CRIATIVA",
+    character: "Molho de Gorgonzola",
+    message: "O Molho de Gorgonzola alegou que a sua presença cênica é forte e marcante demais para este elenco leve e pediu rescisão amigável de contrato!"
+  },
+  {
+    title: "Double Burger sem Dublê",
+    badge: "BRIGA NO SET",
+    character: "Dois Blends",
+    message: "O Double Burger brigou feio com o seu dublê de corpo sobre quem ganharia o maior cachê, fazendo com que a gravação em dose dupla fosse adiada!"
+  },
+  {
+    title: "Milkshake de Chocolate Congelado",
+    badge: "ANSIEDADE DE PALCO",
+    character: "Milkshake de Chocolate",
+    message: "O Milkshake de Chocolate congelou de nervoso ao ver a quantidade de câmeras no set de filmagem e está se aquecendo perto do forno!"
+  },
+  {
+    title: "Batata Palito na passarela",
+    badge: "MODA DE LUXO",
+    character: "Batata Frita",
+    message: "A Batata Frita Palito foi selecionada para desfilar na passarela de Milão por ser extremamente esguia e estilosa. Sucesso absoluto!"
+  },
+  {
+    title: "Alcatra Estrela de Documentário",
+    badge: "PAPEL PRINCIPAL",
+    character: "Filé de Alcatra",
+    message: "O Filé de Alcatra foi convidado para ser o protagonista de um documentário gastronômico francês e viajou para Paris para as gravações."
+  },
+  {
+    title: "Molho Especial Intimado",
+    badge: "ASSUNTO JUDICIAL",
+    character: "Molho Especial",
+    message: "O Molho Especial jurou segredo absoluto sobre sua receita secreta e acabou sendo intimado a depor em um tribunal internacional de patentes!"
+  },
+  {
+    title: "Molho Tártaro Náfrago",
+    badge: "PERDIDO NO MAR",
+    character: "Molho Tártaro",
+    message: "O Molho Tártaro pegou um barco para vir ao set mas acabou se perdendo devido a uma forte névoa. Ele foi resgatado e está bem, mas sem previsão de volta!"
+  },
+  {
+    title: "Cheddar Flambado Explosivo",
+    badge: "EFEITOS ESPECIAIS",
+    character: "Cheddar Flambado",
+    message: "O Cheddar Flambado se empolgou demais com os efeitos especiais de fogo e acabou acionando os sprinklers do set de filmagens. Que bagunça!"
+  },
+  {
+    title: "Cebola Roxa e o Figurino",
+    badge: "RECLAMAÇÃO DE COR",
+    character: "Cebola Roxa",
+    message: "A Cebola Roxa reclamou que o tom de roxo do seu figurino desvalorizava seus olhos e se trancou no trailer. Só sai com um estilista pessoal!"
+  },
+  {
+    title: "Doritos Expulso do Set",
+    badge: "PROBLEMA DE ÁUDIO",
+    character: "Doritos Crocante",
+    message: "O Doritos no Burger fez tanto barulho de 'CRUNCH' durante a gravação do som direto que o diretor de áudio exigiu sua expulsão imediata!"
+  },
+  {
+    title: "Calabresa Defumada Sumida",
+    badge: "EFEITO DE FUMAÇA",
+    character: "Calabresa Defumada",
+    message: "A Calabresa Defumada sumiu no meio de uma nuvem de fumaça cenográfica super densa e até agora a equipe de produção não conseguiu localizá-la!"
+  },
+  {
+    title: "Catupiry Dançarino",
+    badge: "DANÇA DOS FAMOSOS",
+    character: "Catupiry Original",
+    message: "O Catupiry Original foi escalado para a grande final da 'Dança dos Famosos' e passou o dia ensaiando passos complexos de tango e salsa!"
+  },
+  {
+    title: "Smash Burger no Spa",
+    badge: "DIA DE BELEZA",
+    character: "Smash Burger",
+    message: "O Hambúrguer Smash se sentiu muito 'pressionado' pela rotina pesada de celebridade internacional e resolveu tirar o dia para um relaxante spa."
+  }
+];
 
 interface FooterProps {
   onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
@@ -10,6 +229,12 @@ interface FooterProps {
 export default function Footer({ onNavigate }: FooterProps) {
   const currentYear = new Date().getFullYear();
   const [showDesfalqueModal, setShowDesfalqueModal] = useState(false);
+  const [activeDesfalque, setActiveDesfalque] = useState<typeof DESFALQUES[0] | null>(null);
+
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * DESFALQUES.length);
+    setActiveDesfalque(DESFALQUES[randomIndex]);
+  }, []);
 
   const navigationLinks = [
     { label: "Cardápio Principal", view: "home" as const, anchor: "menu" },
@@ -264,15 +489,27 @@ export default function Footer({ onNavigate }: FooterProps) {
               <div className="text-center py-4">
                 <AlertTriangle className="w-12 h-12 text-bf-red mx-auto mb-3 animate-pulse" />
                 <h3 className="font-display text-xl text-bf-black uppercase mb-1">
-                  Roteiro Sem Desfalques!
+                  {activeDesfalque ? activeDesfalque.title : "Roteiro Sem Desfalques!"}
                 </h3>
                 <p className="text-xs text-bf-red font-baloo-caps font-black uppercase tracking-widest mb-4">
-                  Elenco 100% Escaletado
+                  {activeDesfalque ? activeDesfalque.badge : "Elenco 100% Escaletado"}
                 </p>
-                <p className="text-sm font-medium font-baloo text-gray-700 leading-relaxed bg-bf-white border-2 border-bf-black p-4 rounded-xl shadow-[3px_3px_0_#1A1A1A] text-left">
-                  <strong>Boas notícias!</strong> Todos os nossos atores principais (hambúrgueres, batatas, bebidas e sobremesas) estão confirmados na gravação de hoje e prontos para entrar em cena! <br/><br/>
-                  Nenhum ingrediente ou lanche está desfalcado. Peça já o seu favorito e bom espetáculo!
-                </p>
+                <div className="text-sm font-medium font-baloo text-gray-700 leading-relaxed bg-bf-white border-2 border-bf-black p-4 rounded-xl shadow-[3px_3px_0_#1A1A1A] text-left">
+                  {activeDesfalque ? (
+                    <>
+                      <p className="mb-2"><strong>Ator Desfalcado:</strong> <span className="text-bf-red font-black uppercase">{activeDesfalque.character}</span></p>
+                      <p className="text-xs text-gray-600 leading-normal">{activeDesfalque.message}</p>
+                      <p className="mt-3 text-[11px] text-gray-400 font-semibold border-t border-dashed border-gray-100 pt-2">
+                        * Mas não se preocupe! Temos outras 30+ opções de hambúrgueres dignos de Oscar prontos para o show de hoje!
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <strong>Boas notícias!</strong> Todos os nossos atores principais (hambúrgueres, batatas, bebidas e sobremesas) estão confirmados na gravação de hoje e prontos para entrar em cena! <br/><br/>
+                      Nenhum ingrediente ou lanche está desfalcado. Peça já o seu favorito e bom espetáculo!
+                    </>
+                  )}
+                </div>
               </div>
 
               <button

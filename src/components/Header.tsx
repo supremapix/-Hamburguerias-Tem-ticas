@@ -11,6 +11,7 @@ interface HeaderProps {
 
 export default function Header({ onOpenMobileMenu, isMobileMenuOpen, onNavigate }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,17 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen, onNavigate 
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleModalState = (e: Event) => {
+      const customEvent = e as CustomEvent<{ isOpen: boolean }>;
+      setIsModalOpen(customEvent.detail.isOpen);
+    };
+    window.addEventListener('product-modal-state', handleModalState);
+    return () => {
+      window.removeEventListener('product-modal-state', handleModalState);
+    };
   }, []);
 
   const orderUrl = "https://wa.me/5547992155989?text=Olá,%20gostaria%20de%20fazer%20um%20pedido%20cinematográfico!";
@@ -41,13 +53,17 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen, onNavigate 
   return (
     <motion.header
       initial={{ y: -120 }}
-      animate={{ y: 0 }}
+      animate={{ 
+        y: isModalOpen ? -200 : 0,
+        opacity: isModalOpen ? 0 : 1,
+        scale: isModalOpen ? 0.9 : 1
+      }}
       transition={{
         type: "spring",
-        stiffness: 120,
-        damping: 14,
+        stiffness: isModalOpen ? 220 : 120,
+        damping: isModalOpen ? 22 : 14,
         mass: 1.1,
-        delay: 0.1
+        delay: isModalOpen ? 0 : 0.1
       }}
       className={`fixed top-0 left-0 right-0 z-50 bg-bf-yellow border-b-4 border-bf-black rounded-b-[24px] transition-all duration-300 ${
         isScrolled 

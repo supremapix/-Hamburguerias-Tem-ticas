@@ -76,6 +76,17 @@ export default function ProductModal({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, hasMultipleItems, items, onSelectItem, onClose]);
 
+  // Dispatch custom event to hide Header and disable body scroll
+  useEffect(() => {
+    document.body.classList.add('product-modal-active');
+    window.dispatchEvent(new CustomEvent('product-modal-state', { detail: { isOpen: true } }));
+    
+    return () => {
+      document.body.classList.remove('product-modal-active');
+      window.dispatchEvent(new CustomEvent('product-modal-state', { detail: { isOpen: false } }));
+    };
+  }, []);
+
   const orderUrl = "https://burgerfilms.chefware.com.br/";
 
   const UNIDADES = [

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import React from 'react';
 import { MapPin, Clock, Phone, ArrowLeft, ShieldCheck, Heart, Sparkles, Navigation } from 'lucide-react';
+import InstagramFeed from '../InstagramFeed';
 
 interface PageProps {
   onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
@@ -170,6 +171,11 @@ export default function UnidadeAlfredo({ onNavigate }: PageProps) {
           </a>
         </div>
 
+      </div>
+
+      {/* Instagram Feed Integration */}
+      <div className="mb-12">
+        <InstagramFeed />
       </div>
 
     </motion.div>

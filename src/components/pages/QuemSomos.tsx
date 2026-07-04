@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import React from 'react';
 import { Film, Award, Star, Users, ArrowLeft, Heart } from 'lucide-react';
+import InstagramFeed from '../InstagramFeed';
 
 interface PageProps {
   onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
@@ -106,6 +107,11 @@ export default function QuemSomos({ onNavigate }: PageProps) {
           </div>
         </div>
 
+      </div>
+
+      {/* Instagram Feed Integration */}
+      <div className="mb-12">
+        <InstagramFeed />
       </div>
 
       {/* Footer Back to top */}

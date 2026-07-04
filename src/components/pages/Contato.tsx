@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle2, ArrowLeft, ArrowRight } from 'lucide-react';
+import InstagramFeed from '../InstagramFeed';
 
 interface PageProps {
   onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
@@ -267,6 +268,11 @@ export default function Contato({ onNavigate }: PageProps) {
           </div>
         </div>
 
+      </div>
+
+      {/* Instagram Feed Integration */}
+      <div className="mb-12">
+        <InstagramFeed />
       </div>
 
     </motion.div>

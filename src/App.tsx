@@ -11,6 +11,7 @@ import InstagramFeed from './components/InstagramFeed';
 import Footer from './components/Footer';
 import { SupremaCredit } from './components/SupremaCredit';
 import BackToTop from './components/BackToTop';
+import ShareButton from './components/ShareButton';
 import EnhancedSEO from './components/EnhancedSEO';
 
 // Import newly created page components
@@ -200,6 +201,9 @@ export default function App() {
 
         {/* Premium BackToTop floating film reel button */}
         <BackToTop />
+
+        {/* Persistent share button on the left side with social media sharing options */}
+        <ShareButton />
 
       </div>
     </HelmetProvider>
