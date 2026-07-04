@@ -106,14 +106,7 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
             referrerPolicy="no-referrer"
           />
 
-          <div className="flex justify-center items-center gap-3 mb-2">
-            <Film className={`w-8 h-8 ${ecoMode ? 'text-black' : 'text-bf-yellow'} animate-pulse`} />
-            <span className={`font-display text-4xl md:text-5xl tracking-widest uppercase ${ecoMode ? 'text-black' : 'text-bf-yellow'}`}>
-              BURGER FILMS
-            </span>
-            <Film className={`w-8 h-8 ${ecoMode ? 'text-black' : 'text-bf-yellow'} animate-pulse`} />
-          </div>
-          <p className="font-baloo-caps text-xs md:text-sm font-extrabold uppercase tracking-[0.2em] mb-4 opacity-90">
+          <p className="font-baloo-caps text-xs md:text-sm font-extrabold uppercase tracking-[0.2em] mb-4 mt-2 opacity-90">
             🎬 A Melhor Experiência Cinematográfica do Hambúrguer Artesanal 🎬
           </p>
           
