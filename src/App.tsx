@@ -7,6 +7,7 @@ import MenuSection from './components/MenuSection';
 import FAQSection from './components/FAQSection';
 import InstagramFeed from './components/InstagramFeed';
 import Footer from './components/Footer';
+import { SupremaCredit } from './components/SupremaCredit';
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -51,6 +52,9 @@ export default function App() {
 
       {/* 6. Footer Redesign Component */}
       <Footer />
+
+      {/* Suprema Credit Badge */}
+      <SupremaCredit />
 
     </div>
   );

@@ -194,20 +194,9 @@ export default function Footer() {
       </div>
 
       {/* Divider */}
-      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400 font-baloo">
-        <p>
+      <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-800 flex items-center justify-center gap-4 text-xs text-gray-400 font-baloo">
+        <p className="text-center">
           &copy; {currentYear} Burger Films Pub & Delivery. Todos os direitos reservados.
-        </p>
-        <p className="flex items-center gap-1.5">
-          <span>Desenvolvido com ❤️ pela</span>
-          <a 
-            href="https://www.supremasitesexpress.com.br" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-bf-yellow hover:underline flex items-center gap-0.5"
-          >
-            Suprema Sites Express
-          </a>
         </p>
       </div>
 
