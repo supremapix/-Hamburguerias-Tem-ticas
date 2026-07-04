@@ -45,7 +45,7 @@ export default function InstagramFeed() {
           className="w-full max-w-lg bg-white rounded-3xl p-3 border border-gray-200/80 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:scale-[1.01] transition-transform duration-300 mb-10 overflow-hidden"
         >
           {/* Responsive aspect ratio container for the official embed */}
-          <div className="relative w-full aspect-[9/11] md:aspect-[4/5] rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center">
+          <div className="relative w-full h-[380px] md:h-[440px] rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center">
             <iframe
               src="https://www.instagram.com/burgerfilms_/embed"
               title="Instagram Feed Embed"
