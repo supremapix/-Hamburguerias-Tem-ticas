@@ -223,7 +223,7 @@ const DESFALQUES = [
 ];
 
 interface FooterProps {
-  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap' | 'cardapio-imprimir') => void;
+  onNavigate: (view: any) => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
@@ -241,6 +241,7 @@ export default function Footer({ onNavigate }: FooterProps) {
     { label: "Agenda Semanal", view: "home" as const, anchor: "agenda" },
     { label: "Quem Somos", view: "quem-somos" as const },
     { label: "Contatos", view: "contato" as const },
+    { label: "Blog Cinematográfico", view: "blog" as const },
     { label: "Mapa do Site", view: "sitemap" as const },
     { label: "Cardápio A4 (Imprimir) 🖨️", view: "cardapio-imprimir" as const },
   ];

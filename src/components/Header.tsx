@@ -6,7 +6,7 @@ import Logo from './Logo';
 interface HeaderProps {
   onOpenMobileMenu: () => void;
   isMobileMenuOpen: boolean;
-  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
+  onNavigate: (view: any) => void;
 }
 
 export default function Header({ onOpenMobileMenu, isMobileMenuOpen, onNavigate }: HeaderProps) {
@@ -95,6 +95,7 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen, onNavigate 
             { label: "Agenda", href: "#agenda" },
             { label: "Quem Somos", view: "quem-somos" as const },
             { label: "Contato", view: "contato" as const },
+            { label: "Blog", view: "blog" as const },
           ].map((link, i) => {
             if ('view' in link) {
               return (

@@ -204,6 +204,43 @@ export const GLOBAL_SEO_DATA: Record<string, SEOMetadata> = {
         }
       ]
     }
+  },
+  "blog": {
+    title: "Blog Cinematográfico | Burger Films Pub & Delivery em Penha-SC",
+    description: "Fique por dentro das novidades, lançamentos, eventos, promoções e curiosidades dos bastidores da melhor hamburgueria temática de Penha - SC.",
+    keywords: "blog Burger Films, novidades hamburgueria Penha, bastidores hamburgueria, promoções hambúrguer Penha SC",
+    canonicalUrl: "https://www.burgerfilms.com.br/blog",
+    ogImage: "https://img.burgerfilms.com.br/meu-churros-favorito.webp",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Blog",
+          "@id": "https://www.burgerfilms.com.br/blog/#blog",
+          "url": "https://www.burgerfilms.com.br/blog",
+          "name": "Blog Cinematográfico | Burger Films",
+          "description": "Bastidores, curiosidades e novidades sobre os melhores hambúrgueres artesanais de Penha - SC."
+        }
+      ]
+    }
+  },
+  "not-found": {
+    title: "Cena Não Encontrada (404) | Burger Films Pub & Delivery",
+    description: "Ops! Essa cena foi cortada na edição ou o roteiro mudou de rumo. Volte para a página principal para saborear o melhor hambúrguer artesanal de Penha - SC.",
+    keywords: "erro 404, pagina nao encontrada, burger films 404",
+    canonicalUrl: "https://www.burgerfilms.com.br/404",
+    ogImage: "https://img.burgerfilms.com.br/meu-churros-favorito.webp",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.burgerfilms.com.br/404/#webpage",
+          "url": "https://www.burgerfilms.com.br/404",
+          "name": "Página não encontrada | Burger Films Pub & Delivery"
+        }
+      ]
+    }
   }
 };
 

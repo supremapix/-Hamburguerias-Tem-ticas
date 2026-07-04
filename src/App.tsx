@@ -22,6 +22,8 @@ import UnidadeAlfredo from './components/pages/UnidadeAlfredo';
 import UnidadeEugenio from './components/pages/UnidadeEugenio';
 import Sitemap from './components/pages/Sitemap';
 import CardapioImprimir from './components/pages/CardapioImprimir';
+import Blog from './components/pages/Blog';
+import NotFound from './components/pages/NotFound';
 
 // Import newly created neighborhood pages
 import BairroCentro from './components/pages/BairroCentro';
@@ -46,7 +48,9 @@ type ViewType =
   | 'bairro-gravata'
   | 'bairro-santa-lidia'
   | 'bairro-sao-cristovao'
-  | 'bairro-sao-miguel';
+  | 'bairro-sao-miguel'
+  | 'blog'
+  | 'not-found';
 
 const getInitialView = (): ViewType => {
   if (typeof window === 'undefined') return 'home';
@@ -56,13 +60,13 @@ const getInitialView = (): ViewType => {
   const validViews: ViewType[] = [
     'home', 'quem-somos', 'contato', 'unidade-alfredo', 'unidade-eugenio', 'sitemap', 'cardapio-imprimir',
     'bairro-centro', 'bairro-armacao', 'bairro-praia-grande', 'bairro-gravata', 
-    'bairro-santa-lidia', 'bairro-sao-cristovao', 'bairro-sao-miguel'
+    'bairro-santa-lidia', 'bairro-sao-cristovao', 'bairro-sao-miguel', 'blog', 'not-found'
   ];
 
   if (validViews.includes(path as ViewType)) {
     return path as ViewType;
   }
-  return 'home';
+  return 'not-found';
 };
 
 export default function App() {
@@ -167,6 +171,14 @@ export default function App() {
 
             {currentView === 'cardapio-imprimir' && (
               <CardapioImprimir key="cardapio-imprimir" onNavigate={handleNavigate} />
+            )}
+
+            {currentView === 'blog' && (
+              <Blog key="blog" onNavigate={handleNavigate} />
+            )}
+
+            {currentView === 'not-found' && (
+              <NotFound key="not-found" onNavigate={handleNavigate} />
             )}
 
             {/* Neighborhood Pages */}

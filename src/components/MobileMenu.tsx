@@ -1,17 +1,18 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { X, MessageCircle, Home, Film, Utensils, Calendar, MapPin, Phone, Printer } from 'lucide-react';
+import { X, MessageCircle, Home, Film, Utensils, Calendar, MapPin, Phone, Printer, Star } from 'lucide-react';
 import Logo from './Logo';
 
 interface MobileMenuProps {
   isOpen: boolean;
   onClose: () => void;
-  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap' | 'cardapio-imprimir') => void;
+  onNavigate: (view: any) => void;
 }
 
 export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuProps) {
   const menuLinks = [
     { label: "Página Inicial", view: "home" as const, icon: Home },
     { label: "Quem Somos", view: "quem-somos" as const, icon: Film },
+    { label: "Blog Cinematográfico", view: "blog" as const, icon: Star },
     { label: "Nosso Cardápio", view: "home" as const, anchor: "menu", icon: Utensils },
     { label: "Nossa Agenda", view: "home" as const, anchor: "agenda", icon: Calendar },
     { label: "Unidade 1 - Alfredo", view: "unidade-alfredo" as const, icon: MapPin },
