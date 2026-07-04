@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 import { MessageCircle } from 'lucide-react';
 import Logo from './Logo';
 
 interface HeaderProps {
   onOpenMobileMenu: () => void;
   isMobileMenuOpen: boolean;
+  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
 }
 
-export default function Header({ onOpenMobileMenu, isMobileMenuOpen }: HeaderProps) {
+export default function Header({ onOpenMobileMenu, isMobileMenuOpen, onNavigate }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -23,8 +24,19 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen }: HeaderPro
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // WhatsApp Order Link
   const orderUrl = "https://wa.me/5547992155989?text=Olá,%20gostaria%20de%20fazer%20um%20pedido%20cinematográfico!";
+
+  const handleLinkClick = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    onNavigate('home');
+    const targetId = href.replace('#', '');
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 150);
+  };
 
   return (
     <motion.header
@@ -45,31 +57,56 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen }: HeaderPro
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
-        {/* Cinematic Premium WebP Logo */}
-        <a href="#" className="flex items-center gap-3.5 group focus:outline-none">
+        {/* Cinematic Logo - Back to Home */}
+        <button 
+          onClick={() => {
+            onNavigate('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="flex items-center gap-3.5 group focus:outline-none cursor-pointer text-left"
+        >
           <Logo size={isScrolled ? 'sm' : 'md'} />
           <div className="hidden sm:flex flex-col text-left font-baloo-caps text-[10px] md:text-xs text-bf-black leading-tight">
             <span className="font-extrabold text-bf-black">PUB & DELIVERY</span>
             <span className="text-bf-white drop-shadow-[1.5px_1.5px_0_#1a1a1a]">PENHA - SC</span>
           </div>
-        </a>
+        </button>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-3">
+        <nav className="hidden md:flex items-center gap-2">
           {[
-            { label: "🍔 Mini Burgers", href: "#minions" },
-            { label: "🎬 Burgers de Cinema", href: "#cinema" },
-            { label: "🎉 Combos", href: "#combos" },
+            { label: "🍔 Cardápio", href: "#menu" },
             { label: "📅 Agenda", href: "#agenda" },
-          ].map((link, i) => (
-            <a
-              key={i}
-              href={link.href}
-              className="px-4 py-2 rounded-full font-baloo-caps text-sm text-bf-black font-extrabold sticker-hover border-2 border-transparent hover:border-bf-black hover:bg-bf-white hover:text-bf-black focus:outline-none focus:ring-2 focus:ring-bf-black"
-            >
-              {link.label}
-            </a>
-          ))}
+            { label: "🍿 Quem Somos", view: "quem-somos" as const },
+            { label: "📞 Contato", view: "contato" as const },
+            { label: "🗺️ Sitemap", view: "sitemap" as const },
+          ].map((link, i) => {
+            if ('view' in link) {
+              return (
+                <button
+                  key={i}
+                  onClick={() => {
+                    onNavigate(link.view);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="px-4 py-2 rounded-full font-baloo-caps text-sm text-bf-black font-extrabold sticker-hover border-2 border-transparent hover:border-bf-black hover:bg-bf-white hover:text-bf-black focus:outline-none cursor-pointer"
+                >
+                  {link.label}
+                </button>
+              );
+            } else {
+              return (
+                <a
+                  key={i}
+                  href={link.href}
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className="px-4 py-2 rounded-full font-baloo-caps text-sm text-bf-black font-extrabold sticker-hover border-2 border-transparent hover:border-bf-black hover:bg-bf-white hover:text-bf-black focus:outline-none cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              );
+            }
+          })}
         </nav>
 
         {/* Desktop WhatsApp CTA Button */}
@@ -80,7 +117,6 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen }: HeaderPro
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-bf-black hover:bg-bf-black/90 text-bf-yellow hover:text-bf-yellow font-baloo-caps text-xs md:text-sm px-5 py-3 rounded-full border-2 border-bf-black shadow-[3px_3px_0_#000000] hover:shadow-[1px_1px_0_#000000] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 hover-wiggle focus:outline-none"
           >
-            {/* Pulsing Chat Icon representing WhatsApp */}
             <MessageCircle className="w-4 h-4 fill-bf-yellow animate-pulse-whatsapp" />
             <span>Peça seu lanche</span>
           </a>
@@ -92,7 +128,7 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen }: HeaderPro
             onClick={onOpenMobileMenu}
             aria-expanded={isMobileMenuOpen}
             aria-label="Abrir menu de navegação"
-            className="w-11 h-11 rounded-full bg-bf-white flex flex-col items-center justify-center gap-1.5 border-3 border-bf-black cartoon-shadow hover:scale-105 active:scale-95 transition-all focus:outline-none"
+            className="w-11 h-11 rounded-full bg-bf-white flex flex-col items-center justify-center gap-1.5 border-3 border-bf-black cartoon-shadow hover:scale-105 active:scale-95 transition-all focus:outline-none cursor-pointer"
           >
             <span className={`w-6 h-1 bg-bf-black rounded-full transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`w-6 h-1 bg-bf-black rounded-full transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />

@@ -45,7 +45,7 @@ export default function FAQSection() {
           <span className="text-bf-red font-baloo-caps text-xs md:text-sm font-extrabold tracking-widest bg-bf-white border-2 border-bf-black px-3 py-1 rounded-full inline-block mb-3">
             🎬 SAC CINEMATOGRÁFICO
           </span>
-          <h2 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-black">
+          <h2 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-yellow">
             DÚVIDAS FREQUENTES
           </h2>
           <p className="text-gray-500 font-baloo text-sm md:text-base max-w-xl mx-auto mt-2 font-medium">

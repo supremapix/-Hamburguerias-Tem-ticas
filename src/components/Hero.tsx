@@ -143,7 +143,7 @@ export default function Hero() {
               className="text-bf-white text-5xl md:text-7xl lg:text-8xl bubble-title-outline tracking-wider uppercase leading-none"
             >
               COMIDAS &<br />
-              <span className="text-bf-black drop-shadow-[4px_4px_0_#ffffff]">BEBIDAS</span>
+              <span className="text-bf-yellow">BEBIDAS</span>
               <span className="sr-only"> - Burger Films: Hamburgueria Artesanal em Penha-SC, Pub e Delivery perto do Beto Carrero World</span>
             </motion.h1>
           </div>

@@ -57,7 +57,7 @@ export default function MenuSection() {
           <span className="text-bf-red font-baloo-caps text-xs md:text-sm font-extrabold tracking-widest bg-bf-cream border-2 border-bf-black px-3 py-1 rounded-full inline-block mb-3">
             🎥 O SHOW VAI COMEÇAR!
           </span>
-          <h2 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-black">
+          <h2 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-yellow">
             NOSSO CARDÁPIO
             <span className="sr-only"> de Hambúrgueres Artesanais em Penha-SC</span>
           </h2>
@@ -248,6 +248,8 @@ export default function MenuSection() {
             onClose={() => setSelectedItem(null)} 
             getCategoryLabel={getCategoryLabel}
             getSubcategoryLabel={getSubcategoryLabel}
+            items={filteredItems}
+            onSelectItem={setSelectedItem}
           />
         )}
       </AnimatePresence>

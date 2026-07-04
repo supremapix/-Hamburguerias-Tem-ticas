@@ -1,5 +1,6 @@
+import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { X, MapPin, Clock, Phone, ExternalLink, MessageCircle, Sparkles } from 'lucide-react';
+import { X, MapPin, Clock, Phone, ExternalLink, MessageCircle, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProductModalProps {
   item: {
@@ -14,10 +15,66 @@ interface ProductModalProps {
   onClose: () => void;
   getCategoryLabel: (item: any) => string;
   getSubcategoryLabel: (item: any) => string | undefined;
+  items?: Array<{
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    image: string;
+    category: string;
+    subcategory?: string;
+  }>;
+  onSelectItem?: (item: any) => void;
 }
 
-export default function ProductModal({ item, onClose, getCategoryLabel, getSubcategoryLabel }: ProductModalProps) {
+export default function ProductModal({ 
+  item, 
+  onClose, 
+  getCategoryLabel, 
+  getSubcategoryLabel,
+  items = [],
+  onSelectItem
+}: ProductModalProps) {
+  
   if (!item) return null;
+
+  const currentIndex = items && onSelectItem ? items.findIndex(i => i.id === item.id) : -1;
+  const hasMultipleItems = items && onSelectItem && items.length > 1;
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!hasMultipleItems || !items || !onSelectItem || currentIndex === -1) return;
+    const prevIndex = (currentIndex - 1 + items.length) % items.length;
+    onSelectItem(items[prevIndex]);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!hasMultipleItems || !items || !onSelectItem || currentIndex === -1) return;
+    const nextIndex = (currentIndex + 1) % items.length;
+    onSelectItem(items[nextIndex]);
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        if (hasMultipleItems && items && onSelectItem && currentIndex !== -1) {
+          const prevIndex = (currentIndex - 1 + items.length) % items.length;
+          onSelectItem(items[prevIndex]);
+        }
+      } else if (e.key === 'ArrowRight') {
+        if (hasMultipleItems && items && onSelectItem && currentIndex !== -1) {
+          const nextIndex = (currentIndex + 1) % items.length;
+          onSelectItem(items[nextIndex]);
+        }
+      } else if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, hasMultipleItems, items, onSelectItem, onClose]);
 
   const getWhatsAppLink = (itemName: string) => {
     return `https://wa.me/5547992155989?text=Olá!%20Gostaria%20de%20pedir%20o%20delicioso%20${encodeURIComponent(itemName)}!`;
@@ -61,17 +118,17 @@ export default function ProductModal({ item, onClose, getCategoryLabel, getSubca
         onClick={(e) => e.stopPropagation()}
       >
         
-        {/* Close Button */}
+        {/* Top Close Button (Desktop/Standard) */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-bf-white text-bf-black flex items-center justify-center border-2 border-bf-black shadow-[2px_2px_0_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer focus:outline-none"
+          className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-bf-white text-bf-black flex items-center justify-center border-2 border-bf-black shadow-[2px_2px_0_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer focus:outline-none"
           aria-label="Fechar detalhes"
         >
           <X className="w-5 h-5 stroke-[2.5px]" />
         </button>
 
-        {/* Left Side: Product Image & Badges */}
-        <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto md:h-full bg-bf-black border-b-4 md:border-b-0 md:border-r-4 border-bf-black shrink-0">
+        {/* Left Side: Product Image & Badges & Slider Navigation */}
+        <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto md:h-full bg-bf-black border-b-4 md:border-b-0 md:border-r-4 border-bf-black shrink-0 group">
           <img
             src={item.image}
             alt={item.name}
@@ -79,8 +136,33 @@ export default function ProductModal({ item, onClose, getCategoryLabel, getSubca
             className="w-full h-full object-cover"
           />
           
+          {/* Slider Left/Right Arrows overlayed on image */}
+          {hasMultipleItems && (
+            <>
+              <button
+                onClick={handlePrev}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-bf-white text-bf-black flex items-center justify-center border-2 border-bf-black shadow-[2px_2px_0_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-bf-yellow transition-all cursor-pointer"
+                aria-label="Anterior"
+              >
+                <ChevronLeft className="w-6 h-6 stroke-[3px]" />
+              </button>
+              <button
+                onClick={handleNext}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-bf-white text-bf-black flex items-center justify-center border-2 border-bf-black shadow-[2px_2px_0_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] hover:bg-bf-yellow transition-all cursor-pointer"
+                aria-label="Próximo"
+              >
+                <ChevronRight className="w-6 h-6 stroke-[3px]" />
+              </button>
+
+              {/* Slider index indicator bubble */}
+              <div className="absolute bottom-4 right-4 bg-bf-black text-bf-white text-[10px] font-mono px-2.5 py-1 rounded-full border-2 border-bf-black shadow-sm select-none">
+                {currentIndex + 1} / {items.length}
+              </div>
+            </>
+          )}
+          
           {/* Category Badges */}
-          <div className="absolute top-4 left-4 flex gap-1.5 flex-wrap">
+          <div className="absolute top-4 left-4 flex gap-1.5 flex-wrap z-10">
             <span className="bg-bf-black text-bf-yellow text-[11px] font-baloo-caps font-black px-3 py-1.5 rounded-full border-2 border-bf-black uppercase select-none shadow-md">
               {getCategoryLabel(item)}
             </span>
@@ -92,7 +174,7 @@ export default function ProductModal({ item, onClose, getCategoryLabel, getSubca
           </div>
 
           {/* Sparkles Overlay */}
-          <div className="absolute bottom-4 left-4 bg-bf-yellow text-bf-black text-[11px] font-baloo-caps font-black px-3 py-1.5 rounded-full border-2 border-bf-black flex items-center gap-1.5 shadow-md select-none">
+          <div className="absolute bottom-4 left-4 bg-bf-yellow text-bf-black text-[11px] font-baloo-caps font-black px-3 py-1.5 rounded-full border-2 border-bf-black flex items-center gap-1.5 shadow-md select-none z-10">
             <Sparkles className="w-3.5 h-3.5 fill-bf-black" />
             <span>INGREDIENTES PREMIUM</span>
           </div>
@@ -136,7 +218,7 @@ export default function ProductModal({ item, onClose, getCategoryLabel, getSubca
                 {UNIDADES.map((unidade, index) => (
                   <div 
                     key={index} 
-                    className={`bg-bf-white border-2 border-bf-black rounded-2xl p-4 shadow-[3px_3px_0_#1A1A1A] hover:translate-y-[-1px] transition-transform`}
+                    className="bg-bf-white border-2 border-bf-black rounded-2xl p-4 shadow-[3px_3px_0_#1A1A1A] hover:translate-y-[-1px] transition-transform"
                   >
                     <span className={`inline-block text-[9px] md:text-[10px] font-baloo-caps font-black px-2 py-0.5 rounded-full mb-1 border border-bf-black uppercase ${unidade.badgeColor}`}>
                       {unidade.name.split(' — ')[0]}
@@ -170,22 +252,34 @@ export default function ProductModal({ item, onClose, getCategoryLabel, getSubca
             </div>
           </div>
 
-          {/* Purchase CTA and Online Order Block */}
-          <div className="pt-4 border-t-2 border-dashed border-bf-black/20 flex flex-col sm:flex-row gap-3 items-center justify-between">
+          {/* Bottom Action Area (Includes close and order button to avoid getting stuck behind large photos) */}
+          <div className="pt-4 border-t-2 border-dashed border-bf-black/20 flex flex-col gap-4">
             <div className="flex items-center gap-2 text-xs font-baloo font-bold text-gray-600">
               <Phone className="w-4 h-4 text-bf-black" />
               <span>Pedir Online pelo WhatsApp: (47) 99215-5989</span>
             </div>
 
-            <a
-              href={getWhatsAppLink(item.name)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-bf-black hover:bg-bf-yellow text-bf-yellow hover:text-bf-black font-baloo-caps text-sm font-black px-6 py-3.5 rounded-full border-2 border-bf-black shadow-[4px_4px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer"
-            >
-              <MessageCircle className="w-4 h-4 fill-current shrink-0" />
-              <span>PEDIR ESTE LANCHE</span>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3 w-full">
+              {/* Bottom Close Button requested by user */}
+              <button
+                onClick={onClose}
+                className="w-full sm:flex-1 flex items-center justify-center gap-2 bg-bf-white hover:bg-gray-100 text-bf-black font-baloo-caps text-sm font-black px-6 py-3.5 rounded-full border-2 border-bf-black shadow-[4px_4px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer"
+              >
+                <X className="w-4 h-4 stroke-[3px]" />
+                <span>FECHAR DETALHES</span>
+              </button>
+
+              {/* Order Button */}
+              <a
+                href={getWhatsAppLink(item.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:flex-1 flex items-center justify-center gap-2 bg-bf-black hover:bg-bf-yellow text-bf-yellow hover:text-bf-black font-baloo-caps text-sm font-black px-6 py-3.5 rounded-full border-2 border-bf-black shadow-[4px_4px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer"
+              >
+                <MessageCircle className="w-4 h-4 fill-current shrink-0" />
+                <span>PEDIR ESTE LANCHE</span>
+              </a>
+            </div>
           </div>
 
         </div>
