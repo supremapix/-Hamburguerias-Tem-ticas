@@ -1,0 +1,4 @@
+# Netlify SPA fallback redirects
+# Netlify will serve the static files (e.g. /quem-somos/index.html) first if they exist,
+# otherwise it will fall back to the main index.html for client-side routing.
+/*   /index.html   200

@@ -3,7 +3,7 @@ import React from 'react';
 import { Film, Compass, Link2, MapPin, ArrowLeft, HelpCircle, Instagram } from 'lucide-react';
 
 interface PageProps {
-  onNavigate: (view: 'home' | 'quem-somos' | 'contato' | 'unidade-alfredo' | 'unidade-eugenio' | 'sitemap') => void;
+  onNavigate: (view: any) => void;
   key?: string;
 }
 
@@ -202,6 +202,43 @@ export default function Sitemap({ onNavigate }: PageProps) {
                   <span>Unidade Eugênio Krause (centro Armação)</span>
                 </button>
               </li>
+            </ul>
+          </div>
+
+          {/* Delivery Region Pages */}
+          <div className="space-y-5 md:col-span-2 mt-4 bg-bf-cream/30 p-6 rounded-2xl border-2 border-bf-black/10">
+            <h3 className="font-display text-xl text-bf-black uppercase flex items-center gap-2 border-b-2 border-dashed border-gray-200 pb-2">
+              <Compass className="w-5 h-5 text-bf-yellow-deep" />
+              <span>Roteiros de Entrega (Delivery nos Bairros)</span>
+            </h3>
+            
+            <p className="text-xs text-gray-500 font-medium -mt-2">
+              Páginas de entrega especializadas com tempo de atendimento local e taxas exclusivas por bairro de Penha-SC:
+            </p>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 font-semibold text-xs mt-3">
+              {[
+                { name: 'Centro', slug: 'bairro-centro' },
+                { name: 'Armação', slug: 'bairro-armacao' },
+                { name: 'Praia Grande', slug: 'bairro-praia-grande' },
+                { name: 'Gravatá', slug: 'bairro-gravata' },
+                { name: 'Santa Lídia', slug: 'bairro-santa-lidia' },
+                { name: 'São Cristóvão', slug: 'bairro-sao-cristovao' },
+                { name: 'Praia de São Miguel', slug: 'bairro-sao-miguel' },
+              ].map((bairro) => (
+                <li key={bairro.slug}>
+                  <button
+                    onClick={() => {
+                      onNavigate(bairro.slug);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="group w-full flex items-center gap-2 text-gray-700 hover:text-bf-red transition-colors text-left cursor-pointer bg-bf-white p-2.5 rounded-lg border border-gray-200 hover:border-bf-black/25 shadow-sm hover:shadow"
+                  >
+                    <Link2 className="w-3.5 h-3.5 text-bf-yellow-deep group-hover:rotate-45 transition-transform" />
+                    <span>Delivery {bairro.name}</span>
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
 
