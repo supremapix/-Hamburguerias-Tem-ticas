@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { AGENDA_ITEMS } from '../data';
-import { MapPin } from 'lucide-react';
+import { MapPin, Sparkles } from 'lucide-react';
 
 export default function AgendaSection() {
   return (
@@ -32,8 +32,9 @@ export default function AgendaSection() {
             AGENDA SEMANAL
             <span className="sr-only"> de Eventos, Música ao Vivo e Rodízio de Hambúrguer em Penha-SC</span>
           </h2>
-          <p className="text-xs md:text-sm font-baloo-caps text-bf-black mt-2 font-extrabold tracking-wider">
-            🎉 Programação especial e eventos temáticos de cinema
+          <p className="text-xs md:text-sm font-baloo-caps text-bf-black mt-2 font-extrabold tracking-wider flex items-center justify-center gap-1.5">
+            <Sparkles className="w-4 h-4 text-bf-red shrink-0" />
+            <span>Programação especial e eventos temáticos de cinema</span>
           </p>
         </div>
 
@@ -137,7 +138,7 @@ export default function AgendaSection() {
               <span>Av. Eugênio Krause, 3045</span>
             </div>
             <p className="text-xs font-baloo uppercase text-gray-400 tracking-wider">
-              📍 Penha - SC (Pertinho do Beto Carrero World!)
+              Penha - SC (Pertinho do Beto Carrero World!)
             </p>
           </div>
 

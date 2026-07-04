@@ -40,8 +40,9 @@ export default function Sitemap({ onNavigate }: PageProps) {
 
       {/* Header Section */}
       <div className="text-center mb-12">
-        <span className="text-bf-red font-baloo-caps text-xs font-black tracking-widest bg-bf-white border-2 border-bf-black px-3.5 py-1.5 rounded-full inline-block mb-3 select-none">
-          🗺️ GUIA DO ELENCO
+        <span className="text-bf-red font-baloo-caps text-xs font-black tracking-widest bg-bf-white border-2 border-bf-black px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 mb-3 select-none">
+          <Compass className="w-3.5 h-3.5 stroke-[2.5px]" />
+          <span>GUIA DO ELENCO</span>
         </span>
         <h1 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-yellow leading-none">
           MAPA DO SITE

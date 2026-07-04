@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { HelpCircle, ChevronDown, MessageSquare } from 'lucide-react';
+import { HelpCircle, ChevronDown, MessageSquare, Film } from 'lucide-react';
 
 const FAQ_ITEMS = [
   {
@@ -42,8 +42,9 @@ export default function FAQSection() {
         
         {/* Section Header */}
         <div className="text-center mb-16 select-none">
-          <span className="text-bf-red font-baloo-caps text-xs md:text-sm font-extrabold tracking-widest bg-bf-white border-2 border-bf-black px-3 py-1 rounded-full inline-block mb-3">
-            🎬 SAC CINEMATOGRÁFICO
+          <span className="text-bf-red font-baloo-caps text-xs md:text-sm font-extrabold tracking-widest bg-bf-white border-2 border-bf-black px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 mb-3">
+            <Film className="w-3.5 h-3.5 stroke-[2.5px]" />
+            <span>SAC CINEMATOGRÁFICO</span>
           </span>
           <h2 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-yellow">
             DÚVIDAS FREQUENTES

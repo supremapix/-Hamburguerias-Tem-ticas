@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'motion/react';
-import { X, MapPin, Clock, Phone, ExternalLink, MessageCircle, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { X, MapPin, Clock, Phone, ExternalLink, MessageCircle, Sparkles, ChevronLeft, ChevronRight, Utensils, Film } from 'lucide-react';
 
 interface ProductModalProps {
   item: {
@@ -76,9 +76,7 @@ export default function ProductModal({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentIndex, hasMultipleItems, items, onSelectItem, onClose]);
 
-  const getWhatsAppLink = (itemName: string) => {
-    return `https://wa.me/5547992155989?text=Olá!%20Gostaria%20de%20pedir%20o%20delicioso%20${encodeURIComponent(itemName)}!`;
-  };
+  const orderUrl = "https://burgerfilms.chefware.com.br/";
 
   const UNIDADES = [
     {
@@ -200,8 +198,9 @@ export default function ProductModal({
 
             {/* Detailed Description */}
             <div className="mb-6">
-              <h3 className="text-bf-black font-baloo-caps text-xs font-bold uppercase tracking-widest text-bf-red mb-1.5">
-                🎬 Detalhamento do Lanche
+              <h3 className="text-bf-black font-baloo-caps text-xs font-bold uppercase tracking-widest text-bf-red mb-1.5 flex items-center gap-1.5">
+                <Film className="w-4 h-4" />
+                <span>Detalhamento do Lanche</span>
               </h3>
               <p className="text-gray-700 text-sm md:text-base font-medium font-baloo leading-relaxed bg-bf-white border-2 border-bf-black p-4 rounded-2xl shadow-[3px_3px_0_#1A1A1A]">
                 {item.description}
@@ -210,8 +209,9 @@ export default function ProductModal({
 
             {/* Address List */}
             <div className="mb-8">
-              <h3 className="text-bf-black font-baloo-caps text-xs font-bold uppercase tracking-widest text-bf-red mb-3">
-                📍 Onde Comer (Nossas Unidades)
+              <h3 className="text-bf-black font-baloo-caps text-xs font-bold uppercase tracking-widest text-bf-red mb-3 flex items-center gap-1.5">
+                <MapPin className="w-4 h-4" />
+                <span>Onde Comer (Nossas Unidades)</span>
               </h3>
               
               <div className="grid grid-cols-1 gap-3.5">
@@ -254,11 +254,6 @@ export default function ProductModal({
 
           {/* Bottom Action Area (Includes close and order button to avoid getting stuck behind large photos) */}
           <div className="pt-4 border-t-2 border-dashed border-bf-black/20 flex flex-col gap-4">
-            <div className="flex items-center gap-2 text-xs font-baloo font-bold text-gray-600">
-              <Phone className="w-4 h-4 text-bf-black" />
-              <span>Pedir Online pelo WhatsApp: (47) 99215-5989</span>
-            </div>
-
             <div className="flex flex-col sm:flex-row gap-3 w-full">
               {/* Bottom Close Button requested by user */}
               <button
@@ -271,13 +266,13 @@ export default function ProductModal({
 
               {/* Order Button */}
               <a
-                href={getWhatsAppLink(item.name)}
+                href={orderUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:flex-1 flex items-center justify-center gap-2 bg-bf-black hover:bg-bf-yellow text-bf-yellow hover:text-bf-black font-baloo-caps text-sm font-black px-6 py-3.5 rounded-full border-2 border-bf-black shadow-[4px_4px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-all cursor-pointer"
               >
-                <MessageCircle className="w-4 h-4 fill-current shrink-0" />
-                <span>PEDIR ESTE LANCHE</span>
+                <Utensils className="w-4 h-4 shrink-0" />
+                <span>PEDIR ONLINE AGORA</span>
               </a>
             </div>
           </div>

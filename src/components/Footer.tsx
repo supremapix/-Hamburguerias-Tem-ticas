@@ -12,11 +12,11 @@ export default function Footer({ onNavigate }: FooterProps) {
   const [showDesfalqueModal, setShowDesfalqueModal] = useState(false);
 
   const navigationLinks = [
-    { label: "🍔 Cardápio Principal", view: "home" as const, anchor: "menu" },
-    { label: "📅 Agenda Semanal", view: "home" as const, anchor: "agenda" },
-    { label: "🍿 Quem Somos", view: "quem-somos" as const },
-    { label: "📞 Contatos", view: "contato" as const },
-    { label: "🗺️ Mapa do Site", view: "sitemap" as const },
+    { label: "Cardápio Principal", view: "home" as const, anchor: "menu" },
+    { label: "Agenda Semanal", view: "home" as const, anchor: "agenda" },
+    { label: "Quem Somos", view: "quem-somos" as const },
+    { label: "Contatos", view: "contato" as const },
+    { label: "Mapa do Site", view: "sitemap" as const },
   ];
 
   const orderUrl = "https://wa.me/5547992155989?text=Olá,%20gostaria%20de%20fazer%20um%20pedido%20cinematográfico!";
@@ -140,7 +140,7 @@ export default function Footer({ onNavigate }: FooterProps) {
                 className="group flex items-center gap-2 text-xs font-baloo-caps font-black text-bf-red hover:text-bf-yellow bg-bf-white/5 border border-bf-red px-3.5 py-2 rounded-xl transition-all cursor-pointer focus:outline-none"
               >
                 <AlertTriangle className="w-3.5 h-3.5 animate-pulse shrink-0" />
-                <span>🎬 VER DESFALQUES DO DIA</span>
+                <span>VER DESFALQUES DO DIA</span>
               </button>
             </div>
           </div>
@@ -264,13 +264,13 @@ export default function Footer({ onNavigate }: FooterProps) {
               <div className="text-center py-4">
                 <AlertTriangle className="w-12 h-12 text-bf-red mx-auto mb-3 animate-pulse" />
                 <h3 className="font-display text-xl text-bf-black uppercase mb-1">
-                  🎬 Roteiro Sem Desfalques!
+                  Roteiro Sem Desfalques!
                 </h3>
                 <p className="text-xs text-bf-red font-baloo-caps font-black uppercase tracking-widest mb-4">
                   Elenco 100% Escaletado
                 </p>
                 <p className="text-sm font-medium font-baloo text-gray-700 leading-relaxed bg-bf-white border-2 border-bf-black p-4 rounded-xl shadow-[3px_3px_0_#1A1A1A] text-left">
-                  🍿 <strong>Boas notícias!</strong> Todos os nossos atores principais (hambúrgueres, batatas, bebidas e sobremesas) estão confirmados na gravação de hoje e prontos para entrar em cena! <br/><br/>
+                  <strong>Boas notícias!</strong> Todos os nossos atores principais (hambúrgueres, batatas, bebidas e sobremesas) estão confirmados na gravação de hoje e prontos para entrar em cena! <br/><br/>
                   Nenhum ingrediente ou lanche está desfalcado. Peça já o seu favorito e bom espetáculo!
                 </p>
               </div>

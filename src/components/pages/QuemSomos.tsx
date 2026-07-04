@@ -29,8 +29,9 @@ export default function QuemSomos({ onNavigate }: PageProps) {
 
       {/* Hero Header */}
       <div className="text-center mb-12">
-        <span className="text-bf-red font-baloo-caps text-xs font-black tracking-widest bg-bf-white border-2 border-bf-black px-3.5 py-1.5 rounded-full inline-block mb-3 select-none">
-          🎬 NOSSA HISTÓRIA
+        <span className="text-bf-red font-baloo-caps text-xs font-black tracking-widest bg-bf-white border-2 border-bf-black px-3.5 py-1.5 rounded-full inline-flex items-center gap-1.5 mb-3 select-none">
+          <Film className="w-3.5 h-3.5 stroke-[2.5px]" />
+          <span>NOSSA HISTÓRIA</span>
         </span>
         <h1 className="text-4xl md:text-6xl uppercase bubble-title-outline text-bf-yellow leading-none">
           QUEM SOMOS
@@ -45,8 +46,9 @@ export default function QuemSomos({ onNavigate }: PageProps) {
         
         {/* Paragraphs with cartoon visual enhancements */}
         <div className="prose max-w-none text-gray-700 font-baloo space-y-6 text-sm md:text-base leading-relaxed">
-          <p className="font-bold text-bf-black text-base md:text-lg">
-            🍿 Luz, Câmera e Sabor! A <span className="text-bf-red font-black">Burger Films Pub & Delivery</span> nasceu com uma missão clara: transformar cada mordida em uma verdadeira experiência digna do Oscar.
+          <p className="font-bold text-bf-black text-base md:text-lg flex items-start gap-2.5">
+            <Star className="w-5 h-5 text-bf-yellow fill-current shrink-0 mt-0.5" />
+            <span>Luz, Câmera e Sabor! A <span className="text-bf-red font-black">Burger Films Pub & Delivery</span> nasceu com uma missão clara: transformar cada mordida em uma verdadeira experiência digna do Oscar.</span>
           </p>
           
           <p>

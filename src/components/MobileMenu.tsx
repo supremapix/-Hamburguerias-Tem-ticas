@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { X, MessageCircle } from 'lucide-react';
+import { X, MessageCircle, Home, Film, Utensils, Calendar, MapPin, Phone } from 'lucide-react';
 import Logo from './Logo';
 
 interface MobileMenuProps {
@@ -10,14 +10,13 @@ interface MobileMenuProps {
 
 export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuProps) {
   const menuLinks = [
-    { label: "Página Inicial", view: "home" as const, icon: "🏠" },
-    { label: "Quem Somos", view: "quem-somos" as const, icon: "🎬" },
-    { label: "Nossa Cardápio", view: "home" as const, anchor: "menu", icon: "🍔" },
-    { label: "Nossa Agenda", view: "home" as const, anchor: "agenda", icon: "📅" },
-    { label: "Unidade 1 - Alfredo", view: "unidade-alfredo" as const, icon: "📍" },
-    { label: "Unidade 2 - Eugênio", view: "unidade-eugenio" as const, icon: "📍" },
-    { label: "Contato / Fale Conosco", view: "contato" as const, icon: "📞" },
-    { label: "Mapa do Site", view: "sitemap" as const, icon: "🗺️" },
+    { label: "Página Inicial", view: "home" as const, icon: Home },
+    { label: "Quem Somos", view: "quem-somos" as const, icon: Film },
+    { label: "Nosso Cardápio", view: "home" as const, anchor: "menu", icon: Utensils },
+    { label: "Nossa Agenda", view: "home" as const, anchor: "agenda", icon: Calendar },
+    { label: "Unidade 1 - Alfredo", view: "unidade-alfredo" as const, icon: MapPin },
+    { label: "Unidade 2 - Eugênio", view: "unidade-eugenio" as const, icon: MapPin },
+    { label: "Contato / Fale Conosco", view: "contato" as const, icon: Phone },
   ];
 
   const orderUrl = "https://wa.me/5547992155989?text=Olá,%20gostaria%20de%20fazer%20um%20pedido%20cinematográfico!";
@@ -78,30 +77,33 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
 
           {/* Stacked Menu Links */}
           <div className="flex-1 flex flex-col items-center justify-center gap-3.5 my-6 max-w-sm mx-auto w-full">
-            {menuLinks.map((link, i) => (
-              <motion.div
-                key={i}
-                initial={{ y: 25, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ 
-                  type: "spring", 
-                  stiffness: 140, 
-                  damping: 12,
-                  delay: 0.05 + i * 0.05 
-                }}
-                className="w-full"
-              >
-                <button
-                  onClick={() => handleLinkClick(link)}
-                  className="w-full flex items-center gap-4 bg-bf-white hover:bg-bf-cream text-bf-black font-baloo-caps text-sm py-3 px-5 rounded-full border-3 border-bf-black shadow-[3px_3px_0px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all focus:outline-none cursor-pointer text-left"
+            {menuLinks.map((link, i) => {
+              const IconComp = link.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ y: 25, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 140, 
+                    damping: 12,
+                    delay: 0.05 + i * 0.05 
+                  }}
+                  className="w-full"
                 >
-                  <span className="w-9 h-9 rounded-full bg-bf-yellow flex items-center justify-center border-2 border-bf-black text-base shrink-0">
-                    {link.icon}
-                  </span>
-                  <span className="font-extrabold tracking-wide">{link.label}</span>
-                </button>
-              </motion.div>
-            ))}
+                  <button
+                    onClick={() => handleLinkClick(link)}
+                    className="w-full flex items-center gap-4 bg-bf-white hover:bg-bf-cream text-bf-black font-baloo-caps text-sm py-3 px-5 rounded-full border-3 border-bf-black shadow-[3px_3px_0px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all focus:outline-none cursor-pointer text-left"
+                  >
+                    <span className="w-9 h-9 rounded-full bg-bf-yellow flex items-center justify-center border-2 border-bf-black text-bf-black shrink-0">
+                      <IconComp className="w-4 h-4 stroke-[2.5px]" />
+                    </span>
+                    <span className="font-extrabold tracking-wide uppercase">{link.label}</span>
+                  </button>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Mobile Footer CTA */}
@@ -117,7 +119,8 @@ export default function MobileMenu({ isOpen, onClose, onNavigate }: MobileMenuPr
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 bg-bf-black text-bf-yellow font-baloo-caps text-base py-4 px-8 rounded-full border-3 border-bf-black shadow-[4px_4px_0px_0px_#FFFFFF] hover:shadow-none active:translate-y-1 transition-all focus:outline-none w-full text-center"
             >
-              <span>PEÇA SEU LANCHE 🎬</span>
+              <MessageCircle className="w-5 h-5 fill-current animate-pulse" />
+              <span className="uppercase font-black">PEÇA SEU LANCHE</span>
             </a>
           </motion.div>
 

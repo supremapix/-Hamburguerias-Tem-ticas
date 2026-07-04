@@ -561,7 +561,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Meu Churros Favorito',
     description: 'Deliciosos churros fritos cobertos com açúcar e canela, acompanhados de doce de leite.',
     price: 16.90,
-    image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=600&auto=format&fit=crop&q=80',
+    image: 'https://img.burgerfilms.com.br/meu-churros-favorito.webp',
     category: 'sobremesas'
   },
   {

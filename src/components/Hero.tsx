@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, ArrowRight } from 'lucide-react';
+import { Sparkles, ArrowRight, Trophy } from 'lucide-react';
 
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -125,8 +125,9 @@ export default function Hero() {
           >
             <Sparkles className="w-4 h-4 fill-bf-yellow animate-pulse-whatsapp" />
             <span className="font-baloo-caps text-xs md:text-sm font-extrabold tracking-wider">
-              ⭐ Eleita Melhor Hamburgueria de Penha ⭐
+              ELEITA MELHOR HAMBURGUERIA DE PENHA
             </span>
+            <Sparkles className="w-4 h-4 fill-bf-yellow animate-pulse-whatsapp" />
           </motion.div>
 
           {/* 2. Headline with outline text (Elastic Letter Bounce) */}
@@ -232,8 +233,9 @@ export default function Hero() {
               <h2 className="text-bf-yellow font-display text-xl md:text-2xl tracking-wider uppercase mb-1 px-2">
                 Brasil Burguer
               </h2>
-              <p className="text-bf-white text-xs font-baloo uppercase tracking-wider font-extrabold text-green-400">
-                🏆 Copa 2026 - Hexa Neles!
+              <p className="text-bf-white text-xs font-baloo uppercase tracking-wider font-extrabold text-green-400 flex items-center justify-center gap-1.5">
+                <Trophy className="w-3.5 h-3.5 text-bf-yellow shrink-0 fill-current animate-bounce" />
+                <span>Copa 2026 - Hexa Neles!</span>
               </p>
             </div>
           </motion.div>

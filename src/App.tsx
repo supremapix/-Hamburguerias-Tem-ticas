@@ -9,6 +9,7 @@ import FAQSection from './components/FAQSection';
 import InstagramFeed from './components/InstagramFeed';
 import Footer from './components/Footer';
 import { SupremaCredit } from './components/SupremaCredit';
+import BackToTop from './components/BackToTop';
 
 // Import newly created page components
 import QuemSomos from './components/pages/QuemSomos';
@@ -103,6 +104,9 @@ export default function App() {
 
       {/* Suprema Credit Badge persistent on footer */}
       <SupremaCredit />
+
+      {/* Premium BackToTop floating film reel button */}
+      <BackToTop />
 
     </div>
   );

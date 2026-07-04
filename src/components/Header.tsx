@@ -75,11 +75,10 @@ export default function Header({ onOpenMobileMenu, isMobileMenuOpen, onNavigate 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-2">
           {[
-            { label: "🍔 Cardápio", href: "#menu" },
-            { label: "📅 Agenda", href: "#agenda" },
-            { label: "🍿 Quem Somos", view: "quem-somos" as const },
-            { label: "📞 Contato", view: "contato" as const },
-            { label: "🗺️ Sitemap", view: "sitemap" as const },
+            { label: "Cardápio", href: "#menu" },
+            { label: "Agenda", href: "#agenda" },
+            { label: "Quem Somos", view: "quem-somos" as const },
+            { label: "Contato", view: "contato" as const },
           ].map((link, i) => {
             if ('view' in link) {
               return (
