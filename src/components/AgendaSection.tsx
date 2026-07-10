@@ -135,7 +135,7 @@ export default function AgendaSection() {
           <div className="text-center mt-12 mb-2 flex flex-col items-center gap-2 select-none">
             <div className="flex items-center gap-2 text-bf-yellow font-display text-lg md:text-2xl tracking-wider uppercase">
               <MapPin className="w-5 h-5 stroke-[2.5px]" />
-              <span>Av. Eugênio Krause, 3045</span>
+              <span>Av. Alfredo Brunetti, 631</span>
             </div>
             <p className="text-xs font-baloo uppercase text-gray-400 tracking-wider">
               Penha - SC (Pertinho do Beto Carrero World!)

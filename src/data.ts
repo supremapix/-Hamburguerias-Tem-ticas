@@ -586,34 +586,27 @@ export const MENU_ITEMS: MenuItem[] = [
 
 export const AGENDA_ITEMS: AgendaItem[] = [
   {
-    id: 'quarta',
-    day: 'QUARTA',
-    title: 'PUB FECHADO',
-    subtitle: 'Dia de recarregar as energias e preparar os blends de cinema',
-    image: 'https://burgerfilms.chefware.com.br/115/600/0/os-caca-fantasmas--.jpg',
-  },
-  {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'ARRAIÁ DO PUB',
-    subtitle: 'E COMIDAS TÍPICAS (Bolo, Milho, Quentão)',
-    image: 'https://burgerfilms.chefware.com.br/114/600/0/o-vendedor-de-linguica.jpg',
-    hasFlags: true
+    title: 'PERSONAGEM PERNALONGA',
+    subtitle: 'Encontro com o coelho mais divertido das telas! Muita diversão para as crianças.',
+    image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '10/07'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'ARRAIÁ DO PUB E MÚSICA',
-    subtitle: 'Show acústico ao vivo com Allan Acústico',
-    image: 'https://img.burgerfilms.com.br/casino-black-jack-double-burger.jpg',
-    dateBadge: '04/07',
-    hasFlags: true
+    title: 'PERSONAGEM MICKEY',
+    subtitle: 'Toda a magia do camundongo mais amado do cinema no nosso Pub!',
+    image: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '11/07'
   },
   {
-    id: 'domingo-quinta',
-    day: 'DOMINGO A QUINTA',
-    title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: '(Exceto na Quarta-feira) – Experimente todos os nossos sabores!',
-    image: 'https://burgerfilms.chefware.com.br/116/600/0/o-sexto-sentido--.jpg',
+    id: 'domingo',
+    day: 'DOMINGO',
+    title: 'PERSONAGEM MINNIE',
+    subtitle: 'A ratinha mais charmosa das telas vem espalhar encanto e alegria.',
+    image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '12/07'
   }
 ];
