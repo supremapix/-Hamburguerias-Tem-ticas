@@ -584,7 +584,7 @@ export const MENU_ITEMS: MenuItem[] = [
   }
 ];
 
-export const AGENDA_ITEMS: AgendaItem[] = [
+export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
@@ -610,3 +610,37 @@ export const AGENDA_ITEMS: AgendaItem[] = [
     dateBadge: '12/07'
   }
 ];
+
+export const AGENDA_SEMANAL: AgendaItem[] = [
+  {
+    id: 'quarta',
+    day: 'QUARTA',
+    title: 'PUB FECHADO',
+    subtitle: 'Dia de recarregar as energias e preparar os blends de cinema.',
+    image: 'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'sexta',
+    day: 'SEXTA',
+    title: 'NOITE DA PIZZA - PIZZA FILMS',
+    subtitle: 'Deliciosas pizzas artesanais temáticas com o melhor da nossa produção!',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'sabado',
+    day: 'SÁBADO',
+    title: 'COMBOS DE CINEMA E CERVEJA AMANTEIGADA',
+    subtitle: 'A combinação perfeita para uma sessão inesquecível de sabores!',
+    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '11/07'
+  },
+  {
+    id: 'domingo-quinta',
+    day: 'DOMINGO A QUINTA',
+    title: 'RODÍZIO DE MINI BURGERS',
+    subtitle: '(EXCETO NA QUARTA) - Experimente todos os nossos maiores clássicos em tamanho mini!',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80'
+  }
+];
+
+export const AGENDA_ITEMS: AgendaItem[] = AGENDA_PERSONAGENS;
