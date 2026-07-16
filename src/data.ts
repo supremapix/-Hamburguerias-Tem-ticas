@@ -586,28 +586,36 @@ export const MENU_ITEMS: MenuItem[] = [
 
 export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
+    id: 'quinta',
+    day: 'QUINTA',
+    title: 'PERSONAGEM MARSHALL',
+    subtitle: 'Encontro com o cão bombeiro mais corajoso e atrapalhado da Patrulha Canina!',
+    image: 'https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '16/07'
+  },
+  {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM PERNALONGA',
-    subtitle: 'Encontro com o coelho mais divertido das telas! Muita diversão para as crianças.',
-    image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '10/07'
+    title: 'PERSONAGEM CHASE',
+    subtitle: 'O cão policial líder da Patrulha Canina está pronto para garantir a diversão!',
+    image: 'https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '17/07'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM MICKEY',
-    subtitle: 'Toda a magia do camundongo mais amado do cinema no nosso Pub!',
-    image: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '11/07'
+    title: 'PERSONAGEM HOMEM ARANHA',
+    subtitle: 'O herói favorito da vizinhança traz toda sua agilidade e teias de diversão!',
+    image: 'https://images.unsplash.com/photo-1604200213928-ba3cf4fc8436?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '18/07'
   },
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM MINNIE',
-    subtitle: 'A ratinha mais charmosa das telas vem espalhar encanto e alegria.',
-    image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '12/07'
+    title: 'PERSONAGEM WOODY',
+    subtitle: 'O xerife mais amado do cinema vem para liderar uma sessão cheia de aventuras!',
+    image: 'https://images.unsplash.com/photo-1608889174637-3c44f6326f2a?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '19/07'
   }
 ];
 
@@ -615,31 +623,31 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'quarta',
     day: 'QUARTA',
-    title: 'PUB FECHADO',
-    subtitle: 'Dia de recarregar as energias e preparar os blends de cinema.',
-    image: 'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=600&auto=format&fit=crop&q=80'
+    title: 'RODÍZIO DE MINI BURGERS',
+    subtitle: 'Deliciosos mini-hambúrgueres salgados e doces em uma sessão saborosa sem limites!',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'sexta',
     day: 'SEXTA',
     title: 'NOITE DA PIZZA - PIZZA FILMS',
-    subtitle: 'Deliciosas pizzas artesanais temáticas com o melhor da nossa produção!',
+    subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas!',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'COMBOS DE CINEMA E CERVEJA AMANTEIGADA',
-    subtitle: 'A combinação perfeita para uma sessão inesquecível de sabores!',
-    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '11/07'
+    title: 'MÚSICA AO VIVO COM PAULINHO GOUVEA',
+    subtitle: 'A melhor trilha sonora acústica ao vivo para acompanhar seus burgers favoritos!',
+    image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '18/07'
   },
   {
     id: 'domingo-quinta',
     day: 'DOMINGO A QUINTA',
     title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: '(EXCETO NA QUARTA) - Experimente todos os nossos maiores clássicos em tamanho mini!',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80'
+    subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em tamanhos colecionáveis!',
+    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80'
   }
 ];
 
