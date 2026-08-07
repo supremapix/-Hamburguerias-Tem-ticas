@@ -586,36 +586,28 @@ export const MENU_ITEMS: MenuItem[] = [
 
 export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
-    id: 'quinta',
-    day: 'QUINTA',
-    title: 'PERSONAGEM MARSHALL',
-    subtitle: 'Encontro com o cão bombeiro mais corajoso e atrapalhado da Patrulha Canina!',
-    image: 'https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '16/07'
-  },
-  {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM CHASE',
-    subtitle: 'O cão policial líder da Patrulha Canina está pronto para garantir a diversão!',
-    image: 'https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '17/07'
+    title: 'PERSONAGEM PATETA',
+    subtitle: 'Encontro com o personagem mais atrapalhado e divertido do cinema!',
+    image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '07/08'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM HOMEM ARANHA',
-    subtitle: 'O herói favorito da vizinhança traz toda sua agilidade e teias de diversão!',
-    image: 'https://images.unsplash.com/photo-1604200213928-ba3cf4fc8436?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '18/07'
+    title: 'PERSONAGEM MINNIE',
+    subtitle: 'Toda a elegância e encanto da ratinha mais charmosa do cinema!',
+    image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '08/08'
   },
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM WOODY',
-    subtitle: 'O xerife mais amado do cinema vem para liderar uma sessão cheia de aventuras!',
-    image: 'https://images.unsplash.com/photo-1608889174637-3c44f6326f2a?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '19/07'
+    title: 'PERSONAGEM MICKEY',
+    subtitle: 'A magia do camundongo mais famoso do mundo esperando por você no nosso Pub!',
+    image: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '09/08'
   }
 ];
 
@@ -623,9 +615,9 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'quarta',
     day: 'QUARTA',
-    title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: 'Deliciosos mini-hambúrgueres salgados e doces em uma sessão saborosa sem limites!',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80'
+    title: 'PUB FECHADO',
+    subtitle: 'Dia de recarregar as energias e preparar a cozinha para o final de semana!',
+    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'sexta',
@@ -637,17 +629,16 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'MÚSICA AO VIVO COM PAULINHO GOUVEA',
-    subtitle: 'A melhor trilha sonora acústica ao vivo para acompanhar seus burgers favoritos!',
-    image: 'https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '18/07'
+    title: 'CIRCUITO GASTRONÔMICO: MENU MAGIA CATARINENSE (TODOS OS DIAS)',
+    subtitle: 'Uma experiência gastronômica inesquecível inspirada na culinária local!',
+    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'domingo-quinta',
     day: 'DOMINGO A QUINTA',
     title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em tamanhos colecionáveis!',
-    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80'
+    subtitle: 'Experimente toda a nossa seleção estelar em tamanhos colecionáveis!',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80'
   }
 ];
 
