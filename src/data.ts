@@ -588,26 +588,29 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM PATETA',
-    subtitle: 'Encontro com o personagem mais atrapalhado e divertido do cinema!',
-    image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '07/08'
+    title: 'SÓSIA ARYTON SENNA',
+    subtitle: 'Encontro emocionante com o sósia do nosso eterno tricampeão mundial das pistas! Muitas fotos e nostalgia.',
+    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '14/08',
+    highlight: true
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM MINNIE',
-    subtitle: 'Toda a elegância e encanto da ratinha mais charmosa do cinema!',
-    image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '08/08'
+    title: 'PERSONAGEM KRATOS',
+    subtitle: 'O Fantasma de Esparta chega com toda a força épica e imponência dos games para um encontro lendário!',
+    image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '15/08',
+    highlight: true
   },
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM MICKEY',
-    subtitle: 'A magia do camundongo mais famoso do mundo esperando por você no nosso Pub!',
-    image: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '09/08'
+    title: 'PERSONAGEM WOODY',
+    subtitle: 'O xerife mais querido do cinema vem trazer toda a magia, carisma e diversão do Velho Oeste para a família!',
+    image: 'https://images.unsplash.com/photo-1608889174637-3c44f6326f2a?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '16/08',
+    highlight: true
   }
 ];
 
@@ -616,28 +619,30 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     id: 'quarta',
     day: 'QUARTA',
     title: 'PUB FECHADO',
-    subtitle: 'Dia de recarregar as energias e preparar a cozinha para o final de semana!',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&auto=format&fit=crop&q=80'
+    subtitle: 'Dia de recarregar as energias e preparar a cozinha para um final de semana estelar!',
+    image: 'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=600&auto=format&fit=crop&q=80'
   },
   {
     id: 'sexta',
     day: 'SEXTA',
     title: 'NOITE DA PIZZA - PIZZA FILMS',
-    subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas!',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80'
+    subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas de cinema!',
+    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80',
+    tagBadge: 'PIZZA FILM\'S'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
     title: 'CIRCUITO GASTRONÔMICO: MENU MAGIA CATARINENSE (TODOS OS DIAS)',
-    subtitle: 'Uma experiência gastronômica inesquecível inspirada na culinária local!',
-    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80'
+    subtitle: 'Uma experiência gastronômica inesquecível inspirada na culinária local com burger premium exclusivo!',
+    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&auto=format&fit=crop&q=80',
+    highlight: true
   },
   {
     id: 'domingo-quinta',
     day: 'DOMINGO A QUINTA',
     title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: 'Experimente toda a nossa seleção estelar em tamanhos colecionáveis!',
+    subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em tamanhos colecionáveis!',
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80'
   }
 ];

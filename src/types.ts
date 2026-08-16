@@ -15,5 +15,7 @@ export interface AgendaItem {
   subtitle?: string;
   image: string;
   dateBadge?: string;
+  tagBadge?: string;
+  highlight?: boolean;
   hasFlags?: boolean;
 }
