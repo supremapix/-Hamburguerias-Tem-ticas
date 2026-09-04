@@ -92,23 +92,31 @@ export default function AgendaSection() {
         {/* Cinema Marquee Ticker Banner */}
         <div className="mb-8 overflow-hidden rounded-xl bg-bf-black border-3 border-bf-yellow py-2 text-bf-yellow shadow-[4px_4px_0px_0px_#1A1A1A]">
           <div className="animate-marquee-ticker font-baloo-caps text-xs font-black tracking-widest uppercase">
-            <span className="mx-4 flex items-center gap-2">⭐ SÓSIA ARYTON SENNA 14/08</span>
+            <span className="mx-4 flex items-center gap-2">🐶 PERSONAGEM PATETA 04/09</span>
             <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">⚔️ PERSONAGEM KRATOS 15/08</span>
+            <span className="mx-4 flex items-center gap-2">✨ PERSONAGEM MICKEY 05/09</span>
             <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🤠 PERSONAGEM WOODY 16/08</span>
+            <span className="mx-4 flex items-center gap-2">🎀 PERSONAGEM MINNIE 06/09</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2">🥕 PERSONAGEM PERNALONGA 07/09</span>
             <span className="mx-4 text-bf-red">•</span>
             <span className="mx-4 flex items-center gap-2">🍕 NOITE DA PIZZA TODA SEXTA</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2">🎸 MÚSICA AO VIVO NICOLAS NO SÁBADO</span>
             <span className="mx-4 text-bf-red">•</span>
             <span className="mx-4 flex items-center gap-2">🍔 RODÍZIO DE MINI BURGERS DOM A QUI</span>
             <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">⭐ SÓSIA ARYTON SENNA 14/08</span>
+            <span className="mx-4 flex items-center gap-2">🐶 PERSONAGEM PATETA 04/09</span>
             <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">⚔️ PERSONAGEM KRATOS 15/08</span>
+            <span className="mx-4 flex items-center gap-2">✨ PERSONAGEM MICKEY 05/09</span>
             <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🤠 PERSONAGEM WOODY 16/08</span>
+            <span className="mx-4 flex items-center gap-2">🎀 PERSONAGEM MINNIE 06/09</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2">🥕 PERSONAGEM PERNALONGA 07/09</span>
             <span className="mx-4 text-bf-red">•</span>
             <span className="mx-4 flex items-center gap-2">🍕 NOITE DA PIZZA TODA SEXTA</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2">🎸 MÚSICA AO VIVO NICOLAS NO SÁBADO</span>
             <span className="mx-4 text-bf-red">•</span>
             <span className="mx-4 flex items-center gap-2">🍔 RODÍZIO DE MINI BURGERS DOM A QUI</span>
           </div>

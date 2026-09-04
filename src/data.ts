@@ -588,28 +588,37 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'SÓSIA ARYTON SENNA',
-    subtitle: 'Encontro emocionante com o sósia do nosso eterno tricampeão mundial das pistas! Muitas fotos e nostalgia.',
-    image: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '14/08',
+    title: 'PERSONAGEM PATETA',
+    subtitle: 'O personagem mais atrapalhado, carismático e divertido com muitas risadas e fotos para toda a família!',
+    image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '04/09',
     highlight: true
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM KRATOS',
-    subtitle: 'O Fantasma de Esparta chega com toda a força épica e imponência dos games para um encontro lendário!',
-    image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '15/08',
+    title: 'PERSONAGEM MICKEY',
+    subtitle: 'A magia do camundongo mais famoso do mundo esperando por você no nosso Pub!',
+    image: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '05/09',
     highlight: true
   },
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM WOODY',
-    subtitle: 'O xerife mais querido do cinema vem trazer toda a magia, carisma e diversão do Velho Oeste para a família!',
-    image: 'https://images.unsplash.com/photo-1608889174637-3c44f6326f2a?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '16/08',
+    title: 'PERSONAGEM MINNIE',
+    subtitle: 'Toda a elegância, encanto e carinho da ratinha mais amada do cinema em uma noite mágica!',
+    image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '06/09',
+    highlight: true
+  },
+  {
+    id: 'segunda',
+    day: 'SEGUNDA',
+    title: 'PERSONAGEM PERNALONGA',
+    subtitle: 'O que é que há, velhinho? O coelho mais esperto e hilário das telinhas esperando por você no feriadão!',
+    image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '07/09',
     highlight: true
   }
 ];
@@ -625,7 +634,7 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'NOITE DA PIZZA - PIZZA FILMS',
+    title: 'NOITE DA PIZZA',
     subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas de cinema!',
     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80',
     tagBadge: 'PIZZA FILM\'S'
@@ -633,9 +642,9 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'CIRCUITO GASTRONÔMICO: MENU MAGIA CATARINENSE (TODOS OS DIAS)',
-    subtitle: 'Uma experiência gastronômica inesquecível inspirada na culinária local com burger premium exclusivo!',
-    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&auto=format&fit=crop&q=80',
+    title: 'MÚSICA AO VIVO NICOLAS',
+    subtitle: 'Trilha sonora ao vivo com o melhor do pop rock e clássicos acústicos para curtir com a galera!',
+    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
     highlight: true
   },
   {
