@@ -588,37 +588,28 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM PATETA',
-    subtitle: 'O personagem mais atrapalhado, carismático e divertido com muitas risadas e fotos para toda a família!',
-    image: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '04/09',
+    title: 'PERSONAGEM MÁRIO',
+    subtitle: 'O encanador mais famoso e querido do mundo dos games chega para uma noite mágica cheia de diversão e fotos!',
+    image: 'https://images.unsplash.com/photo-1612404730960-5c71577fca11?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '11/09',
     highlight: true
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM MICKEY',
-    subtitle: 'A magia do camundongo mais famoso do mundo esperando por você no nosso Pub!',
-    image: 'https://images.unsplash.com/photo-1518156677180-95a2893f3e9f?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '05/09',
+    title: 'SHEREK GIGANTE E PASSEIO BRUNETTI',
+    subtitle: 'Direto do pântano para o Pub! Encontro com o Shrek Gigante e um passeio temático inesquecível na Av. Brunetti!',
+    image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '12/09',
     highlight: true
   },
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM MINNIE',
-    subtitle: 'Toda a elegância, encanto e carinho da ratinha mais amada do cinema em uma noite mágica!',
-    image: 'https://images.unsplash.com/photo-1509281373149-e957c6296406?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '06/09',
-    highlight: true
-  },
-  {
-    id: 'segunda',
-    day: 'SEGUNDA',
-    title: 'PERSONAGEM PERNALONGA',
-    subtitle: 'O que é que há, velhinho? O coelho mais esperto e hilário das telinhas esperando por você no feriadão!',
-    image: 'https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '07/09',
+    title: 'PERSONAGEM SONIC',
+    subtitle: 'O ouriço azul mais veloz do cinema e dos games acelerando para tirar fotos incríveis com toda a família!',
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '13/09',
     highlight: true
   }
 ];
@@ -642,9 +633,10 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'MÚSICA AO VIVO NICOLAS',
-    subtitle: 'Trilha sonora ao vivo com o melhor do pop rock e clássicos acústicos para curtir com a galera!',
-    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80',
+    title: 'MÚSICA AO VIVO ED LEONEL',
+    subtitle: 'Voz e violão com grandes sucessos, clássicos do pop rock e energia contagiante para embalar sua noite!',
+    image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '12/09',
     highlight: true
   },
   {
