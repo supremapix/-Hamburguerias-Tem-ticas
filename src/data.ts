@@ -588,28 +588,28 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM MÁRIO',
-    subtitle: 'O encanador mais famoso e querido do mundo dos games chega para uma noite mágica cheia de diversão e fotos!',
-    image: 'https://images.unsplash.com/photo-1612404730960-5c71577fca11?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '11/09',
+    title: 'PERSONAGEM MARSHALL',
+    subtitle: 'O dálmata bombeiro mais corajoso da Patrulha Canina chega para animar a criançada com muita aventura e fotos!',
+    image: 'https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '18/09',
     highlight: true
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'SHEREK GIGANTE E PASSEIO BRUNETTI',
-    subtitle: 'Direto do pântano para o Pub! Encontro com o Shrek Gigante e um passeio temático inesquecível na Av. Brunetti!',
-    image: 'https://images.unsplash.com/photo-1563089145-599997674d42?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '12/09',
+    title: 'PERSONAGEM CHASE',
+    subtitle: 'O cão policial líder da Patrulha Canina em uma missão especial cheia de carisma e diversão no nosso Pub!',
+    image: 'https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '19/09',
     highlight: true
   },
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM SONIC',
-    subtitle: 'O ouriço azul mais veloz do cinema e dos games acelerando para tirar fotos incríveis com toda a família!',
-    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '13/09',
+    title: 'PERSONAGEM WOODY',
+    subtitle: 'O xerife mais amado do cinema vem trazer toda a magia, carisma e diversão de Toy Story para toda a família!',
+    image: 'https://images.unsplash.com/photo-1608889174637-3c44f6326f2a?w=600&auto=format&fit=crop&q=80',
+    dateBadge: '20/09',
     highlight: true
   }
 ];
@@ -633,10 +633,9 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'MÚSICA AO VIVO ED LEONEL',
-    subtitle: 'Voz e violão com grandes sucessos, clássicos do pop rock e energia contagiante para embalar sua noite!',
-    image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop&q=80',
-    dateBadge: '12/09',
+    title: 'COMBOS DE CINEMA E CERVEJA AMANTEIGADA',
+    subtitle: 'Combos temáticos inspirados nas maiores sagas das telonas acompanhados da famosa e mágica Cerveja Amanteigada!',
+    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80',
     highlight: true
   },
   {
