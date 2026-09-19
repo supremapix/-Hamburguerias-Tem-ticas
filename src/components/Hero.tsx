@@ -1,16 +1,77 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'motion/react';
-import { Sparkles, ArrowRight, Trophy } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight, Skull, Flame } from 'lucide-react';
+
+// Bat SVG Component with animated wing flapping
+function BatSvg({ size = 42, className = "", color = "#120B10", eyeColor = "#FFB800", strokeColor = "#FFB800" }: { size?: number; className?: string; color?: string; eyeColor?: string; strokeColor?: string }) {
+  return (
+    <div 
+      style={{ width: size, height: (size * 0.55) }} 
+      className={`relative inline-block select-none filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)] ${className}`}
+    >
+      <svg
+        viewBox="0 0 100 55"
+        className="w-full h-full animate-bat-flutter origin-center overflow-visible"
+      >
+        {/* Bat Body and Wings */}
+        <path
+          d="M 50 22 
+             C 44 14, 28 6, 6 15 
+             C 14 26, 20 32, 23 42 
+             C 30 35, 38 37, 44 43 
+             C 47 33, 46 26, 50 23 
+             C 54 26, 53 33, 56 43 
+             C 62 37, 70 35, 77 42 
+             C 80 32, 86 26, 94 15 
+             C 72 6, 56 14, 50 22 Z"
+          fill={color}
+          stroke={strokeColor}
+          strokeWidth="0.8"
+        />
+        {/* Bat Ears */}
+        <polygon points="46,20 43,12 48,16" fill={color} stroke={strokeColor} strokeWidth="0.5" />
+        <polygon points="54,20 57,12 52,16" fill={color} stroke={strokeColor} strokeWidth="0.5" />
+        {/* Spooky Glowing Eyes */}
+        <circle cx="47.5" cy="19.5" r="1.3" fill={eyeColor} />
+        <circle cx="52.5" cy="19.5" r="1.3" fill={eyeColor} />
+      </svg>
+    </div>
+  );
+}
+
+// Corner Spiderweb
+function SpiderWebSvg({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={`pointer-events-none opacity-25 select-none ${className}`} fill="none" stroke="#FFB800" strokeWidth="1.2">
+      <path d="M0,0 L100,0 M0,0 L85,45 M0,0 L55,75 M0,0 L0,100" />
+      <path d="M25,0 C25,12 18,20 0,25" />
+      <path d="M50,0 C50,25 35,40 0,50" />
+      <path d="M75,0 C75,38 52,60 0,75" />
+      <path d="M100,0 C100,52 70,82 0,100" />
+    </svg>
+  );
+}
+
+interface BurstBat {
+  id: number;
+  targetX: number;
+  targetY: number;
+  rot: number;
+  scale: number;
+}
 
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
+  const [batCount, setBatCount] = useState(0);
+  const [burstBats, setBurstBats] = useState<BurstBat[]>([]);
+  const [showBatToast, setShowBatToast] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   // Check mobile screen
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(typeof window !== 'undefined' && window.innerWidth < 768);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
@@ -20,9 +81,11 @@ export default function Hero() {
   // Track mouse for parallax (Desktop only)
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isMobile || !heroRef.current) return;
-    const { left, top, width, height } = heroRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / (width / 2);
-    const y = (e.clientY - top - height / 2) / (height / 2);
+    const rect = heroRef.current.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) return;
     setMousePos({ x, y });
   };
 
@@ -30,7 +93,7 @@ export default function Hero() {
     setMousePos({ x: 0, y: 0 });
   };
 
-  // Chefware link
+  // Chefware delivery link
   const orderUrl = "https://burgerfilms.chefware.com.br/";
 
   const handleScrollToMenu = (e: React.MouseEvent) => {
@@ -38,9 +101,32 @@ export default function Hero() {
     const element = document.getElementById('menu');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // Dispatch event to activate premium Category Highlight sparkles
       window.dispatchEvent(new CustomEvent('highlight-menu'));
     }
+  };
+
+  // Trigger Burst of Bats on click or hover
+  const triggerBatBurst = () => {
+    const timestamp = Date.now();
+    const newBats: BurstBat[] = Array.from({ length: 8 }).map((_, i) => {
+      const angle = (Math.random() * Math.PI * 1.6) - (Math.PI * 0.8);
+      const distance = 200 + Math.random() * 260;
+      return {
+        id: timestamp + i,
+        targetX: Math.cos(angle) * distance,
+        targetY: -Math.abs(Math.sin(angle) * distance) - 60,
+        rot: (Math.random() - 0.5) * 50,
+        scale: 0.7 + Math.random() * 0.6
+      };
+    });
+
+    setBurstBats(prev => [...prev.slice(-16), ...newBats]);
+    setBatCount(prev => prev + 8);
+    setShowBatToast(true);
+
+    setTimeout(() => {
+      setShowBatToast(false);
+    }, 2500);
   };
 
   return (
@@ -48,287 +134,379 @@ export default function Hero() {
       ref={heroRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-screen pt-32 pb-20 flex flex-col justify-center bg-gradient-to-b from-bf-yellow to-bf-yellow-deep overflow-hidden"
+      className="relative min-h-screen pt-32 pb-24 flex flex-col justify-center bg-gradient-to-b from-[#180E04] via-[#1A0A0E] to-[#120612] overflow-hidden select-none"
     >
       
-      {/* Subtle Pattern Overlay (Film Roll / Burgers theme, opacity 0.06) */}
+      {/* Warm Cinema Spotlight below Yellow Header */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[320px] bg-gradient-to-b from-bf-yellow/20 via-bf-yellow/5 to-transparent blur-3xl pointer-events-none" />
+
+      {/* Spiderwebs on corners */}
+      <div className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 pointer-events-none z-10">
+        <SpiderWebSvg className="w-full h-full" />
+      </div>
+      <div className="absolute top-0 right-0 w-32 h-32 md:w-48 md:h-48 pointer-events-none z-10 transform scale-x-[-1]">
+        <SpiderWebSvg className="w-full h-full" />
+      </div>
+
+      {/* Subtle Pattern Overlay */}
       <div 
-        className="absolute inset-0 pointer-events-none select-none opacity-[0.05]"
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M15 15h12v12H15zm0 15h12v12H15zm0 15h12v12H15zM45 45c0-11 9-20 20-20s20 9 20 20H45zm40 10v10H35V55h50z' fill='%231a1a1a' fill-opacity='0.5' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M15 15h12v12H15zm0 15h12v12H15zm0 15h12v12H15zM45 45c0-11 9-20 20-20s20 9 20 20H45zm40 10v10H35V55h50z' fill='%23FFB800' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E")`,
           backgroundSize: '120px 120px'
         }}
       />
 
-      {/* --- Floating Ingredient Left: Fresh Tomato --- */}
+      {/* Ambient Bats crossing the Hero Sky (left to right) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div 
+          className="absolute top-[14%] -left-[10%] animate-[bat-fly-ambient_18s_linear_infinite]"
+          style={{ animationDelay: '0s' }}
+        >
+          <BatSvg size={38} eyeColor="#FFB800" strokeColor="#FFB800" />
+        </div>
+        <div 
+          className="absolute top-[22%] -left-[10%] animate-[bat-fly-ambient_22s_linear_infinite]"
+          style={{ animationDelay: '7s' }}
+        >
+          <BatSvg size={28} eyeColor="#FF0033" strokeColor="#FFB800" />
+        </div>
+        <div 
+          className="absolute top-[10%] -left-[10%] animate-[bat-fly-ambient_26s_linear_infinite]"
+          style={{ animationDelay: '14s' }}
+        >
+          <BatSvg size={44} eyeColor="#FFDD00" strokeColor="#FFB800" />
+        </div>
+      </div>
+
+      {/* Eerie Fog Layer */}
+      <div className="absolute -bottom-10 left-0 right-0 h-40 bg-gradient-to-t from-[#120612] via-bf-yellow/10 to-transparent pointer-events-none animate-eerie-fog" />
+
+      {/* Floating Halloween Decoration Left: Spooky Jack-o'-Lantern Pumpkin */}
       <motion.div
         animate={{
-          x: mousePos.x * -25,
-          y: mousePos.y * -25,
+          x: (mousePos?.x || 0) * -20,
+          y: (mousePos?.y || 0) * -20,
         }}
         transition={{ type: "spring", stiffness: 45, damping: 15 }}
-        className="absolute top-[12%] left-[-4%] md:top-[16%] md:left-[2%] z-20 w-24 h-24 md:w-36 md:h-36 pointer-events-none filter drop-shadow-[0_12px_8px_rgba(0,0,0,0.25)] animate-float-loop"
+        className="hidden lg:block absolute left-8 top-1/3 pointer-events-none z-10"
       >
-        <svg viewBox="0 0 100 100" className="w-full h-full blur-[0.4px]">
-          {/* Sliced Tomato representation with seeds */}
-          <circle cx="50" cy="50" r="46" fill="#E63946" stroke="#1A1A1A" strokeWidth="3" />
-          <circle cx="50" cy="50" r="38" fill="#F25C54" />
-          {/* Inner segments */}
-          <path d="M50,15 C62,15 72,25 72,37 C72,42 66,48 50,48 Z" fill="#D62828" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M50,85 C62,85 72,75 72,63 C72,58 66,52 50,52 Z" fill="#D62828" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M50,15 C38,15 28,25 28,37 C28,42 34,48 50,48 Z" fill="#D62828" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M50,85 C38,85 28,75 28,63 C28,58 34,52 50,52 Z" fill="#D62828" stroke="#1A1A1A" strokeWidth="2" />
-          {/* Yellow seeds */}
-          <circle cx="58" cy="32" r="3" fill="#FFD166" />
-          <circle cx="62" cy="40" r="2.5" fill="#FFD166" />
-          <circle cx="42" cy="32" r="3" fill="#FFD166" />
-          <circle cx="38" cy="40" r="2.5" fill="#FFD166" />
-          <circle cx="58" cy="68" r="3" fill="#FFD166" />
-          <circle cx="62" cy="60" r="2.5" fill="#FFD166" />
-          <circle cx="42" cy="68" r="3" fill="#FFD166" />
-          <circle cx="38" cy="60" r="2.5" fill="#FFD166" />
+        <svg viewBox="0 0 100 90" className="w-16 h-16 drop-shadow-[0_0_20px_rgba(255,184,0,0.8)] filter animate-pulse">
+          {/* Pumpkin Stem */}
+          <path d="M48,15 Q52,5 60,8 Q54,14 50,18 Z" fill="#2E7D32" stroke="#1B5E20" strokeWidth="1" />
+          {/* Pumpkin Body */}
+          <ellipse cx="50" cy="50" rx="42" ry="34" fill="#FF8500" stroke="#CC5500" strokeWidth="2.5" />
+          <path d="M30,22 Q24,50 30,78 M70,22 Q76,50 70,78 M50,16 L50,84" fill="none" stroke="#CC5500" strokeWidth="2" opacity="0.6" />
+          {/* Carved Eyes (Evil Triangle) */}
+          <polygon points="34,42 43,46 38,36" fill="#1A0800" stroke="#FFB800" strokeWidth="1" />
+          <polygon points="66,42 57,46 62,36" fill="#1A0800" stroke="#FFB800" strokeWidth="1" />
+          {/* Carved Nose */}
+          <polygon points="50,48 47,54 53,54" fill="#1A0800" stroke="#FFB800" strokeWidth="0.8" />
+          {/* Carved Jagged Smile */}
+          <path d="M28,60 Q50,78 72,60 Q65,72 50,72 Q35,72 28,60 Z" fill="#1A0800" stroke="#FFB800" strokeWidth="1" />
+          <polygon points="37,60 40,66 43,60" fill="#FFB800" />
+          <polygon points="57,60 60,66 63,60" fill="#FFB800" />
+          <polygon points="47,70 50,64 53,70" fill="#FFB800" />
         </svg>
       </motion.div>
 
-      {/* --- Floating Ingredient Right: Fresh Crispy Lettuce (Alface) --- */}
+      {/* Floating Halloween Decoration Right: Floating Ghost/Skull */}
       <motion.div
         animate={{
-          x: mousePos.x * 25,
-          y: mousePos.y * -25,
+          x: (mousePos?.x || 0) * 20,
+          y: (mousePos?.y || 0) * 20,
         }}
         transition={{ type: "spring", stiffness: 45, damping: 15 }}
-        className="absolute top-[14%] right-[-4%] md:top-[16%] md:right-[2%] z-20 w-24 h-24 md:w-36 md:h-36 pointer-events-none filter drop-shadow-[0_12px_8px_rgba(0,0,0,0.2)] animate-float-loop-reverse"
+        className="hidden lg:block absolute right-12 top-1/4 pointer-events-none z-10"
       >
-        <svg viewBox="0 0 100 100" className="w-full h-full blur-[0.4px]">
-          <defs>
-            <linearGradient id="lettuceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#4AD66D" />
-              <stop offset="100%" stopColor="#2D9B4C" />
-            </linearGradient>
-          </defs>
-          {/* Wavy organic lettuce leaf */}
-          <path 
-            d="M50,15 C65,12 80,22 85,38 C90,54 82,72 70,82 C58,92 42,92 30,82 C18,72 10,54 15,38 C20,22 35,12 50,15 Z" 
-            fill="url(#lettuceGrad)" 
-            stroke="#1A1A1A" 
-            strokeWidth="3" 
-          />
-          {/* Ruffles/curls details around the edges */}
-          <path d="M48,15 C45,8 55,8 52,15" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M65,18 C68,11 76,14 71,20" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M78,28 C84,24 88,32 81,35" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M84,45 C91,44 91,52 83,52" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M80,62 C86,65 82,73 76,69" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M68,76 C72,82 64,86 61,79" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M50,85 C50,92 40,92 42,85" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M32,76 C28,82 20,78 24,71" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M18,58 C11,59 13,50 20,51" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M16,38 C9,34 16,26 21,32" fill="none" stroke="#1A1A1A" strokeWidth="2" />
-          {/* Lettuce veins starting from center base and branching out */}
-          <path d="M50,85 C49,60 50,40 50,20" fill="none" stroke="#257E3E" strokeWidth="3.5" strokeLinecap="round" />
-          <path d="M50,65 C58,60 68,55 74,52" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M50,65 C42,60 32,55 26,52" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M50,48 C56,43 65,38 72,35" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M50,48 C44,43 35,38 28,35" fill="none" stroke="#257E3E" strokeWidth="2.5" strokeLinecap="round" />
-          <path d="M50,32 C54,28 62,25 66,22" fill="none" stroke="#257E3E" strokeWidth="2" strokeLinecap="round" />
-          <path d="M50,32 C46,28 38,25 34,22" fill="none" stroke="#257E3E" strokeWidth="2" strokeLinecap="round" />
+        <svg viewBox="0 0 100 100" className="w-14 h-14 drop-shadow-[0_0_20px_rgba(255,184,0,0.4)] opacity-85">
+          <ellipse cx="50" cy="42" rx="28" ry="26" fill="#F0F0F0" stroke="#1A1A1A" strokeWidth="2.5" />
+          <rect x="36" y="52" width="28" height="20" rx="6" fill="#F0F0F0" stroke="#1A1A1A" strokeWidth="2.5" />
+          <circle cx="40" cy="40" r="6" fill="#1A0800" />
+          <circle cx="60" cy="40" r="6" fill="#1A0800" />
+          <circle cx="41.5" cy="38.5" r="1.8" fill="#FF3333" />
+          <circle cx="61.5" cy="38.5" r="1.8" fill="#FF3333" />
+          <polygon points="50,48 48,53 52,53" fill="#1A0800" />
+          <path d="M38,60 Q50,68 62,60" fill="none" stroke="#1A1A1A" strokeWidth="2.5" strokeLinecap="round" />
+          <polygon points="42,60 45,67 48,60" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="1" />
+          <polygon points="52,60 55,67 58,60" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="1" />
         </svg>
       </motion.div>
 
-      {/* --- Floating Ingredient Right: Crispy Fries --- */}
-      <motion.div
-        animate={{
-          x: mousePos.x * 30,
-          y: mousePos.y * 30,
-        }}
-        transition={{ type: "spring", stiffness: 45, damping: 15 }}
-        className="absolute bottom-[10%] right-[-3%] md:bottom-[15%] md:right-[3%] z-20 w-24 h-24 md:w-36 md:h-36 pointer-events-none filter drop-shadow-[0_12px_10px_rgba(0,0,0,0.3)] animate-float-loop-reverse"
-      >
-        <svg viewBox="0 0 100 100" className="w-full h-full blur-[0.4px]">
-          {/* Golden Fries Carton representation */}
-          <path d="M25,85 L75,85 L80,45 L20,45 Z" fill="#E63946" stroke="#1A1A1A" strokeWidth="3" />
-          {/* White Emblem on Box */}
-          <circle cx="50" cy="65" r="14" fill="#FFFFFF" stroke="#1A1A1A" strokeWidth="2" />
-          <path d="M46,65 L54,65 M50,61 L50,69" stroke="#1A1A1A" strokeWidth="2" />
-          {/* French Fries sticking out */}
-          <rect x="25" y="15" width="8" height="35" rx="2" fill="#FFD166" stroke="#1A1A1A" strokeWidth="2" transform="rotate(-15 25 15)" />
-          <rect x="35" y="10" width="8" height="40" rx="2" fill="#FFB800" stroke="#1A1A1A" strokeWidth="2" transform="rotate(-5 35 10)" />
-          <rect x="45" y="8" width="8" height="42" rx="2" fill="#FFD166" stroke="#1A1A1A" strokeWidth="2" />
-          <rect x="55" y="12" width="8" height="38" rx="2" fill="#FFB800" stroke="#1A1A1A" strokeWidth="2" transform="rotate(8 55 12)" />
-          <rect x="65" y="18" width="8" height="32" rx="2" fill="#FFD166" stroke="#1A1A1A" strokeWidth="2" transform="rotate(18 65 18)" />
-          <rect x="40" y="22" width="8" height="30" rx="2" fill="#FFD166" stroke="#1A1A1A" strokeWidth="2" transform="rotate(-2 40 22)" />
-          <rect x="50" y="20" width="8" height="32" rx="2" fill="#FFB800" stroke="#1A1A1A" strokeWidth="2" transform="rotate(3 50 20)" />
-        </svg>
-      </motion.div>
-
+      {/* Main Hero Container */}
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
         
-        {/* Left Side: Staggered Content Panel */}
+        {/* Left Side: Copy & Calls to Action */}
         <div className="lg:col-span-7 text-center lg:text-left flex flex-col items-center lg:items-start">
           
-          {/* 1. Dropping Badge with Spring Bounce */}
+          {/* 1. Dropping Halloween Badge - Yellow brand harmony */}
           <motion.div
-            initial={{ y: -80, opacity: 0 }}
+            initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{
               type: "spring",
               stiffness: 140,
               damping: 10,
-              delay: 0.2
+              delay: 0.15
             }}
-            className="inline-flex items-center gap-2 bg-bf-black text-bf-yellow px-4 py-2 rounded-full border-2 border-bf-black shadow-[3px_3px_0_rgba(0,0,0,0.2)] mb-6 select-none"
+            className="inline-flex items-center gap-2.5 bg-bf-yellow text-bf-black px-4 py-2 rounded-full border-3 border-bf-black shadow-[3px_3px_0_#000000] mb-6 select-none"
           >
-            <Sparkles className="w-4 h-4 fill-bf-yellow animate-pulse-whatsapp" />
-            <span className="font-baloo-caps text-xs md:text-sm font-extrabold tracking-wider">
-              ELEITA MELHOR HAMBURGUERIA DE PENHA
+            <span className="text-base animate-bounce">🎃</span>
+            <span className="font-baloo-caps text-xs md:text-sm font-black tracking-wider text-bf-black">
+              HALLOWEEN BURGER FILM'S • <span className="text-bf-red font-black">TEMPORADA DO TERROR</span>
             </span>
-            <Sparkles className="w-4 h-4 fill-bf-yellow animate-pulse-whatsapp" />
+            <span className="text-base animate-bounce" style={{ animationDelay: '0.2s' }}>🦇</span>
           </motion.div>
 
-          {/* 2. Headline with outline text (Elastic Letter Bounce) */}
+          {/* 2. Main Title with Cinema Outline text in Brand Yellow */}
           <div className="mb-6 select-none">
             <motion.h1 
-              initial={{ scale: 0.6, opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{
                 type: "spring",
                 stiffness: 160,
                 damping: 12,
-                delay: 0.35
+                delay: 0.25
               }}
-              className="text-bf-white text-5xl md:text-7xl lg:text-8xl bubble-title-outline tracking-wider uppercase leading-none"
+              className="text-bf-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl bubble-title-outline tracking-wider uppercase leading-none"
             >
-              COMIDAS &<br />
-              <span className="text-bf-yellow">BEBIDAS</span>
-              <span className="sr-only"> - Burger Films: Hamburgueria Artesanal em Penha-SC, Pub e Delivery perto do Beto Carrero World</span>
+              HALLOWEEN<br />
+              <span className="text-bf-yellow drop-shadow-[0_0_35px_rgba(255,184,0,0.7)]">BURGER FILM'S</span>
+              <span className="sr-only"> - Halloween Burger Films: Fun Burger Halloween especial em Penha-SC perto do Beto Carrero World</span>
             </motion.h1>
           </div>
 
-          {/* 3. Paragraph Info */}
+          {/* 3. Description Paragraph */}
           <motion.p
-            initial={{ y: 25, opacity: 0 }}
+            initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.55 }}
-            className="text-bf-black text-base md:text-lg lg:text-xl font-medium max-w-xl mb-8 leading-relaxed font-baloo"
+            transition={{ duration: 0.4, delay: 0.35 }}
+            className="text-gray-200 text-base md:text-lg lg:text-xl font-medium max-w-xl mb-6 leading-relaxed font-baloo"
           >
-            Os maiores sucessos das telonas transformados em sabores espetaculares. Venha viver uma verdadeira sessão de cinema em forma de hambúrguer artesanal!
+            A temporada mais <span className="text-bf-yellow font-bold">aterrorizantemente saborosa</span> do cinema começou! Venha devorar o monstruoso <strong className="text-white font-black underline decoration-bf-yellow">Fun Burger Halloween</strong>: duplo burger de fraldinha 90g no pão black artesanal macabro com queijo cheddar vulcânico.
           </motion.p>
 
-          {/* 4. Action CTAs */}
+          {/* 4. Halloween Recipe Badges with Brand Yellow Accents */}
           <motion.div
-            initial={{ y: 30, opacity: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.45 }}
+            className="flex flex-wrap gap-2 justify-center lg:justify-start mb-8 max-w-xl"
+          >
+            <span className="bg-bf-black border-2 border-bf-yellow text-bf-yellow text-xs font-baloo-caps font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[2px_2px_0px_#FFB800]">
+              <span>🌑</span> Pão Black c/ Gergelim
+            </span>
+            <span className="bg-bf-black border-2 border-bf-yellow text-bf-yellow text-xs font-baloo-caps font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[2px_2px_0px_#FFB800]">
+              <span>🥩</span> 2x Fraldinha 90g
+            </span>
+            <span className="bg-bf-black border-2 border-bf-yellow text-bf-yellow text-xs font-baloo-caps font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[2px_2px_0px_#FFB800]">
+              <span>🧀</span> Queijo Cheddar Vulcânico
+            </span>
+            <span className="bg-bf-black border-2 border-bf-yellow text-bf-yellow text-xs font-baloo-caps font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-[2px_2px_0px_#FFB800]">
+              <span>🥗</span> Alface, Tomate e Repolho Roxo
+            </span>
+          </motion.div>
+
+          {/* 5. CTAs Buttons & Bat Trigger */}
+          <motion.div
+            initial={{ y: 25, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", stiffness: 100, delay: 0.7 }}
+            transition={{ type: "spring", stiffness: 100, delay: 0.55 }}
             className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto"
           >
             <a
               href={orderUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full sm:w-auto bg-bf-black hover:bg-bf-black/95 text-bf-yellow hover:text-bf-yellow font-baloo-caps text-sm md:text-base px-8 py-4 rounded-full border-3 border-bf-black shadow-[4px_4px_0_#FFFFFF] hover:shadow-[1px_1px_0_#FFFFFF] hover:translate-x-[3px] hover:translate-y-[3px] transition-all animate-shake-attention cursor-pointer"
+              className="flex items-center justify-center gap-2.5 w-full sm:w-auto bg-bf-yellow hover:bg-bf-yellow-deep text-bf-black font-baloo-caps text-sm md:text-base font-black px-8 py-4 rounded-full border-3 border-bf-black shadow-[4px_4px_0_#FFFFFF] hover:shadow-[1px_1px_0_#FFFFFF] hover:translate-x-[3px] hover:translate-y-[3px] transition-all animate-shake-attention cursor-pointer"
             >
-              <span>Pedir Agora!</span>
+              <span>Pedir Fun Burger • R$ 44,90</span>
               <ArrowRight className="w-4 h-4 stroke-[3px]" />
             </a>
 
             <button
               onClick={handleScrollToMenu}
-              className="flex items-center justify-center w-full sm:w-auto bg-bf-white hover:bg-bf-cream text-bf-black font-baloo-caps text-sm md:text-base px-8 py-4 rounded-full border-3 border-bf-black shadow-[4px_4px_0_#1A1A1A] hover:shadow-[1px_1px_0_#1A1A1A] hover:translate-x-[3px] hover:translate-y-[3px] transition-all cursor-pointer"
+              className="flex items-center justify-center w-full sm:w-auto bg-bf-white hover:bg-bf-yellow text-bf-black font-baloo-caps text-sm md:text-base font-black px-7 py-4 rounded-full border-3 border-bf-black shadow-[4px_4px_0_#FFB800] hover:shadow-[1px_1px_0_#FFB800] hover:translate-x-[3px] hover:translate-y-[3px] transition-all cursor-pointer"
             >
-              <span>Ver Cardápio</span>
+              <span>Ver Todo Cardápio</span>
+            </button>
+
+            {/* Interactive Bat Trigger Button */}
+            <button
+              onClick={triggerBatBurst}
+              className="flex items-center justify-center gap-2 w-full sm:w-auto bg-bf-black hover:bg-neutral-900 text-bf-yellow border-2 border-bf-yellow font-baloo-caps text-xs md:text-sm px-4 py-3.5 rounded-full shadow-[3px_3px_0_#FFB800] hover:scale-105 active:scale-95 transition-all cursor-pointer"
+              title="Clique para soltar uma revoada de morcegos!"
+            >
+              <BatSvg size={22} eyeColor="#FFB800" strokeColor="#FFB800" />
+              <span>Soltar Morcegos! ({batCount > 0 ? batCount : '🦇'})</span>
             </button>
           </motion.div>
 
         </div>
 
-        {/* Right Side: Hero Featured Burger Wrap inside a Flyer-like Card */}
-        <div className="lg:col-span-5 flex justify-center w-full">
+        {/* Right Side: The Halloween Burger Showcase Card with Bats Emerging */}
+        <div className="lg:col-span-5 flex justify-center w-full relative">
+          
+          {/* Continuous Bats Emerging from Burger (Smooth CSS GPU animations) */}
+          <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-30">
+            <div className="absolute animate-bat-orbit-1">
+              <BatSvg size={36} eyeColor="#FFB800" strokeColor="#FFB800" />
+            </div>
+            <div className="absolute animate-bat-orbit-2">
+              <BatSvg size={42} eyeColor="#FF5500" strokeColor="#FFB800" />
+            </div>
+            <div className="absolute animate-bat-orbit-3">
+              <BatSvg size={32} eyeColor="#FFDD00" strokeColor="#FFB800" />
+            </div>
+            <div className="absolute animate-bat-orbit-4">
+              <BatSvg size={38} eyeColor="#FF0055" strokeColor="#FFB800" />
+            </div>
+            <div className="absolute animate-bat-orbit-5">
+              <BatSvg size={30} eyeColor="#FFB800" strokeColor="#FFB800" />
+            </div>
+
+            {/* Click-Triggered Burst Bats */}
+            <AnimatePresence>
+              {burstBats.map((bat) => (
+                <motion.div
+                  key={bat.id}
+                  initial={{ x: 0, y: 0, scale: 0.2, opacity: 1, rotate: 0 }}
+                  animate={{
+                    x: bat.targetX,
+                    y: bat.targetY,
+                    scale: bat.scale,
+                    opacity: 0,
+                    rotate: bat.rot
+                  }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.6, ease: "easeOut" }}
+                  className="absolute pointer-events-none z-40"
+                >
+                  <BatSvg size={44 * bat.scale} eyeColor="#FFB800" strokeColor="#FFB800" />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Flyer / Cinema Showcase Card in Brand Yellow & Noir */}
           <motion.div
-            initial={{ scale: 0.75, rotate: -8, opacity: 0 }}
+            initial={{ scale: 0.85, rotate: -3, opacity: 0 }}
             animate={{ scale: 1, rotate: 0, opacity: 1 }}
             transition={{
               type: "spring",
               stiffness: 110,
               damping: 13,
-              delay: 0.5
+              delay: 0.3
             }}
-            className="w-full max-w-md bg-bf-black p-6 md:p-8 rounded-[36px] border-4 border-bf-black shadow-2xl relative overflow-hidden flex flex-col items-center justify-center group"
+            onClick={triggerBatBurst}
+            className="w-full max-w-md bg-gradient-to-b from-[#1C1006] via-[#1E0B10] to-[#120512] p-6 md:p-8 rounded-[36px] border-4 border-bf-yellow shadow-[0_0_45px_rgba(255,184,0,0.35),8px_8px_0px_#1A1A1A] relative overflow-hidden flex flex-col items-center justify-center group cursor-pointer"
           >
-            {/* Film stripes left & right inside card */}
-            <div className="absolute top-0 bottom-0 left-2 w-3 flex flex-col justify-between py-4 opacity-25">
+            {/* Film stripes left & right inside card in Brand Yellow */}
+            <div className="absolute top-0 bottom-0 left-2 w-3 flex flex-col justify-between py-4 opacity-40">
               {[...Array(12)].map((_, i) => (
                 <div key={i} className="w-2.5 h-2.5 bg-bf-yellow rounded-sm" />
               ))}
             </div>
-            <div className="absolute top-0 bottom-0 right-2 w-3 flex flex-col justify-between py-4 opacity-25">
+            <div className="absolute top-0 bottom-0 right-2 w-3 flex flex-col justify-between py-4 opacity-40">
               {[...Array(12)].map((_, i) => (
                 <div key={i} className="w-2.5 h-2.5 bg-bf-yellow rounded-sm" />
               ))}
             </div>
 
-            {/* Glowing spotlight effect behind burger */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-bf-yellow rounded-full filter blur-[40px] opacity-20 pointer-events-none group-hover:scale-125 transition-transform duration-700" />
+            {/* Glowing spooky spotlight / moon behind the burger */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-tr from-bf-yellow/35 via-[#FF7A00]/30 to-[#9333EA]/25 rounded-full filter blur-[45px] pointer-events-none group-hover:scale-125 transition-transform duration-700 animate-pulse" />
 
-            {/* Core Hero Burger Image */}
-            <motion.div 
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: infiniteType(), ease: "easeInOut" }}
-              className="relative z-10 w-full max-w-[280px] md:max-w-[320px] aspect-square flex items-center justify-center mb-4"
-            >
+            {/* Top Badge: Edição Especial Halloween in Brand Yellow */}
+            <div className="relative z-10 mb-3 flex items-center justify-between w-full px-2">
+              <span className="bg-bf-yellow text-bf-black text-[11px] font-baloo-caps font-black px-3 py-1 rounded-full border-2 border-bf-black shadow-[2px_2px_0px_#000]">
+                🎃 EDIÇÃO LIMITADA
+              </span>
+              <span className="text-xs font-baloo-caps font-black text-gray-200 flex items-center gap-1">
+                <Skull className="w-3.5 h-3.5 text-bf-yellow" />
+                <span className="text-bf-yellow">FUN BURGER</span>
+              </span>
+            </div>
+
+            {/* Core Hero Burger Image with Float Animation */}
+            <div className="relative z-10 w-full max-w-[280px] md:max-w-[320px] aspect-square flex items-center justify-center my-2 group-hover:scale-105 transition-transform duration-300">
               <img
-                src="https://img.burgerfilms.com.br/brasil-burger-hexa-neles-burger-films-copa-do-mundo.webp"
-                alt="Brasil Burguer - Hexa Neles!"
+                src="https://img.supremasite.com.br/burguer/hambueguer-hallowen-burguer-films.webp"
+                alt="Fun Burger Halloween - Burger Films Penha"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-contain rounded-2xl border-4 border-bf-yellow shadow-[0_12px_24px_rgba(0,0,0,0.5)] transform group-hover:scale-105 group-hover:rotate-[2deg] transition-all duration-300"
+                className="w-full h-full object-contain filter drop-shadow-[0_16px_25px_rgba(0,0,0,0.8)]"
               />
-            </motion.div>
 
-            {/* Title overlay inside card */}
-            <div className="relative z-10 text-center select-none">
-              <h2 className="text-bf-yellow font-display text-xl md:text-2xl tracking-wider uppercase mb-1 px-2">
-                Brasil Burguer
+              {/* Click instruction hint badge */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-black/90 text-bf-yellow text-[10px] font-baloo-caps font-bold px-3 py-1 rounded-full border border-bf-yellow/70 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg">
+                🦇 Toque no burger para soltar morcegos!
+              </div>
+            </div>
+
+            {/* Burger Title & Ingredients description inside card */}
+            <div className="relative z-10 text-center select-none mt-2 w-full">
+              <h2 className="text-bf-yellow font-display text-2xl md:text-3xl tracking-wider uppercase mb-1 px-2 drop-shadow-[0_2px_12px_rgba(255,184,0,0.6)]">
+                Fun Burger Halloween
               </h2>
-              <p className="text-bf-white text-xs font-baloo uppercase tracking-wider font-extrabold text-green-400 flex items-center justify-center gap-1.5">
-                <Trophy className="w-3.5 h-3.5 text-bf-yellow shrink-0 fill-current animate-bounce" />
-                <span>Copa 2026 - Hexa Neles!</span>
+              <p className="text-gray-300 text-xs font-baloo leading-tight max-w-[310px] mx-auto mb-3 font-medium">
+                Pão Black c/ Gergelim, 2 Burgers de Fraldinha 90g cada, Queijo Cheddar, Alface, Tomate e Repolho Roxo.
               </p>
+
+              {/* Quick Action inside Card */}
+              <a
+                href={orderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center justify-center gap-2 bg-bf-yellow hover:bg-bf-yellow-deep text-bf-black font-baloo-caps text-xs md:text-sm font-black px-6 py-2.5 rounded-full border-2 border-bf-black shadow-[3px_3px_0_#1A1A1A] hover:shadow-[1px_1px_0_#1A1A1A] transition-all cursor-pointer uppercase"
+              >
+                <Flame className="w-3.5 h-3.5 fill-current" />
+                <span>Garantir o Meu • R$ 44,90</span>
+              </a>
             </div>
           </motion.div>
+
+          {/* Toast Notification when bats are released */}
+          <AnimatePresence>
+            {showBatToast && (
+              <motion.div
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                className="absolute -bottom-8 left-1/2 -translate-x-1/2 z-50 bg-bf-yellow text-bf-black font-baloo-caps text-xs font-black px-4 py-1.5 rounded-full border-2 border-bf-black shadow-[4px_4px_0px_#000] whitespace-nowrap flex items-center gap-1.5"
+              >
+                <span>🦇</span>
+                <span>BOO! Revoada de morcegos libertada!</span>
+                <span>🎃</span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
         </div>
 
       </div>
 
-      {/* --- Pre-inclined Marquee adhesive tape at the bottom of the section (-1.5deg) --- */}
-      <div className="absolute bottom-4 left-0 right-0 overflow-hidden z-20">
-        <div className="w-[110%] -left-[5%] relative transform -rotate-[1.5deg] bg-bf-black border-y-4 border-bf-black py-3 shadow-[0_4px_12px_rgba(0,0,0,0.15)] flex items-center select-none">
-          <div className="flex gap-12 text-bf-yellow font-display text-sm md:text-base uppercase tracking-wider whitespace-nowrap animate-[marquee_25s_linear_infinite]">
+      {/* --- Halloween Themed Inclined Marquee Tape at Bottom (-1.5deg) in Brand Yellow --- */}
+      <div className="absolute bottom-2 left-0 right-0 overflow-hidden z-20">
+        <div className="w-[110%] -left-[5%] relative transform -rotate-[1.5deg] bg-bf-yellow border-y-4 border-bf-black py-3 shadow-[0_4px_16px_rgba(0,0,0,0.5)] flex items-center select-none">
+          <div className="flex gap-12 text-bf-black font-display text-sm md:text-base uppercase tracking-wider whitespace-nowrap animate-marquee-halloween font-black">
             {[...Array(6)].map((_, i) => (
-              <span key={i} className="flex items-center gap-3">
-                <span>Stranger Things Combo com Pão Preto de Cinema</span>
-                <span className="text-bf-red">•</span>
-                <span>O Famoso Rodízio de Mini Burgers</span>
-                <span className="text-bf-white">•</span>
-                <span>Experimente a Batata Frita Secreta</span>
-                <span className="text-bf-red">•</span>
+              <span key={i} className="flex items-center gap-3 font-black">
+                <span>🎃</span>
+                <span>O Halloween da Burger Film's Começou!</span>
+                <span className="text-bf-red font-black">•</span>
+                <span className="bg-bf-black text-bf-yellow px-2.5 py-0.5 rounded-full text-xs font-bold">Fun Burger por R$ 44,90</span>
+                <span className="text-bf-red font-black">•</span>
+                <span>Pão Black Artesanal & Duplo Burger de Fraldinha</span>
+                <span className="text-bf-red font-black">•</span>
+                <span>Peça no Delivery ou Visite o Nosso Pub em Penha-SC</span>
+                <span>🦇</span>
               </span>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Tailwind inline animation setup helper */}
-      <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-50%); }
-        }
-      `}</style>
-
     </section>
   );
-}
-
-// Helper to provide clean typing or direct values for loop infinite
-function infiniteType() {
-  return Infinity;
 }

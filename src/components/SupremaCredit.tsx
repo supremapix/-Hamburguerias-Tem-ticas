@@ -38,3 +38,6 @@ export function SupremaCredit() {
     </div>
   );
 }
+
+export default SupremaCredit;
+

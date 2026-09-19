@@ -88,7 +88,7 @@ export default function BackToTop() {
       rotate: 0,
       transition: {
         duration: 0.4,
-        ease: reducedMotion ? 'easeInOut' : [0.34, 1.56, 0.64, 1] // cubic-bezier overshoot/bounce
+        ease: (reducedMotion ? 'easeInOut' : [0.34, 1.56, 0.64, 1]) as any // cubic-bezier overshoot/bounce
       }
     },
     exit: { 
@@ -97,7 +97,7 @@ export default function BackToTop() {
       rotate: reducedMotion ? 0 : -45,
       transition: {
         duration: 0.3,
-        ease: 'easeInOut'
+        ease: 'easeInOut' as const
       }
     }
   };

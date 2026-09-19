@@ -261,6 +261,125 @@ body {
   animation: star-twinkle 3s ease-in-out infinite;
 }
 
+/* Halloween Bat Animations & Spooky Atmosphere */
+@keyframes bat-flutter {
+  0% {
+    transform: scaleY(1) rotate(-4deg);
+  }
+  100% {
+    transform: scaleY(0.28) rotate(4deg);
+  }
+}
+
+@keyframes bat-fly-ambient {
+  0% {
+    transform: translate(-10vw, 15px) rotate(8deg);
+  }
+  25% {
+    transform: translate(25vw, -35px) rotate(-6deg);
+  }
+  50% {
+    transform: translate(55vw, 10px) rotate(12deg);
+  }
+  75% {
+    transform: translate(80vw, -20px) rotate(-4deg);
+  }
+  100% {
+    transform: translate(110vw, 15px) rotate(8deg);
+  }
+}
+
+@keyframes spooky-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(255, 107, 0, 0.4)) drop-shadow(0 0 35px rgba(230, 57, 70, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(255, 107, 0, 0.8)) drop-shadow(0 0 60px rgba(186, 24, 27, 0.6)) drop-shadow(0 0 80px rgba(147, 51, 234, 0.35));
+  }
+}
+
+@keyframes eerie-fog {
+  0% { transform: translateX(-4%) translateY(0); opacity: 0.2; }
+  50% { transform: translateX(4%) translateY(-8px); opacity: 0.38; }
+  100% { transform: translateX(-4%) translateY(0); opacity: 0.2; }
+}
+
+.animate-bat-flutter {
+  animation: bat-flutter 0.2s ease-in-out infinite alternate;
+}
+
+.animate-spooky-glow {
+  animation: spooky-glow 3.5s ease-in-out infinite;
+}
+
+.animate-eerie-fog {
+  animation: eerie-fog 12s ease-in-out infinite;
+}
+
+@keyframes marquee-halloween {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-halloween {
+  animation: marquee-halloween 25s linear infinite;
+}
+
+@keyframes bat-orbit-1 {
+  0% { transform: translate(0, 0) scale(0.3) rotate(-10deg); opacity: 0; }
+  15% { opacity: 0.95; }
+  85% { opacity: 0.95; }
+  100% { transform: translate(-140px, -220px) scale(1) rotate(-35deg); opacity: 0; }
+}
+
+@keyframes bat-orbit-2 {
+  0% { transform: translate(0, 0) scale(0.3) rotate(15deg); opacity: 0; }
+  15% { opacity: 0.95; }
+  85% { opacity: 0.95; }
+  100% { transform: translate(150px, -210px) scale(1.1) rotate(35deg); opacity: 0; }
+}
+
+@keyframes bat-orbit-3 {
+  0% { transform: translate(0, 0) scale(0.3) rotate(-5deg); opacity: 0; }
+  20% { opacity: 0.95; }
+  85% { opacity: 0.95; }
+  100% { transform: translate(-80px, -260px) scale(0.9) rotate(-20deg); opacity: 0; }
+}
+
+@keyframes bat-orbit-4 {
+  0% { transform: translate(0, 0) scale(0.3) rotate(25deg); opacity: 0; }
+  20% { opacity: 0.95; }
+  85% { opacity: 0.95; }
+  100% { transform: translate(110px, -250px) scale(1) rotate(45deg); opacity: 0; }
+}
+
+@keyframes bat-orbit-5 {
+  0% { transform: translate(0, 0) scale(0.3) rotate(-25deg); opacity: 0; }
+  25% { opacity: 0.95; }
+  85% { opacity: 0.95; }
+  100% { transform: translate(-180px, -160px) scale(0.8) rotate(-45deg); opacity: 0; }
+}
+
+.animate-bat-orbit-1 {
+  animation: bat-orbit-1 4.2s ease-out infinite;
+}
+
+.animate-bat-orbit-2 {
+  animation: bat-orbit-2 4.8s ease-out infinite 1.2s;
+}
+
+.animate-bat-orbit-3 {
+  animation: bat-orbit-3 4.5s ease-out infinite 2.1s;
+}
+
+.animate-bat-orbit-4 {
+  animation: bat-orbit-4 5.1s ease-out infinite 0.7s;
+}
+
+.animate-bat-orbit-5 {
+  animation: bat-orbit-5 4.0s ease-out infinite 2.8s;
+}
+
 /* custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

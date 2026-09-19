@@ -1,7 +1,16 @@
 import { MenuItem, AgendaItem } from './types';
 
 export const MENU_ITEMS: MenuItem[] = [
-  // --- Burgers de Cinema (16 itens) ---
+  // --- Burgers de Cinema (Especial Halloween + Linha Fixa) ---
+  {
+    id: 'fun-burger-halloween',
+    name: 'Fun Burger Halloween',
+    description: 'Pão Black C/ Gergelim, 2 Burgers de Fraldinha 90g Cada, Queijo Cheddar, Alface, Tomate e Repolho Roxo',
+    price: 44.90,
+    image: 'https://img.supremasite.com.br/burguer/hambueguer-hallowen-burguer-films.webp',
+    category: 'lanches',
+    subcategory: 'cinema'
+  },
   {
     id: 'hulk-smash',
     name: 'Hulk Smash',

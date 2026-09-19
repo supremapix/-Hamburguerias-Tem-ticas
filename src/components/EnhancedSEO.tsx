@@ -23,18 +23,14 @@ export default function EnhancedSEO({ view }: EnhancedSEOProps) {
     meta = GLOBAL_SEO_DATA['home'];
   }
 
-  // Register Service Worker in browser environment only
+  // Unregister any legacy service worker to ensure real-time preview and updates
   useEffect(() => {
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then((reg) => {
-            console.log('Service Worker registrado com sucesso:', reg.scope);
-          })
-          .catch((err) => {
-            console.error('Falha ao registrar o Service Worker:', err);
-          });
-      });
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const registration of registrations) {
+          registration.unregister();
+        }
+      }).catch(() => {});
     }
   }, []);
 

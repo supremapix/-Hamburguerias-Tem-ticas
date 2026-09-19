@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <script>
+      // Automatically purge any stale service workers or caches in dev/preview
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          for (var r of regs) r.unregister();
+        }).catch(function() {});
+      }
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          for (var n of names) caches.delete(n);
+        }).catch(function() {});
+      }
+    </script>
+    
     <!-- Google & RealFaviconGenerator Compliant Favicons (Same Domain) -->
     <link rel="shortcut icon" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
