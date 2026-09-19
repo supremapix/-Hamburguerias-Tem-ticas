@@ -92,17 +92,7 @@ export default function AgendaSection() {
         {/* Cinema Marquee Ticker Banner */}
         <div className="mb-8 overflow-hidden rounded-xl bg-bf-black border-3 border-bf-yellow py-2 text-bf-yellow shadow-[4px_4px_0px_0px_#1A1A1A]">
           <div className="animate-marquee-ticker font-baloo-caps text-xs font-black tracking-widest uppercase">
-            <span className="mx-4 flex items-center gap-2">🚒 PERSONAGEM MARSHALL 18/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">👮 PERSONAGEM CHASE 19/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🤠 PERSONAGEM WOODY 20/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍕 NOITE DA PIZZA TODA SEXTA</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍺 COMBOS DE CINEMA & CERVEJA AMANTEIGADA</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍔 RODÍZIO DE MINI BURGERS DOM A QUI</span>
+            <span className="mx-4 flex items-center gap-2 text-bf-yellow">🌟 O ASTRO BURGER FILM'S TE ESPERA!</span>
             <span className="mx-4 text-bf-red">•</span>
             <span className="mx-4 flex items-center gap-2">🚒 PERSONAGEM MARSHALL 18/09</span>
             <span className="mx-4 text-bf-red">•</span>
@@ -115,6 +105,14 @@ export default function AgendaSection() {
             <span className="mx-4 flex items-center gap-2">🍺 COMBOS DE CINEMA & CERVEJA AMANTEIGADA</span>
             <span className="mx-4 text-bf-red">•</span>
             <span className="mx-4 flex items-center gap-2">🍔 RODÍZIO DE MINI BURGERS DOM A QUI</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2 text-bf-yellow">🌟 O ASTRO BURGER FILM'S TE ESPERA!</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2">🚒 PERSONAGEM MARSHALL 18/09</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2">👮 PERSONAGEM CHASE 19/09</span>
+            <span className="mx-4 text-bf-red">•</span>
+            <span className="mx-4 flex items-center gap-2">🤠 PERSONAGEM WOODY 20/09</span>
           </div>
         </div>
 
@@ -192,6 +190,80 @@ export default function AgendaSection() {
                 ? 'Encontros especiais, sessões de fotos e momentos inesquecíveis'
                 : 'Pizzas artesanais, rodízio de mini burgers e experiências gastronômicas'}
             </p>
+          </div>
+
+          {/* Destaque VIP do Personagem Oficial Burger Films como Grande Anfitrião */}
+          <div className="mx-1 sm:mx-4 md:mx-6 mb-8 p-4 sm:p-6 rounded-2xl md:rounded-3xl bg-gradient-to-br from-[#241A08] via-[#1A1405] to-[#2E200A] border-3 border-bf-yellow shadow-[0_8px_30px_rgba(255,184,0,0.25)] relative overflow-hidden flex flex-col md:flex-row items-center gap-5 md:gap-7">
+            {/* Stage Light Ambient Glow */}
+            <div className="absolute -left-12 -top-12 w-48 h-48 bg-bf-yellow/25 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-bf-red/20 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Character Visual Showcase */}
+            <div className="relative shrink-0 group">
+              <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-2xl bg-gradient-to-b from-bf-yellow to-amber-500 border-3 border-bf-white shadow-[0_6px_20px_rgba(0,0,0,0.8)] overflow-hidden flex items-center justify-center p-2 transition-transform duration-300 group-hover:scale-105">
+                <img
+                  src="https://img.supremasite.com.br/burguer/bg.webp"
+                  alt="Personagem Oficial Burger Films - Grande Anfitrião"
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = '/personagem-burger-films.webp';
+                  }}
+                  className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] group-hover:rotate-2 transition-transform"
+                />
+              </div>
+              <span className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 bg-bf-red text-white text-[10px] font-baloo-caps font-black px-3 py-0.5 rounded-full border-2 border-bf-white whitespace-nowrap shadow-md flex items-center gap-1">
+                <Star className="w-3 h-3 fill-bf-yellow text-bf-yellow" />
+                <span>ANFITRIÃO OFICIAL</span>
+              </span>
+            </div>
+
+            {/* Host Presentation Details */}
+            <div className="flex-1 text-center md:text-left">
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mb-1.5">
+                <span className="bg-bf-yellow text-bf-black text-[11px] font-baloo-caps font-black px-3 py-0.5 rounded-full inline-flex items-center gap-1 shadow-sm">
+                  <Sparkles className="w-3.5 h-3.5 text-bf-red" />
+                  <span>O ASTRO DA BURGER FILMS TE RECEBE!</span>
+                </span>
+                <span className="text-white/80 text-xs font-baloo font-semibold hidden sm:inline">
+                  • Penha - Santa Catarina
+                </span>
+              </div>
+
+              <h4 className="text-lg sm:text-xl md:text-2xl font-baloo-caps font-black text-white leading-tight">
+                {activeTab === 'personagens'
+                  ? 'Venha tirar fotos com o nosso mascote e toda a turma dos cinemas!'
+                  : 'Nosso anfitrião convida você para o melhor rodízio e noites temáticas de Penha!'}
+              </h4>
+
+              <p className="text-gray-300 font-baloo text-xs sm:text-sm mt-1.5 leading-relaxed font-medium">
+                Toda semana nosso Pub se transforma em um verdadeiro estúdio de Hollywood! Traga a família para conhecer o mascote oficial Burger Films, registrar momentos especiais e saborear burgers dignos de cinema.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 mt-3 text-[11px] font-baloo-caps font-bold">
+                <span className="bg-black/60 border border-bf-yellow/50 text-bf-yellow px-2.5 py-1 rounded-lg">
+                  📸 Fotos Liberadas
+                </span>
+                <span className="bg-black/60 border border-bf-yellow/50 text-bf-yellow px-2.5 py-1 rounded-lg">
+                  🍿 Ambiente 100% Temático
+                </span>
+                <span className="bg-black/60 border border-bf-yellow/50 text-bf-yellow px-2.5 py-1 rounded-lg">
+                  🎉 Pertinho do Beto Carrero
+                </span>
+              </div>
+            </div>
+
+            {/* WhatsApp Quick CTA */}
+            <div className="shrink-0 w-full md:w-auto">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full md:w-auto px-5 py-3 rounded-xl bg-gradient-to-r from-bf-yellow to-amber-500 hover:from-amber-400 hover:to-bf-yellow text-bf-black font-baloo-caps text-xs sm:text-sm font-black border-2 border-bf-black shadow-[3px_3px_0px_#FFFFFF] hover:shadow-none hover:translate-x-0.5 hover:translate-y-0.5 transition-all inline-flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <Ticket className="w-4 h-4 text-bf-black" />
+                <span>GARANTIR MESA VIP</span>
+              </a>
+            </div>
           </div>
 
           {/* Event Items List */}

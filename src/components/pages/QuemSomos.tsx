@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import React from 'react';
-import { Film, Award, Star, Users, ArrowLeft, Heart } from 'lucide-react';
+import { Film, Award, Star, Users, ArrowLeft, Heart, Sparkles, Camera } from 'lucide-react';
 import InstagramFeed from '../InstagramFeed';
 
 interface PageProps {
@@ -66,6 +66,65 @@ export default function QuemSomos({ onNavigate }: PageProps) {
             <div>
               <p className="font-display text-lg text-bf-black leading-snug mb-1">"NÃO FAZEMOS APENAS COMIDA, DIRIGIMOS SESSÕES DE SABOR!"</p>
               <p className="text-xs text-gray-500 font-medium">— Equipe de Direção da Burger Films</p>
+            </div>
+          </div>
+
+          {/* Featured Burger Films Official Character Showcase */}
+          <div className="my-10 p-6 md:p-8 bg-gradient-to-br from-[#FFF9E6] via-white to-[#FFF0D4] border-4 border-bf-black rounded-3xl shadow-[8px_8px_0px_#1A1A1A] relative overflow-hidden">
+            {/* Ambient Cinema Lighting Accent */}
+            <div className="absolute -top-16 -right-16 w-44 h-44 bg-bf-yellow/30 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute -bottom-16 -left-16 w-44 h-44 bg-bf-red/20 rounded-full blur-2xl pointer-events-none" />
+
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 relative z-10">
+              {/* Character Cutout Container */}
+              <div className="relative shrink-0 group">
+                <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-3xl bg-gradient-to-b from-bf-yellow to-amber-400 border-4 border-bf-black shadow-[6px_6px_0px_#1A1A1A] overflow-hidden flex items-center justify-center relative p-3 transition-transform duration-300 group-hover:scale-105">
+                  <img
+                    src="https://img.supremasite.com.br/burguer/bg.webp"
+                    alt="Personagem Oficial Burger Films"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = '/personagem-burger-films.webp';
+                    }}
+                    className="w-full h-full object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:rotate-2"
+                  />
+                  
+                  {/* Badge floating on bottom of image */}
+                  <span className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-bf-black text-bf-yellow text-[10px] sm:text-[11px] font-baloo-caps font-black px-3 py-1 rounded-full border-2 border-bf-yellow whitespace-nowrap shadow-md flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-bf-yellow" />
+                    <span>ASTRO OFICIAL</span>
+                  </span>
+                </div>
+              </div>
+
+              {/* Character Description & Highlights */}
+              <div className="flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-1.5 bg-bf-red text-white text-xs font-baloo-caps font-black px-3.5 py-1 rounded-full border-2 border-bf-black mb-3 shadow-[2px_2px_0_#1A1A1A]">
+                  <Sparkles className="w-3.5 h-3.5 text-bf-yellow animate-pulse" />
+                  <span>O PROTAGONISTA DA CASA</span>
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-bf-black uppercase leading-tight mb-3">
+                  CONHEÇA O PERSONAGEM OFICIAL BURGER FILM'S!
+                </h3>
+
+                <p className="text-gray-700 font-baloo text-sm sm:text-base leading-relaxed mb-5 font-medium">
+                  Ele é o coração e o grande embaixador de todo o entretenimento da nossa hamburgueria! Criado para dar vida à magia do cinema que servimos todos os dias em Penha, nosso astro guia você pelos melhores roteiros gastronômicos, recebe com muito carinho cada família em nosso pub e garante que cada mordida seja uma cena memorável.
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5">
+                  <span className="bg-white border-2 border-bf-black px-3.5 py-1.5 rounded-full text-xs font-baloo-caps font-black text-bf-black shadow-[2px_2px_0_#1A1A1A] inline-flex items-center gap-1.5">
+                    🎬 Anfitrião de Cinema
+                  </span>
+                  <span className="bg-white border-2 border-bf-black px-3.5 py-1.5 rounded-full text-xs font-baloo-caps font-black text-bf-black shadow-[2px_2px_0_#1A1A1A] inline-flex items-center gap-1.5">
+                    🍔 O Guardião da Receita Secreta
+                  </span>
+                  <span className="bg-bf-yellow text-bf-black border-2 border-bf-black px-3.5 py-1.5 rounded-full text-xs font-baloo-caps font-black shadow-[2px_2px_0_#1A1A1A] inline-flex items-center gap-1.5">
+                    <Camera className="w-3.5 h-3.5" />
+                    <span>Adora Tirar Fotos com as Crianças</span>
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
