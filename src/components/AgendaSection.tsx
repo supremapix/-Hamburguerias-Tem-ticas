@@ -226,6 +226,14 @@ export default function AgendaSection() {
                       src={item.image}
                       alt={item.title}
                       referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const target = e.currentTarget as HTMLImageElement;
+                        if (item.title.toLowerCase().includes('woody') || item.id === 'domingo') {
+                          target.src = '/personagem-woody.svg';
+                        } else {
+                          target.src = '/favicon.png';
+                        }
+                      }}
                       className="w-full h-full object-cover group-hover:rotate-6 group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>

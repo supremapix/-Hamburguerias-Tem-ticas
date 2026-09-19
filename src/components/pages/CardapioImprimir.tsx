@@ -14,7 +14,7 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
 
   // Group items by category/subcategory for the flyer layout
   const burgersCinema = MENU_ITEMS.filter(item => item.subcategory === 'cinema').slice(0, 8);
-  const burgersCopa = MENU_ITEMS.filter(item => item.subcategory === 'copa').slice(0, 4);
+  const miniBurgersRodizio = MENU_ITEMS.filter(item => item.subcategory === 'minions').slice(0, 4);
   const combos = MENU_ITEMS.filter(item => item.category === 'combos').slice(0, 4);
   const petiscos = MENU_ITEMS.filter(item => item.category === 'petiscos').slice(0, 4);
   const pizzas = MENU_ITEMS.filter(item => item.category === 'pizzas').slice(0, 4);
@@ -155,14 +155,14 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
               </div>
             </div>
 
-            {/* Copa 2026 Specials */}
+            {/* Mini Burgers & Rodizio */}
             <div>
               <h3 className={`font-display text-xl uppercase tracking-wider border-b-2 border-current pb-1 mb-3 flex items-center gap-2 ${ecoMode ? 'text-black' : 'text-bf-yellow'}`}>
-                <Trophy className="w-5 h-5" />
-                <span>Edição Especial - Copa 2026</span>
+                <Flame className="w-5 h-5" />
+                <span>Mini Burgers & Rodízio</span>
               </h3>
               <div className="space-y-4">
-                {burgersCopa.map(item => (
+                {miniBurgersRodizio.map(item => (
                   <div key={item.id} className="group flex gap-3.5 items-start">
                     {item.image && (
                       <img 

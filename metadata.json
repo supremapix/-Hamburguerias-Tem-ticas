@@ -1,6 +1,6 @@
 {
   "name": "Burger Films",
-  "description": "Hamburgueria temática de cinema em Penha-SC. Uma experiência cinematográfica unindo hambúrgueres artesanais e os maiores sucessos do cinema.",
+  "description": "Hamburgueria temática em Penha SC perto do Beto Carrero World. Hambúrguer artesanal, rodízio de mini burgers, pub e delivery para turistas e famílias.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

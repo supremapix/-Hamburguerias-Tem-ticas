@@ -28,13 +28,6 @@ const CATEGORY_SECTIONS = [
     filter: (item: any) => item.subcategory === 'cinema' 
   },
   { 
-    id: 'copa', 
-    title: 'Copa 2026', 
-    description: 'Hambúrgueres especiais celebrando o Hexa com sabores do mundo inteiro!', 
-    icon: Trophy, 
-    filter: (item: any) => item.subcategory === 'copa' 
-  },
-  { 
     id: 'minions', 
     title: 'Mini Burgers', 
     description: 'Nossos mini hambúrgueres super divertidos, perfeitos para o rodízio ou para a garotada!', 
@@ -79,7 +72,7 @@ const CATEGORY_SECTIONS = [
 ];
 
 export default function MenuSection() {
-  const [activeTab, setActiveTab] = useState<'all' | 'cinema' | 'copa' | 'minions' | 'combos' | 'petiscos' | 'pizzas' | 'bebidas' | 'sobremesas'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'cinema' | 'minions' | 'combos' | 'petiscos' | 'pizzas' | 'bebidas' | 'sobremesas'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedItem, setSelectedItem] = useState<typeof MENU_ITEMS[0] | null>(null);
   const [isHighlighted, setIsHighlighted] = useState(false);
@@ -102,7 +95,6 @@ export default function MenuSection() {
     if (!matchesSearch) return false;
     if (activeTab === 'all') return true;
     if (activeTab === 'cinema') return item.subcategory === 'cinema';
-    if (activeTab === 'copa') return item.subcategory === 'copa';
     if (activeTab === 'minions') return item.subcategory === 'minions';
     if (activeTab === 'combos') return item.category === 'combos';
     if (activeTab === 'petiscos') return item.category === 'petiscos';
@@ -125,7 +117,6 @@ export default function MenuSection() {
   const getSubcategoryLabel = (item: typeof MENU_ITEMS[0]) => {
     if (item.subcategory === 'minions') return 'Rodízio';
     if (item.subcategory === 'cinema') return 'Cinema';
-    if (item.subcategory === 'copa') return 'Copa 2026';
     return undefined;
   };
 

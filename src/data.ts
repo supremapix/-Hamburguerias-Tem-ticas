@@ -156,80 +156,6 @@ export const MENU_ITEMS: MenuItem[] = [
     subcategory: 'cinema'
   },
 
-  // --- Copa do Mundo 2026- Burguers Ed.Limtada (8 itens) ---
-  {
-    id: 'alemanha-burguer',
-    name: 'Alemanha Burguer - Prost!!',
-    description: 'Pão Preto C/ Gergelim, Hamburguer Linguiça Blumenau 120gr, Queijo Prato, Cebola Caramelizada, Alface, Tomate, Maionese Caseira',
-    price: 41.90,
-    image: 'https://burgerfilms.chefware.com.br/136/600/0/alemanha-burguer-prost.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-  {
-    id: 'brasil-burguer',
-    name: 'Brasil Burguer - Hexa Neles!',
-    description: 'Pão Verde C/ Gergelim, Hamburguer Picanha 120gr, Queijo Coalho, Crispy De Couve, Bacon Fatiado, Molho Barbecue',
-    price: 49.90,
-    image: 'https://burgerfilms.chefware.com.br/128/600/0/brasil-burguer-hexa-neles.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-  {
-    id: 'mexico-burguer',
-    name: 'México Burguer - Árriba!!',
-    description: 'Hamburguer Fraldinha 12gr, Cheddar, Farofa De Doritos, Geleia De Pimenta, Alface, Tomate',
-    price: 41.90,
-    image: 'https://burgerfilms.chefware.com.br/129/600/0/mexico-burguer-arriba.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-  {
-    id: 'burguer-estados-unidos',
-    name: 'Burguer Estados Unidos - Party Of USA',
-    description: 'Pão Vermelho C/ Gergelim, Hamburguer Costela 120gr, Cheddar, Bacon Fatiado, Picles, Molho Barbecue, Alface, Tomate',
-    price: 41.90,
-    image: 'https://burgerfilms.chefware.com.br/130/600/0/burguer-estados-unidos-party-of-usa.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-  {
-    id: 'argentina-burguer',
-    name: 'Argentina Burguer - La Mano de dios',
-    description: 'Hamburguer Costela 120gr, Queijo Mussarela, Calabresa Fatiada, Cebola Crispy, Maionese De Chimichurri, Alface, Tomate',
-    price: 41.90,
-    image: 'https://burgerfilms.chefware.com.br/131/600/0/argentina-burguer-la-mano-de-dios.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-  {
-    id: 'espanha-burguer',
-    name: 'Espanha Burguer - Olé Touro!!',
-    description: 'Pão Vermelho C/ Gergelim, Hamburguer Fraldinha 12gr, Queijo Prato, Presunto, Ovo, Alface, Tomate, Maionese De Bacon',
-    price: 43.90,
-    image: 'https://burgerfilms.chefware.com.br/132/600/0/espanha-burguer-ole-touro.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-  {
-    id: 'inglaterra-burguer',
-    name: 'Inglaterra Burguer - Keep Calm And Eat a Burguer',
-    description: 'Pão Vermelho C/ Gergelim, Hamburguer Fraldinha 12gr, Bacon Crocante, Queijo Cheddar, Cebola Caramelizada, Redução de Molho Inglês',
-    price: 41.90,
-    image: 'https://burgerfilms.chefware.com.br/134/600/0/inglaterra-burguer-keep-calm-and-eat-a-burguer.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-  {
-    id: 'franca-burguer',
-    name: 'França Burguer - Tour De France',
-    description: 'Pão Azul C/ Gergelim, Hamburguer Fraldinha 12gr, Queijo Brie, Cogumelos Paris Salteados, Cebola Crispy, Alface, Tomate',
-    price: 47.90,
-    image: 'https://burgerfilms.chefware.com.br/135/600/0/franca-burguer-tour-de-france.jpg',
-    category: 'lanches',
-    subcategory: 'copa'
-  },
-
   // --- Minions Burger (4 itens) ---
   {
     id: 'caca-fantasmas',
@@ -617,7 +543,7 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
     day: 'DOMINGO',
     title: 'PERSONAGEM WOODY',
     subtitle: 'O xerife mais amado do cinema vem trazer toda a magia, carisma e diversão de Toy Story para toda a família!',
-    image: 'https://images.unsplash.com/photo-1608889174637-3c44f6326f2a?w=600&auto=format&fit=crop&q=80',
+    image: '/personagem-woody.svg',
     dateBadge: '20/09',
     highlight: true
   }
@@ -657,3 +583,116 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
 ];
 
 export const AGENDA_ITEMS: AgendaItem[] = AGENDA_PERSONAGENS;
+
+// --- PROMOÇÕES PASSADAS / EDIÇÃO ESPECIAL COPA DO MUNDO ---
+export interface PastPromotionBurger {
+  id: string;
+  name: string;
+  country: string;
+  slogan: string;
+  description: string;
+  price: number;
+  image: string;
+  badge: string;
+  curiosity: string;
+  period: string;
+}
+
+export const PROMOCOES_PASSADAS_COPA: PastPromotionBurger[] = [
+  {
+    id: 'brasil-burguer',
+    name: 'Brasil Burguer - Hexa Neles!',
+    country: 'Brasil',
+    slogan: 'Hexa Neles!',
+    description: 'Pão Verde C/ Gergelim, Hamburguer Picanha 120gr, Queijo Coalho, Crispy De Couve, Bacon Fatiado, Molho Barbecue.',
+    price: 49.90,
+    image: 'https://burgerfilms.chefware.com.br/128/600/0/brasil-burguer-hexa-neles.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'O queridinho da torcida verde e amarela com queijo coalho grelhado e crispy crocante de couve.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  },
+  {
+    id: 'alemanha-burguer',
+    name: 'Alemanha Burguer - Prost!!',
+    country: 'Alemanha',
+    slogan: 'Prost!!',
+    description: 'Pão Preto C/ Gergelim, Hamburguer Linguiça Blumenau 120gr, Queijo Prato, Cebola Caramelizada, Alface, Tomate, Maionese Caseira.',
+    price: 41.90,
+    image: 'https://burgerfilms.chefware.com.br/136/600/0/alemanha-burguer-prost.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'Blend artesanal valorizando a tradicional linguiça Blumenau regional de Santa Catarina combinada com cebola caramelizada no pão preto.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  },
+  {
+    id: 'argentina-burguer',
+    name: 'Argentina Burguer - La Mano de Dios',
+    country: 'Argentina',
+    slogan: 'La Mano de Dios',
+    description: 'Hamburguer Costela 120gr, Queijo Mussarela, Calabresa Fatiada, Cebola Crispy, Maionese De Chimichurri, Alface, Tomate.',
+    price: 41.90,
+    image: 'https://burgerfilms.chefware.com.br/131/600/0/argentina-burguer-la-mano-de-dios.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'Maionese artesanal de chimichurri argentino sobre suculento hambúrguer de costela e calabresa fininha.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  },
+  {
+    id: 'burguer-estados-unidos',
+    name: 'Burguer Estados Unidos - Party Of USA',
+    country: 'Estados Unidos',
+    slogan: 'Party Of USA',
+    description: 'Pão Vermelho C/ Gergelim, Hamburguer Costela 120gr, Cheddar, Bacon Fatiado, Picles, Molho Barbecue, Alface, Tomate.',
+    price: 41.90,
+    image: 'https://burgerfilms.chefware.com.br/130/600/0/burguer-estados-unidos-party-of-usa.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'Inspirado nos clássicos diners de Hollywood com pão vermelho, cheddar cremoso e barbecue defumado.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  },
+  {
+    id: 'mexico-burguer',
+    name: 'México Burguer - Árriba!!',
+    country: 'México',
+    slogan: 'Árriba!!',
+    description: 'Hamburguer Fraldinha 120gr, Cheddar, Farofa De Doritos, Geleia De Pimenta, Alface, Tomate.',
+    price: 41.90,
+    image: 'https://burgerfilms.chefware.com.br/129/600/0/mexico-burguer-arriba.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'Explosão crocante com farofa de Doritos e leve toque adocicado e picante de geleia de pimenta no hambúrguer de fraldinha.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  },
+  {
+    id: 'franca-burguer',
+    name: 'França Burguer - Tour De France',
+    country: 'França',
+    slogan: 'Tour De France',
+    description: 'Pão Azul C/ Gergelim, Hamburguer Fraldinha 120gr, Queijo Brie, Cogumelos Paris Salteados, Cebola Crispy, Alface, Tomate.',
+    price: 47.90,
+    image: 'https://burgerfilms.chefware.com.br/135/600/0/franca-burguer-tour-de-france.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'Refinamento francês com queijo brie cremoso e cogumelos Paris frescos salteados no pão azul temático.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  },
+  {
+    id: 'inglaterra-burguer',
+    name: 'Inglaterra Burguer - Keep Calm And Eat a Burguer',
+    country: 'Inglaterra',
+    slogan: 'Keep Calm And Eat a Burguer',
+    description: 'Pão Vermelho C/ Gergelim, Hamburguer Fraldinha 120gr, Bacon Crocante, Queijo Cheddar, Cebola Caramelizada, Redução de Molho Inglês.',
+    price: 41.90,
+    image: 'https://burgerfilms.chefware.com.br/134/600/0/inglaterra-burguer-keep-calm-and-eat-a-burguer.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'Sabor autêntico de pub londrino com redução artesanal de molho inglês e bacon fatiado crocante.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  },
+  {
+    id: 'espanha-burguer',
+    name: 'Espanha Burguer - Olé Touro!!',
+    country: 'Espanha',
+    slogan: 'Olé Touro!!',
+    description: 'Pão Vermelho C/ Gergelim, Hamburguer Fraldinha 120gr, Queijo Prato, Presunto, Ovo, Alface, Tomate, Maionese De Bacon.',
+    price: 43.90,
+    image: 'https://burgerfilms.chefware.com.br/132/600/0/espanha-burguer-ole-touro.jpg',
+    badge: 'Copa do Mundo • Histórico',
+    curiosity: 'Harmonia perfeita entre ovo com gema macia, presunto grelhado e maionese defumada de bacon.',
+    period: 'Edição Especial Copa do Mundo (Encerrada)'
+  }
+];

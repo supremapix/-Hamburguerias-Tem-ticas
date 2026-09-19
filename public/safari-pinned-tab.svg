@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#0D0D0D"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD000"/>
+      <stop offset="100%" stop-color="#FF9900"/>
+    </linearGradient>
+    <filter id="popShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="4" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Dark Cinema Background Circle with Yellow Pop Border -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="none" stroke="#FFB800" stroke-width="20" stroke-dasharray="24 12"/>
+
+  <!-- Cinema Reel / Clapperboard Stripes at Top -->
+  <g transform="translate(60, 50)">
+    <rect x="0" y="0" width="392" height="44" rx="10" fill="#262626" stroke="#000" stroke-width="6"/>
+    <!-- Diagonal Stripes -->
+    <path d="M20 0 L50 44 M90 0 L120 44 M160 0 L190 44 M230 0 L260 44 M300 0 L330 44 M370 0 L400 44" stroke="#FFB800" stroke-width="18" stroke-linecap="round"/>
+  </g>
+
+  <!-- Big Delicious Film's Burger in Center -->
+  <g filter="url(#popShadow)" transform="translate(64, 110)">
+    <!-- Top Bun (Golden Baked) -->
+    <path d="M40 140 C40 40, 344 40, 344 140 Z" fill="url(#goldGrad)" stroke="#1A1A1A" stroke-width="12"/>
+    <!-- Sesame Seeds -->
+    <ellipse cx="140" cy="80" rx="8" ry="4" fill="#FFFFFF" transform="rotate(-15 140 80)"/>
+    <ellipse cx="192" cy="65" rx="8" ry="4" fill="#FFFFFF" transform="rotate(5 192 65)"/>
+    <ellipse cx="244" cy="80" rx="8" ry="4" fill="#FFFFFF" transform="rotate(20 244 80)"/>
+    <ellipse cx="110" cy="110" rx="7" ry="4" fill="#FFFFFF" transform="rotate(-25 110 110)"/>
+    <ellipse cx="165" cy="105" rx="7" ry="4" fill="#FFFFFF"/>
+    <ellipse cx="225" cy="105" rx="7" ry="4" fill="#FFFFFF" transform="rotate(15 225 105)"/>
+    <ellipse cx="275" cy="115" rx="7" ry="4" fill="#FFFFFF" transform="rotate(30 275 115)"/>
+
+    <!-- Fresh Green Lettuce Wave -->
+    <path d="M25 142 Q45 125, 70 142 T120 142 T170 142 T220 142 T270 142 T320 142 T360 142 L360 162 L25 162 Z" fill="#22C55E" stroke="#1A1A1A" stroke-width="10"/>
+
+    <!-- Ripe Red Tomatoes -->
+    <rect x="50" y="162" width="130" height="24" rx="12" fill="#EF4444" stroke="#1A1A1A" stroke-width="10"/>
+    <rect x="204" y="162" width="130" height="24" rx="12" fill="#EF4444" stroke="#1A1A1A" stroke-width="10"/>
+
+    <!-- Thick Juicy Angus Patty -->
+    <rect x="30" y="186" width="324" height="48" rx="18" fill="#451A03" stroke="#1A1A1A" stroke-width="12"/>
+    <!-- Grill Marks -->
+    <line x1="90" y1="192" x2="110" y2="228" stroke="#1F0A02" stroke-width="8" stroke-linecap="round"/>
+    <line x1="160" y1="192" x2="180" y2="228" stroke="#1F0A02" stroke-width="8" stroke-linecap="round"/>
+    <line x1="230" y1="192" x2="250" y2="228" stroke="#1F0A02" stroke-width="8" stroke-linecap="round"/>
+    <line x1="290" y1="192" x2="310" y2="228" stroke="#1F0A02" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- Melted Cheddar Dripping Cheese -->
+    <path d="M36 215 L348 215 L330 245 Q310 265, 290 240 Q260 275, 230 235 Q190 280, 160 235 Q130 270, 100 235 Q80 260, 55 235 Z" fill="#FFB800" stroke="#1A1A1A" stroke-width="10"/>
+
+    <!-- Bottom Bun -->
+    <path d="M50 245 L334 245 C334 285, 290 300, 192 300 C94 300, 50 285, 50 245 Z" fill="url(#goldGrad)" stroke="#1A1A1A" stroke-width="12"/>
+  </g>
+
+  <!-- Stars & Film Ribbon at bottom -->
+  <g transform="translate(86, 420)">
+    <rect x="0" y="0" width="340" height="42" rx="21" fill="#FFB800" stroke="#000" stroke-width="8"/>
+    <text x="170" y="28" font-family="'Impact', 'Arial Black', sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#000" letter-spacing="3">BURGER FILMS</text>
+  </g>
+</svg>

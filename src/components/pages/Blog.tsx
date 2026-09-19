@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Film, ArrowLeft, Calendar, User, Clock, ChevronRight, Search, Heart, Share2, Sparkles, Star } from 'lucide-react';
+import { Film, ArrowLeft, Calendar, User, Clock, ChevronRight, Search, Heart, Share2, Sparkles, Star, Trophy, Utensils, AlertCircle } from 'lucide-react';
+import { PROMOCOES_PASSADAS_COPA, PastPromotionBurger } from '../../data';
 
 interface PageProps {
   onNavigate: (view: any) => void;
@@ -11,16 +12,55 @@ interface BlogPost {
   id: string;
   title: string;
   slug: string;
-  category: 'Bastidores' | 'Novidades' | 'Eventos' | 'Dicas';
+  category: 'Bastidores' | 'Novidades' | 'Eventos' | 'Dicas' | 'Promoções Passadas';
   excerpt: string;
   content: string[];
   image: string;
   date: string;
   author: string;
   readTime: string;
+  isPastPromo?: boolean;
+  pastPromoDetails?: {
+    originalPrice: number;
+    badge: string;
+    curiosity: string;
+    ingredients: string;
+    country: string;
+    slogan: string;
+  };
 }
 
-const BLOG_POSTS: BlogPost[] = [
+// Convert each removed Copa burger into a dedicated, searchable past promotion blog post
+const COPA_BLOG_POSTS: BlogPost[] = PROMOCOES_PASSADAS_COPA.map((promo, idx) => ({
+  id: `copa-${promo.id}`,
+  title: `[Promoção Passada] ${promo.name}`,
+  slug: `promocao-passada-${promo.id}`,
+  category: 'Promoções Passadas',
+  excerpt: `${promo.badge}: ${promo.curiosity} Blend e receita histórica que marcaram época na Burger Films.`,
+  image: promo.image,
+  date: promo.period,
+  author: 'Arquivo Histórico Burger Films',
+  readTime: '2 min de leitura',
+  isPastPromo: true,
+  pastPromoDetails: {
+    originalPrice: promo.price,
+    badge: promo.badge,
+    curiosity: promo.curiosity,
+    ingredients: promo.description,
+    country: promo.country,
+    slogan: promo.slogan
+  },
+  content: [
+    `Durante as comemorações especiais da Copa do Mundo, a Burger Films lançou a aclamada linha temática internacional de hambúrgueres artesanais, homenageando as maiores seleções do futebol mundial com receitas cinematográficas exclusivas.`,
+    `O ${promo.name} foi uma das grandes estrelas dessa temporada. Inspirado na gastronomia de ${promo.country}, seu slogan oficial era "${promo.slogan}".`,
+    `A montagem da receita original contava com: ${promo.description}. O burger era preparado na chapa em alta temperatura para reter toda a suculência da carne e tostagem dos queijos selecionados.`,
+    `Curiosidade histórica do Chef: "${promo.curiosity}"`,
+    `AVISO IMPORTANTE: Esta receita foi uma edição limitada e histórica da Burger Films e atualmente não faz parte do nosso cardápio ativo no pub e delivery. Mantemos este registro em nosso blog como homenagem aos fãs e à memória gastronômica de Penha-SC!`,
+    `Ficou com água na boca? Venha experimentar os hambúrgueres artesanais do nosso cardápio atual com blends de cinema, pães fresquinhos e o famoso Rodízio de Mini Burgers ao lado do Beto Carrero World!`
+  ]
+}));
+
+const ORIGINAL_BLOG_POSTS: BlogPost[] = [
   {
     id: '1',
     title: 'Os Segredos por Trás do Nosso Blend de Cinema de 150g',
@@ -91,6 +131,8 @@ const BLOG_POSTS: BlogPost[] = [
   }
 ];
 
+const BLOG_POSTS: BlogPost[] = [...COPA_BLOG_POSTS, ...ORIGINAL_BLOG_POSTS];
+
 export default function Blog({ onNavigate }: PageProps) {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('Todos');
@@ -99,11 +141,19 @@ export default function Blog({ onNavigate }: PageProps) {
     '1': 48,
     '2': 75,
     '3': 32,
-    '4': 29
+    '4': 29,
+    'copa-brasil-burguer': 89,
+    'copa-alemanha-burguer': 54,
+    'copa-argentina-burguer': 62,
+    'copa-burguer-estados-unidos': 47,
+    'copa-mexico-burguer': 58,
+    'copa-franca-burguer': 63,
+    'copa-inglaterra-burguer': 49,
+    'copa-espanha-burguer': 51
   });
   const [hasLiked, setHasLiked] = useState<Record<string, boolean>>({});
 
-  const categories = ['Todos', 'Bastidores', 'Novidades', 'Eventos', 'Dicas'];
+  const categories = ['Todos', 'Promoções Passadas', 'Novidades', 'Bastidores', 'Eventos', 'Dicas'];
 
   const filteredPosts = BLOG_POSTS.filter(post => {
     const matchesCategory = activeCategory === 'Todos' || post.category === activeCategory;
@@ -225,8 +275,12 @@ export default function Blog({ onNavigate }: PageProps) {
                           referrerPolicy="no-referrer"
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <span className="absolute top-4 left-4 bg-bf-red text-bf-white border-2 border-bf-black shadow-[2px_2px_0_#1a1a1a] font-baloo-caps font-black text-[10px] px-3.5 py-1.5 rounded-full uppercase tracking-wider">
-                          🎬 {post.category}
+                        <span className={`absolute top-4 left-4 border-2 border-bf-black shadow-[2px_2px_0_#1a1a1a] font-baloo-caps font-black text-[10px] px-3.5 py-1.5 rounded-full uppercase tracking-wider ${
+                          post.isPastPromo
+                            ? 'bg-bf-yellow text-bf-black'
+                            : 'bg-bf-red text-bf-white'
+                        }`}>
+                          {post.isPastPromo ? '🏆 Promoção Passada' : `🎬 ${post.category}`}
                         </span>
                       </div>
 
@@ -353,6 +407,48 @@ export default function Blog({ onNavigate }: PageProps) {
                 <span className="animate-pulse">● ROLL ON AIR</span>
                 <span>TAKE: {selectedPost.id}</span>
               </div>
+
+              {/* Past Promotion Historical Box */}
+              {selectedPost.isPastPromo && selectedPost.pastPromoDetails && (
+                <div className="mb-8 p-6 bg-[#FFF9E6] border-3 border-bf-black rounded-2xl shadow-[4px_4px_0_#1a1a1a]">
+                  <div className="flex items-center gap-2 text-bf-red font-baloo-caps font-black text-sm uppercase mb-2">
+                    <AlertCircle className="w-5 h-5 text-bf-red shrink-0" />
+                    <span>Registro Histórico • Edição Especial Encerrada</span>
+                  </div>
+                  <p className="text-xs md:text-sm text-gray-700 font-baloo mb-4 leading-relaxed">
+                    Este item fez parte da celebração internacional temática da Copa do Mundo e atualmente não faz parte do cardápio regular do nosso pub ou delivery em Penha-SC.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-dashed border-gray-300">
+                    <div>
+                      <span className="text-[11px] font-baloo-caps font-bold text-gray-500 block uppercase">Ingredientes da Receita:</span>
+                      <span className="text-xs md:text-sm font-baloo font-semibold text-bf-black">{selectedPost.pastPromoDetails.ingredients}</span>
+                    </div>
+                    <div>
+                      <span className="text-[11px] font-baloo-caps font-bold text-gray-500 block uppercase">Homenagem / Slogan:</span>
+                      <span className="text-xs md:text-sm font-baloo font-semibold text-bf-black">{selectedPost.pastPromoDetails.country} — "{selectedPost.pastPromoDetails.slogan}"</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 pt-4 flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-gray-300">
+                    <div className="text-xs font-baloo font-bold text-gray-600">
+                      Preço Histórico: <span className="text-bf-black font-extrabold text-sm">R$ {selectedPost.pastPromoDetails.originalPrice.toFixed(2)}</span>
+                    </div>
+                    <button
+                      onClick={() => {
+                        onNavigate('home');
+                        setTimeout(() => {
+                          document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
+                        }, 250);
+                      }}
+                      className="inline-flex items-center gap-2 bg-bf-yellow hover:bg-[#ffc820] text-bf-black border-2 border-bf-black px-4 py-2 rounded-full font-baloo-caps font-black text-xs shadow-[2px_2px_0_#1a1a1a] hover:shadow-[1px_1px_0_#1a1a1a] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer"
+                    >
+                      <Utensils className="w-3.5 h-3.5" />
+                      <span>Conhecer Cardápio Ativo de Cinema</span>
+                    </button>
+                  </div>
+                </div>
+              )}
 
               {/* Main Content Render */}
               <div className="prose prose-lg max-w-none font-baloo text-gray-700 space-y-6 leading-relaxed text-sm md:text-base">

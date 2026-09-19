@@ -23,9 +23,9 @@ export default function ShareButton() {
   const panelRef = useRef<HTMLDivElement>(null);
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : 'https://www.burgerfilms.com.br';
-  const shareTitle = 'Burger Films | Hamburgueria Artesanal em Penha-SC – Pub & Delivery';
-  const shareDescription = 'A melhor hamburgueria em Penha-SC! Saboreie nossos lanches artesanais de cinema, rodízio de mini-burgers, pizzas e sobremesas quentinhas pertinho do Beto Carrero World. Peça pelo delivery!';
-  const shareImage = 'https://img.burgerfilms.com.br/compartilhe-nas-redes-burguer-films.webp';
+  const shareTitle = 'Burger Films | Hamburgueria em Penha perto do Beto Carrero';
+  const shareDescription = 'Conheça a Burger Films, hamburgueria temática em Penha SC pertinho do Beto Carrero World! Rodízio de mini burgers, hambúrguer artesanal e pizzas para toda a família.';
+  const shareImage = 'https://img.supremasite.com.br/burguer/img-og.webp';
 
   // Monitor scroll to match the BackToTop button's behavior (appear after 400px of scrolling)
   useEffect(() => {
