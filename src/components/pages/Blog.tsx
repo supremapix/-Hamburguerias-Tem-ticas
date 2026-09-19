@@ -249,6 +249,9 @@ export default function Blog({ onNavigate }: PageProps) {
                           src={post.image}
                           alt={post.title}
                           referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                          }}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <span className={`absolute top-4 left-4 border-2 border-bf-black shadow-[2px_2px_0_#1a1a1a] font-baloo-caps font-black text-[10px] px-3.5 py-1.5 rounded-full uppercase tracking-wider ${
@@ -338,6 +341,9 @@ export default function Blog({ onNavigate }: PageProps) {
                 src={selectedPost.image}
                 alt={selectedPost.title}
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                }}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
@@ -435,7 +441,7 @@ export default function Blog({ onNavigate }: PageProps) {
                               alt={burger.name}
                               referrerPolicy="no-referrer"
                               onError={(e) => {
-                                (e.currentTarget as HTMLImageElement).src = '/favicon.png';
+                                (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
                               }}
                               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                             />

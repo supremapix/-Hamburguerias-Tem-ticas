@@ -434,6 +434,9 @@ export default function Hero() {
                 src="https://img.supremasite.com.br/burguer/hambueguer-hallowen-burguer-films.webp"
                 alt="Fun Burger Halloween - Burger Films Penha"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                }}
                 className="w-full h-full object-contain filter drop-shadow-[0_16px_25px_rgba(0,0,0,0.8)]"
               />
 

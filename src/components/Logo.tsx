@@ -58,6 +58,9 @@ export default function Logo({ className = '', size = 'md' }: LogoProps) {
           src="https://img.burgerfilms.com.br/logo.webp"
           alt="Burger Films"
           referrerPolicy="no-referrer"
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+          }}
           className={`${sizeClasses[size]} object-contain relative z-10 transition-transform`}
         />
 

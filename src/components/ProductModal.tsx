@@ -142,6 +142,9 @@ export default function ProductModal({
             src={item.image}
             alt={item.name}
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+            }}
             className="w-full h-full object-cover"
           />
           

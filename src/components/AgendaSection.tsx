@@ -206,7 +206,7 @@ export default function AgendaSection() {
                   alt="Personagem Oficial Burger Films - Grande Anfitrião"
                   referrerPolicy="no-referrer"
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = '/personagem-burger-films.webp';
+                    (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
                   }}
                   className="w-full h-full object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.4)] group-hover:rotate-2 transition-transform"
                 />
@@ -300,7 +300,7 @@ export default function AgendaSection() {
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         const target = e.currentTarget as HTMLImageElement;
-                        target.src = getAgendaEmulatedImage(item);
+                        target.src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
                       }}
                       className="w-full h-full object-cover group-hover:rotate-6 group-hover:scale-110 transition-transform duration-300"
                     />

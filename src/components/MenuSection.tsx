@@ -257,6 +257,9 @@ export default function MenuSection() {
                                 src={item.image}
                                 alt={item.name}
                                 referrerPolicy="no-referrer"
+                                onError={(e) => {
+                                  (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                                }}
                                 className="w-full h-full object-cover group-hover/img:scale-106 transition-transform duration-500"
                               />
                               
@@ -371,6 +374,9 @@ export default function MenuSection() {
                         src={item.image}
                         alt={item.name}
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                        }}
                         className="w-full h-full object-cover group-hover/img:scale-106 transition-transform duration-500"
                       />
                       

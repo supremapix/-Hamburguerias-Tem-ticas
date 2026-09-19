@@ -549,13 +549,15 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   }
 ];
 
+export const DEFAULT_FALLBACK_IMAGE = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+
 export const AGENDA_SEMANAL: AgendaItem[] = [
   {
     id: 'quarta',
     day: 'QUARTA',
     title: 'PUB FECHADO',
     subtitle: 'Dia de recarregar as energias e preparar a cozinha para um final de semana estelar!',
-    image: '/agenda-pub-fechado.svg'
+    image: 'https://img.supremasite.com.br/burguer/bgsc.webp'
   },
   {
     id: 'sexta',
@@ -584,10 +586,15 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
 
 /**
  * Emula dinamicamente a arte ilustrada temática da agenda de acordo com o que está escrito no dia.
+ * Sempre que não for possível gerar/determinar uma imagem específica, utiliza o padrão oficial:
+ * https://img.supremasite.com.br/burguer/bgsc.webp
  */
 export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string; day?: string; id?: string; image?: string }): string {
   const text = `${item.title || ''} ${item.subtitle || ''} ${item.day || ''} ${item.id || ''}`.toLowerCase();
   
+  if (text.includes('fechado') || text.includes('quarta') || text.includes('recarregar') || text.includes('intervalo')) {
+    return 'https://img.supremasite.com.br/burguer/bgsc.webp';
+  }
   if (text.includes('marshall') || text.includes('dálmata') || text.includes('dalmata') || text.includes('bombeiro')) {
     return '/personagem-marshall.svg';
   }
@@ -596,9 +603,6 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   }
   if (text.includes('woody') || text.includes('xerife') || text.includes('toy story')) {
     return '/personagem-woody.svg';
-  }
-  if (text.includes('fechado') || text.includes('recarregar') || text.includes('intervalo')) {
-    return '/agenda-pub-fechado.svg';
   }
   if (text.includes('pizza') || text.includes('forno')) {
     return '/agenda-noite-pizza.svg';
@@ -609,7 +613,7 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   if (text.includes('mini burger') || text.includes('rodízio') || text.includes('rodizio')) {
     return '/agenda-rodizio-miniburger.svg';
   }
-  return item.image && item.image.endsWith('.svg') ? item.image : '/personagem-woody.svg';
+  return item.image || DEFAULT_FALLBACK_IMAGE;
 }
 
 export const AGENDA_ITEMS: AgendaItem[] = AGENDA_PERSONAGENS;

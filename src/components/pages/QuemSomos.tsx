@@ -84,7 +84,7 @@ export default function QuemSomos({ onNavigate }: PageProps) {
                     alt="Personagem Oficial Burger Films"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = '/personagem-burger-films.webp';
+                      (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
                     }}
                     className="w-full h-full object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:rotate-2"
                   />

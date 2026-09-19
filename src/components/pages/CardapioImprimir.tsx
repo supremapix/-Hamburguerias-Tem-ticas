@@ -135,6 +135,9 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                         src={item.image} 
                         alt={item.name} 
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                        }}
                         className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
                       />
                     )}
@@ -169,6 +172,9 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                         src={item.image} 
                         alt={item.name} 
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                        }}
                         className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
                       />
                     )}
@@ -203,6 +209,9 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                         src={item.image} 
                         alt={item.name} 
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                        }}
                         className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
                       />
                     )}
@@ -234,6 +243,9 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                         src={item.image} 
                         alt={item.name} 
                         referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                        }}
                         className="w-12 h-12 md:w-14 md:h-14 object-cover rounded-xl border-2 border-current shrink-0 shadow-[2px_2px_0_#1A1A1A]"
                       />
                     )}
@@ -265,6 +277,9 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                           src={item.image} 
                           alt={item.name} 
                           referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                          }}
                           className="w-8 h-8 object-cover rounded-lg border border-current shrink-0 shadow-[1px_1px_0_#1A1A1A]"
                         />
                       )}
@@ -291,6 +306,9 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
                           src={item.image} 
                           alt={item.name} 
                           referrerPolicy="no-referrer"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                          }}
                           className="w-8 h-8 object-cover rounded-lg border border-current shrink-0 shadow-[1px_1px_0_#1A1A1A]"
                         />
                       )}
