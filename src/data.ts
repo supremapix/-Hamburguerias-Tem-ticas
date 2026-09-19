@@ -525,7 +525,7 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
     day: 'SEXTA',
     title: 'PERSONAGEM MARSHALL',
     subtitle: 'O dálmata bombeiro mais corajoso da Patrulha Canina chega para animar a criançada com muita aventura e fotos!',
-    image: 'https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?w=600&auto=format&fit=crop&q=80',
+    image: '/personagem-marshall.svg',
     dateBadge: '18/09',
     highlight: true
   },
@@ -534,7 +534,7 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
     day: 'SÁBADO',
     title: 'PERSONAGEM CHASE',
     subtitle: 'O cão policial líder da Patrulha Canina em uma missão especial cheia de carisma e diversão no nosso Pub!',
-    image: 'https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&auto=format&fit=crop&q=80',
+    image: '/personagem-chase.svg',
     dateBadge: '19/09',
     highlight: true
   },
@@ -555,14 +555,14 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     day: 'QUARTA',
     title: 'PUB FECHADO',
     subtitle: 'Dia de recarregar as energias e preparar a cozinha para um final de semana estelar!',
-    image: 'https://images.unsplash.com/photo-1593085512500-5d55148d6f0d?w=600&auto=format&fit=crop&q=80'
+    image: '/agenda-pub-fechado.svg'
   },
   {
     id: 'sexta',
     day: 'SEXTA',
     title: 'NOITE DA PIZZA',
     subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas de cinema!',
-    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80',
+    image: '/agenda-noite-pizza.svg',
     tagBadge: 'PIZZA FILM\'S'
   },
   {
@@ -570,7 +570,7 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     day: 'SÁBADO',
     title: 'COMBOS DE CINEMA E CERVEJA AMANTEIGADA',
     subtitle: 'Combos temáticos inspirados nas maiores sagas das telonas acompanhados da famosa e mágica Cerveja Amanteigada!',
-    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=600&auto=format&fit=crop&q=80',
+    image: '/agenda-cerveja-amanteigada.svg',
     highlight: true
   },
   {
@@ -578,9 +578,39 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     day: 'DOMINGO A QUINTA',
     title: 'RODÍZIO DE MINI BURGERS',
     subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em tamanhos colecionáveis!',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&auto=format&fit=crop&q=80'
+    image: '/agenda-rodizio-miniburger.svg'
   }
 ];
+
+/**
+ * Emula dinamicamente a arte ilustrada temática da agenda de acordo com o que está escrito no dia.
+ */
+export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string; day?: string; id?: string; image?: string }): string {
+  const text = `${item.title || ''} ${item.subtitle || ''} ${item.day || ''} ${item.id || ''}`.toLowerCase();
+  
+  if (text.includes('marshall') || text.includes('dálmata') || text.includes('dalmata') || text.includes('bombeiro')) {
+    return '/personagem-marshall.svg';
+  }
+  if (text.includes('chase') || text.includes('policial') || text.includes('pastor alemão') || text.includes('pastor alemao')) {
+    return '/personagem-chase.svg';
+  }
+  if (text.includes('woody') || text.includes('xerife') || text.includes('toy story')) {
+    return '/personagem-woody.svg';
+  }
+  if (text.includes('fechado') || text.includes('recarregar') || text.includes('intervalo')) {
+    return '/agenda-pub-fechado.svg';
+  }
+  if (text.includes('pizza') || text.includes('forno')) {
+    return '/agenda-noite-pizza.svg';
+  }
+  if (text.includes('amanteigada') || text.includes('cerveja') || text.includes('combo')) {
+    return '/agenda-cerveja-amanteigada.svg';
+  }
+  if (text.includes('mini burger') || text.includes('rodízio') || text.includes('rodizio')) {
+    return '/agenda-rodizio-miniburger.svg';
+  }
+  return item.image && item.image.endsWith('.svg') ? item.image : '/personagem-woody.svg';
+}
 
 export const AGENDA_ITEMS: AgendaItem[] = AGENDA_PERSONAGENS;
 

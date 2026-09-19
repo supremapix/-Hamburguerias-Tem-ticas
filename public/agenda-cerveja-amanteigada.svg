@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <linearGradient id="bgButterBeer" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#2E1C0C"/>
+    </linearGradient>
+    <linearGradient id="beerGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFF176"/>
+      <stop offset="30%" stop-color="#FFB300"/>
+      <stop offset="100%" stop-color="#E65100"/>
+    </linearGradient>
+    <linearGradient id="foamWhite" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#FFF8E1"/>
+      <stop offset="100%" stop-color="#FFE082"/>
+    </linearGradient>
+    <linearGradient id="burgerBun" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E5A65E"/>
+      <stop offset="100%" stop-color="#A9641D"/>
+    </linearGradient>
+    <filter id="shadowBeer" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="4" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Cinema Backdrop with Film Frame -->
+  <rect width="600" height="600" rx="36" fill="url(#bgButterBeer)"/>
+  
+  <!-- Film Sprocket Holes along left and right -->
+  <g fill="#FFB800" opacity="0.3">
+    <rect x="15" y="30" width="25" height="20" rx="4"/>
+    <rect x="15" y="80" width="25" height="20" rx="4"/>
+    <rect x="15" y="130" width="25" height="20" rx="4"/>
+    <rect x="15" y="180" width="25" height="20" rx="4"/>
+    <rect x="15" y="230" width="25" height="20" rx="4"/>
+    <rect x="15" y="280" width="25" height="20" rx="4"/>
+    <rect x="15" y="330" width="25" height="20" rx="4"/>
+    <rect x="15" y="380" width="25" height="20" rx="4"/>
+    <rect x="15" y="430" width="25" height="20" rx="4"/>
+    <rect x="15" y="480" width="25" height="20" rx="4"/>
+    <rect x="15" y="530" width="25" height="20" rx="4"/>
+
+    <rect x="560" y="30" width="25" height="20" rx="4"/>
+    <rect x="560" y="80" width="25" height="20" rx="4"/>
+    <rect x="560" y="130" width="25" height="20" rx="4"/>
+    <rect x="560" y="180" width="25" height="20" rx="4"/>
+    <rect x="560" y="230" width="25" height="20" rx="4"/>
+    <rect x="560" y="280" width="25" height="20" rx="4"/>
+    <rect x="560" y="330" width="25" height="20" rx="4"/>
+    <rect x="560" y="380" width="25" height="20" rx="4"/>
+    <rect x="560" y="430" width="25" height="20" rx="4"/>
+    <rect x="560" y="480" width="25" height="20" rx="4"/>
+    <rect x="560" y="530" width="25" height="20" rx="4"/>
+  </g>
+
+  <!-- Magic Golden Stage Glow -->
+  <circle cx="300" cy="270" r="230" fill="#FFB800" opacity="0.16"/>
+  <circle cx="210" cy="240" r="160" fill="#FFE082" opacity="0.14"/>
+
+  <!-- Magic Sparkles -->
+  <g fill="#FFF59D">
+    <polygon points="120,120 124,132 136,136 124,140 120,152 116,140 104,136 116,132"/>
+    <polygon points="450,110 453,120 463,123 453,126 450,136 447,126 437,123 447,120"/>
+    <polygon points="320,100 323,108 331,111 323,114 320,122 317,114 309,111 317,108"/>
+    <polygon points="480,240 482,246 488,248 482,250 480,256 478,250 472,248 478,246"/>
+  </g>
+
+  <!-- Items Group with Shadow -->
+  <g filter="url(#shadowBeer)">
+    
+    <!-- Magic Butterbeer Mug on the Left -->
+    <g transform="translate(110, 130)">
+      <!-- Mug Handle -->
+      <path d="M-10 70 C-50 70, -50 190, -10 190" stroke="#E0E0E0" stroke-width="20" fill="none" stroke-linecap="round"/>
+      <path d="M-10 70 C-50 70, -50 190, -10 190" stroke="#1A1A1A" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+      <!-- Mug Glass Body -->
+      <path d="M0 50 L15 250 C15 265, 175 265, 175 250 L190 50 Z" fill="url(#beerGold)" stroke="#1A1A1A" stroke-width="8"/>
+      
+      <!-- Glass Mug Vertical Flutes / Facets -->
+      <path d="M40 60 L48 245" stroke="#FFFFFF" stroke-width="8" opacity="0.4" stroke-linecap="round"/>
+      <path d="M95 60 L95 248" stroke="#FFE082" stroke-width="10" opacity="0.5" stroke-linecap="round"/>
+      <path d="M150 60 L142 245" stroke="#FFA000" stroke-width="8" opacity="0.4" stroke-linecap="round"/>
+
+      <!-- Bubbles in Mug -->
+      <circle cx="50" cy="180" r="5" fill="#FFFFFF" opacity="0.6"/>
+      <circle cx="70" cy="140" r="7" fill="#FFFFFF" opacity="0.7"/>
+      <circle cx="110" cy="190" r="6" fill="#FFFFFF" opacity="0.6"/>
+      <circle cx="130" cy="150" r="8" fill="#FFFFFF" opacity="0.7"/>
+      <circle cx="95" cy="100" r="6" fill="#FFFFFF" opacity="0.8"/>
+
+      <!-- Caramel Butterscotch Swirl Drizzle -->
+      <path d="M20 70 Q95 110, 170 70" stroke="#8D4C13" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+      <!-- Overflowing Creamy Thick Foam Head -->
+      <path d="M-10 50 C-10 20, 20 15, 40 30 C55 10, 85 5, 105 20 C125 5, 155 10, 170 25 C190 10, 205 30, 200 55 C205 75, 190 85, 175 80 C165 95, 140 95, 130 85 C115 100, 80 100, 65 85 C50 95, 25 90, 15 75 C0 85, -10 70, -10 50 Z" fill="url(#foamWhite)" stroke="#1A1A1A" stroke-width="7"/>
+      <!-- Foam Drips cascading down mug -->
+      <path d="M30 65 Q35 120, 42 110" stroke="url(#foamWhite)" stroke-width="12" stroke-linecap="round" fill="none"/>
+      <path d="M150 65 Q145 130, 138 120" stroke="url(#foamWhite)" stroke-width="14" stroke-linecap="round" fill="none"/>
+    </g>
+
+    <!-- Gourmet Burger on the Right -->
+    <g transform="translate(340, 230)">
+      <!-- Bottom Bun -->
+      <path d="M-10 180 C-10 210, 190 210, 190 180 Z" fill="url(#burgerBun)" stroke="#1A1A1A" stroke-width="8"/>
+      
+      <!-- Melted Cheddar Layer with drips -->
+      <path d="M-20 165 L200 165 L180 185 L140 170 L110 195 L70 170 L40 190 L0 170 Z" fill="#FFC107" stroke="#1A1A1A" stroke-width="5"/>
+      
+      <!-- Thick Juicy Grilled Beef Patty -->
+      <rect x="-15" y="135" width="210" height="32" rx="12" fill="#3E2723" stroke="#1A1A1A" stroke-width="7"/>
+      
+      <!-- Crispy Bacon Strips -->
+      <path d="M-10 135 Q30 120, 80 135 Q130 120, 185 135" stroke="#B71C1C" stroke-width="8" fill="none"/>
+
+      <!-- Fresh Lettuce Ribbons -->
+      <path d="M-25 125 Q0 140, 25 120 Q50 140, 75 120 Q100 140, 125 120 Q150 140, 175 120 Q200 135, 205 125" stroke="#4CAF50" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+      <!-- Tomato Slices -->
+      <ellipse cx="40" cy="115" rx="45" ry="12" fill="#E53935" stroke="#1A1A1A" stroke-width="4"/>
+      <ellipse cx="130" cy="115" rx="45" ry="12" fill="#E53935" stroke="#1A1A1A" stroke-width="4"/>
+
+      <!-- Top Golden Brioche Bun -->
+      <path d="M-15 110 C-15 30, 195 30, 195 110 Z" fill="url(#burgerBun)" stroke="#1A1A1A" stroke-width="8"/>
+      
+      <!-- Sesame Seeds -->
+      <g fill="#FFF9C4">
+        <ellipse cx="30" cy="65" rx="4" ry="2" transform="rotate(-20, 30, 65)"/>
+        <ellipse cx="60" cy="50" rx="4" ry="2" transform="rotate(15, 60, 50)"/>
+        <ellipse cx="90" cy="45" rx="4" ry="2"/>
+        <ellipse cx="120" cy="50" rx="4" ry="2" transform="rotate(-15, 120, 50)"/>
+        <ellipse cx="150" cy="65" rx="4" ry="2" transform="rotate(25, 150, 65)"/>
+        <ellipse cx="70" cy="75" rx="4" ry="2" transform="rotate(-10, 70, 75)"/>
+        <ellipse cx="110" cy="75" rx="4" ry="2" transform="rotate(10, 110, 75)"/>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- Cinema Title Banner: COMBOS & CERVEJA AMANTEIGADA -->
+  <g transform="translate(40, 515)">
+    <rect x="0" y="0" width="520" height="60" rx="30" fill="#FFB800" stroke="#1A1A1A" stroke-width="8"/>
+    <text x="260" y="40" font-family="'Impact', 'Arial Black', sans-serif" font-size="24" font-weight="900" text-anchor="middle" fill="#1A1A1A" letter-spacing="2">
+      🍺 COMBOS &amp; CERVEJA AMANTEIGADA
+    </text>
+  </g>
+</svg>

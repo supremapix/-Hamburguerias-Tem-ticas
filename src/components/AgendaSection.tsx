@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { AGENDA_PERSONAGENS, AGENDA_SEMANAL } from '../data';
+import { AGENDA_PERSONAGENS, AGENDA_SEMANAL, getAgendaEmulatedImage } from '../data';
 import { MapPin, Sparkles, Smile, Calendar, Clapperboard, Star, MessageCircle, Flame, Ticket, Navigation } from 'lucide-react';
 
 export default function AgendaSection() {
@@ -223,16 +223,12 @@ export default function AgendaSection() {
                   {/* Circular Character/Event Thumbnail Overlapping on the Left */}
                   <div className="absolute -left-3 sm:-left-6 md:-left-8 top-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-3 md:border-4 border-bf-black bg-bf-yellow shadow-[0_8px_20px_rgba(0,0,0,0.6)] overflow-hidden shrink-0 z-20 group-hover:scale-110 group-hover:ring-4 group-hover:ring-bf-yellow transition-all duration-300">
                     <img
-                      src={item.image}
+                      src={getAgendaEmulatedImage(item)}
                       alt={item.title}
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         const target = e.currentTarget as HTMLImageElement;
-                        if (item.title.toLowerCase().includes('woody') || item.id === 'domingo') {
-                          target.src = '/personagem-woody.svg';
-                        } else {
-                          target.src = '/favicon.png';
-                        }
+                        target.src = getAgendaEmulatedImage(item);
                       }}
                       className="w-full h-full object-cover group-hover:rotate-6 group-hover:scale-110 transition-transform duration-300"
                     />

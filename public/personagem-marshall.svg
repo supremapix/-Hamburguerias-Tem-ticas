@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <defs>
+    <linearGradient id="bgMarshall" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1A1A1A"/>
+      <stop offset="100%" stop-color="#3A1515"/>
+    </linearGradient>
+    <linearGradient id="helmetGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF3B30"/>
+      <stop offset="100%" stop-color="#B71C1C"/>
+    </linearGradient>
+    <linearGradient id="crestGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="50%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#FFB300"/>
+    </linearGradient>
+    <linearGradient id="pupilBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#0288D1"/>
+    </linearGradient>
+    <filter id="charShadowMarshall" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Cinema Backdrop with Film Frame -->
+  <rect width="600" height="600" rx="36" fill="url(#bgMarshall)"/>
+  
+  <!-- Film Sprocket Holes along left and right -->
+  <g fill="#FFB800" opacity="0.3">
+    <rect x="15" y="30" width="25" height="20" rx="4"/>
+    <rect x="15" y="80" width="25" height="20" rx="4"/>
+    <rect x="15" y="130" width="25" height="20" rx="4"/>
+    <rect x="15" y="180" width="25" height="20" rx="4"/>
+    <rect x="15" y="230" width="25" height="20" rx="4"/>
+    <rect x="15" y="280" width="25" height="20" rx="4"/>
+    <rect x="15" y="330" width="25" height="20" rx="4"/>
+    <rect x="15" y="380" width="25" height="20" rx="4"/>
+    <rect x="15" y="430" width="25" height="20" rx="4"/>
+    <rect x="15" y="480" width="25" height="20" rx="4"/>
+    <rect x="15" y="530" width="25" height="20" rx="4"/>
+
+    <rect x="560" y="30" width="25" height="20" rx="4"/>
+    <rect x="560" y="80" width="25" height="20" rx="4"/>
+    <rect x="560" y="130" width="25" height="20" rx="4"/>
+    <rect x="560" y="180" width="25" height="20" rx="4"/>
+    <rect x="560" y="230" width="25" height="20" rx="4"/>
+    <rect x="560" y="280" width="25" height="20" rx="4"/>
+    <rect x="560" y="330" width="25" height="20" rx="4"/>
+    <rect x="560" y="380" width="25" height="20" rx="4"/>
+    <rect x="560" y="430" width="25" height="20" rx="4"/>
+    <rect x="560" y="480" width="25" height="20" rx="4"/>
+    <rect x="560" y="530" width="25" height="20" rx="4"/>
+  </g>
+
+  <!-- Red Firefighter Stage Light Glow -->
+  <circle cx="300" cy="270" r="230" fill="#FF3B30" opacity="0.15"/>
+  <circle cx="300" cy="270" r="160" fill="#FFB800" opacity="0.12"/>
+
+  <!-- Character Group with Shadow -->
+  <g filter="url(#charShadowMarshall)">
+    
+    <!-- Dalmatian Floppy Ears with Spots (behind body) -->
+    <!-- Left Ear -->
+    <path d="M190 200 C150 210, 120 290, 140 370 C150 410, 185 410, 195 360 C205 310, 205 240, 190 200 Z" fill="#F8F9FA" stroke="#1A1A1A" stroke-width="8"/>
+    <!-- Spots on Left Ear -->
+    <circle cx="160" cy="280" r="14" fill="#1A1A1A"/>
+    <circle cx="175" cy="340" r="18" fill="#1A1A1A"/>
+    <circle cx="155" cy="370" r="10" fill="#1A1A1A"/>
+
+    <!-- Right Ear -->
+    <path d="M410 200 C450 210, 480 290, 460 370 C450 410, 415 410, 405 360 C395 310, 395 240, 410 200 Z" fill="#F8F9FA" stroke="#1A1A1A" stroke-width="8"/>
+    <!-- Spots on Right Ear -->
+    <circle cx="440" cy="280" r="15" fill="#1A1A1A"/>
+    <circle cx="425" cy="340" r="17" fill="#1A1A1A"/>
+    <circle cx="445" cy="365" r="11" fill="#1A1A1A"/>
+
+    <!-- Firefighter Uniform Chest & Shoulders -->
+    <path d="M200 420 L160 520 L440 520 L400 420 Z" fill="url(#helmetGrad)" stroke="#1A1A1A" stroke-width="9"/>
+    <!-- Vest Yellow Trim -->
+    <path d="M200 420 L220 520 M400 420 L380 520" stroke="#FFD54F" stroke-width="8"/>
+    <path d="M160 480 L440 480" stroke="#FFD54F" stroke-width="10"/>
+    <!-- Dalmatian White Neck -->
+    <rect x="250" y="380" width="100" height="60" rx="15" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="7"/>
+    <!-- Yellow Pup Tag Collar -->
+    <rect x="235" y="415" width="130" height="20" rx="10" fill="#FFD54F" stroke="#1A1A1A" stroke-width="5"/>
+    
+    <!-- Firefighter Pup Tag Badge (Flame) -->
+    <g transform="translate(300, 455)">
+      <polygon points="0,-25 24,0 0,30 -24,0" fill="#E0E0E0" stroke="#1A1A1A" stroke-width="4"/>
+      <circle cx="0" cy="3" r="14" fill="#B71C1C"/>
+      <!-- Golden Flame Icon -->
+      <path d="M0 -7 C3 -2, 7 0, 7 5 C7 9, 3 11, 0 11 C-3 11, -7 9, -7 5 C-7 1, -3 -2, 0 -7 Z" fill="#FFD54F"/>
+    </g>
+
+    <!-- Head & Face (White Dalmatian) -->
+    <path d="M200 240 C190 150, 410 150, 400 240 C410 330, 390 400, 300 400 C210 400, 190 330, 200 240 Z" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="9"/>
+
+    <!-- Dalmatian Spots on Head/Cheeks -->
+    <circle cx="230" cy="240" r="11" fill="#1A1A1A"/>
+    <circle cx="220" cy="310" r="8" fill="#1A1A1A"/>
+    <circle cx="370" cy="235" r="12" fill="#1A1A1A"/>
+    <circle cx="380" cy="305" r="9" fill="#1A1A1A"/>
+    <circle cx="250" cy="360" r="6" fill="#1A1A1A"/>
+
+    <!-- Cute Dalmatian Muzzle / Snout -->
+    <path d="M240 290 C240 260, 360 260, 360 290 C360 360, 240 360, 240 290 Z" fill="#F8F9FA" stroke="#1A1A1A" stroke-width="6"/>
+
+    <!-- Cute Black Nose -->
+    <path d="M280 280 C280 270, 320 270, 320 280 C320 300, 305 310, 300 310 C295 310, 280 300, 280 280 Z" fill="#1A1A1A"/>
+    <!-- Nose Highlight -->
+    <ellipse cx="292" cy="278" rx="6" ry="3" fill="#FFFFFF"/>
+
+    <!-- Happy Mouth with Pink Tongue -->
+    <path d="M270 315 Q300 325, 330 315" stroke="#1A1A1A" stroke-width="5" fill="none"/>
+    <path d="M275 320 Q300 365, 325 320 Z" fill="#C2185B" stroke="#1A1A1A" stroke-width="5"/>
+    <path d="M283 335 Q300 365, 317 335 Z" fill="#FF80AB"/>
+
+    <!-- Whisker Dots -->
+    <circle cx="260" cy="300" r="3" fill="#1A1A1A"/>
+    <circle cx="252" cy="308" r="3" fill="#1A1A1A"/>
+    <circle cx="340" cy="300" r="3" fill="#1A1A1A"/>
+    <circle cx="348" cy="308" r="3" fill="#1A1A1A"/>
+
+    <!-- Big Sparkly Blue Eyes -->
+    <!-- Left Eye -->
+    <ellipse cx="255" cy="235" rx="24" ry="30" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="7"/>
+    <circle cx="260" cy="235" r="16" fill="url(#pupilBlue)"/>
+    <circle cx="262" cy="235" r="10" fill="#1A1A1A"/>
+    <circle cx="256" cy="228" r="5" fill="#FFFFFF"/>
+    <circle cx="265" cy="242" r="2.5" fill="#FFFFFF"/>
+
+    <!-- Right Eye -->
+    <ellipse cx="345" cy="235" rx="24" ry="30" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="7"/>
+    <circle cx="340" cy="235" r="16" fill="url(#pupilBlue)"/>
+    <circle cx="338" cy="235" r="10" fill="#1A1A1A"/>
+    <circle cx="334" cy="228" r="5" fill="#FFFFFF"/>
+    <circle cx="343" cy="242" r="2.5" fill="#FFFFFF"/>
+
+    <!-- Friendly Eyebrows -->
+    <path d="M235 195 Q255 185, 275 195" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round" fill="none"/>
+    <path d="M325 195 Q345 185, 365 195" stroke="#1A1A1A" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+    <!-- Red Firefighter Helmet (Marshall's Trademark) -->
+    <g id="fire-helmet">
+      <!-- Helmet Dome -->
+      <path d="M190 170 C180 60, 420 60, 410 170 Z" fill="url(#helmetGrad)" stroke="#1A1A1A" stroke-width="9"/>
+      <!-- Helmet Ridge Top -->
+      <path d="M285 70 C290 60, 310 60, 315 70 L318 160 L282 160 Z" fill="#D32F2F" stroke="#1A1A1A" stroke-width="5"/>
+      <!-- Helmet Brim / Visor -->
+      <path d="M150 170 C220 150, 380 150, 450 170 C465 185, 430 205, 300 205 C170 205, 135 185, 150 170 Z" fill="#B71C1C" stroke="#1A1A1A" stroke-width="8"/>
+      <!-- Black Rim Highlight -->
+      <path d="M165 180 Q300 210, 435 180" stroke="#1A1A1A" stroke-width="6" fill="none"/>
+
+      <!-- Golden Fire Chief Shield Badge on Helmet -->
+      <g transform="translate(300, 135)">
+        <polygon points="0,-40 32,-15 24,35 0,45 -24,35 -32,-15" fill="url(#crestGold)" stroke="#1A1A1A" stroke-width="5"/>
+        <polygon points="0,-32 24,-10 18,28 0,36 -18,28 -24,-10" fill="#B71C1C" stroke="#1A1A1A" stroke-width="3"/>
+        <!-- Golden Fire Flame Emblem -->
+        <path d="M0 -22 C6 -10, 14 -4, 14 8 C14 16, 8 22, 0 22 C-8 22, -14 16, -14 8 C-14 -4, -6 -10, 0 -22 Z" fill="url(#crestGold)"/>
+        <path d="M0 -10 C3 -4, 7 0, 7 7 C7 11, 4 14, 0 14 C-4 14, -7 11, -7 7 C-7 0, -3 -4, 0 -10 Z" fill="#FFFFFF"/>
+      </g>
+
+      <!-- Yellow Flashlight on Side of Helmet -->
+      <rect x="400" y="125" width="42" height="26" rx="8" fill="#FFD54F" stroke="#1A1A1A" stroke-width="5"/>
+      <ellipse cx="442" cy="138" rx="8" ry="13" fill="#FFF9C4" stroke="#1A1A1A" stroke-width="4"/>
+    </g>
+
+  </g>
+
+  <!-- Cinema Title Banner: MARSHALL • PATRULHA CANINA -->
+  <g transform="translate(50, 515)">
+    <rect x="0" y="0" width="500" height="60" rx="30" fill="#FF3B30" stroke="#1A1A1A" stroke-width="8"/>
+    <rect x="6" y="6" width="488" height="48" rx="24" fill="#D32F2F"/>
+    <text x="250" y="40" font-family="'Impact', 'Arial Black', sans-serif" font-size="26" font-weight="900" text-anchor="middle" fill="#FFFFFF" letter-spacing="2">
+      🚒 MARSHALL • PATRULHA CANINA
+    </text>
+  </g>
+</svg>
