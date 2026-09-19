@@ -169,8 +169,8 @@ export default function Contato({ onNavigate }: PageProps) {
         </div>
 
         {/* Right Side: Message form (lg:col-span-5) */}
-        <div className="lg:col-span-5">
-          <div className="bg-bf-white border-3 border-bf-black rounded-[32px] p-6 md:p-8 shadow-[6px_6px_0_#1A1A1A] relative overflow-hidden">
+        <div className="lg:col-span-5 relative">
+          <div className="bg-bf-white border-3 border-bf-black rounded-[32px] p-6 md:p-8 shadow-[6px_6px_0_#1A1A1A] relative">
             <h3 className="font-display text-xl md:text-2xl text-bf-black uppercase mb-1">
               Envie uma Mensagem
             </h3>
@@ -265,6 +265,27 @@ export default function Contato({ onNavigate }: PageProps) {
                 </motion.div>
               )}
             </AnimatePresence>
+          </div>
+
+          {/* Mascote Burger Films sobrepondo no canto da página */}
+          <div className="absolute -bottom-8 -right-3 sm:-bottom-10 sm:-right-6 md:-right-8 w-28 sm:w-36 md:w-44 pointer-events-none z-30 select-none">
+            <div className="relative">
+              {/* Balãozinho divertido */}
+              <div className="absolute -top-6 -left-10 sm:-left-16 bg-bf-yellow text-bf-black font-baloo-caps text-[9px] sm:text-[10px] font-black px-2.5 py-0.5 rounded-full border-2 border-bf-black shadow-[2px_2px_0_#1A1A1A] whitespace-nowrap flex items-center gap-1">
+                <MessageSquare className="w-2.5 h-2.5 text-bf-red shrink-0" />
+                <span>MANDA SEU RECADO! 🎬</span>
+              </div>
+
+              <img
+                src="https://img.supremasite.com.br/burguer/bg.webp"
+                alt="Personagem Oficial Burger Films"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+                }}
+                className="w-full h-auto object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.45)] transform rotate-3 transition-transform"
+              />
+            </div>
           </div>
         </div>
 

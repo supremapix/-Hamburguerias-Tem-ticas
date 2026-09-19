@@ -43,7 +43,7 @@ export default function QuemSomos({ onNavigate }: PageProps) {
       </div>
 
       {/* Main Content Card */}
-      <div className="bg-bf-white border-4 border-bf-black rounded-[32px] p-8 md:p-12 shadow-[8px_8px_0px_#1A1A1A] mb-12">
+      <div className="bg-bf-white border-4 border-bf-black rounded-[32px] p-8 md:p-12 shadow-[8px_8px_0px_#1A1A1A] mb-16 relative">
         
         {/* Paragraphs with cartoon visual enhancements */}
         <div className="prose max-w-none text-gray-700 font-baloo space-y-6 text-sm md:text-base leading-relaxed">
@@ -69,67 +69,8 @@ export default function QuemSomos({ onNavigate }: PageProps) {
             </div>
           </div>
 
-          {/* Featured Burger Films Official Character Showcase */}
-          <div className="my-10 p-6 md:p-8 bg-gradient-to-br from-[#FFF9E6] via-white to-[#FFF0D4] border-4 border-bf-black rounded-3xl shadow-[8px_8px_0px_#1A1A1A] relative overflow-hidden">
-            {/* Ambient Cinema Lighting Accent */}
-            <div className="absolute -top-16 -right-16 w-44 h-44 bg-bf-yellow/30 rounded-full blur-2xl pointer-events-none" />
-            <div className="absolute -bottom-16 -left-16 w-44 h-44 bg-bf-red/20 rounded-full blur-2xl pointer-events-none" />
-
-            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8 relative z-10">
-              {/* Character Cutout Container */}
-              <div className="relative shrink-0 group">
-                <div className="w-48 h-48 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-3xl bg-gradient-to-b from-bf-yellow to-amber-400 border-4 border-bf-black shadow-[6px_6px_0px_#1A1A1A] overflow-hidden flex items-center justify-center relative p-3 transition-transform duration-300 group-hover:scale-105">
-                  <img
-                    src="https://img.supremasite.com.br/burguer/bg.webp"
-                    alt="Personagem Oficial Burger Films"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
-                    }}
-                    className="w-full h-full object-contain drop-shadow-[0_12px_20px_rgba(0,0,0,0.35)] transition-transform duration-300 group-hover:rotate-2"
-                  />
-                  
-                  {/* Badge floating on bottom of image */}
-                  <span className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-bf-black text-bf-yellow text-[10px] sm:text-[11px] font-baloo-caps font-black px-3 py-1 rounded-full border-2 border-bf-yellow whitespace-nowrap shadow-md flex items-center gap-1">
-                    <Star className="w-3 h-3 fill-bf-yellow" />
-                    <span>ASTRO OFICIAL</span>
-                  </span>
-                </div>
-              </div>
-
-              {/* Character Description & Highlights */}
-              <div className="flex-1 text-center md:text-left">
-                <div className="inline-flex items-center gap-1.5 bg-bf-red text-white text-xs font-baloo-caps font-black px-3.5 py-1 rounded-full border-2 border-bf-black mb-3 shadow-[2px_2px_0_#1A1A1A]">
-                  <Sparkles className="w-3.5 h-3.5 text-bf-yellow animate-pulse" />
-                  <span>O PROTAGONISTA DA CASA</span>
-                </div>
-
-                <h3 className="font-display text-2xl sm:text-3xl md:text-4xl text-bf-black uppercase leading-tight mb-3">
-                  CONHEÇA O PERSONAGEM OFICIAL BURGER FILM'S!
-                </h3>
-
-                <p className="text-gray-700 font-baloo text-sm sm:text-base leading-relaxed mb-5 font-medium">
-                  Ele é o coração e o grande embaixador de todo o entretenimento da nossa hamburgueria! Criado para dar vida à magia do cinema que servimos todos os dias em Penha, nosso astro guia você pelos melhores roteiros gastronômicos, recebe com muito carinho cada família em nosso pub e garante que cada mordida seja uma cena memorável.
-                </p>
-
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5">
-                  <span className="bg-white border-2 border-bf-black px-3.5 py-1.5 rounded-full text-xs font-baloo-caps font-black text-bf-black shadow-[2px_2px_0_#1A1A1A] inline-flex items-center gap-1.5">
-                    🎬 Anfitrião de Cinema
-                  </span>
-                  <span className="bg-white border-2 border-bf-black px-3.5 py-1.5 rounded-full text-xs font-baloo-caps font-black text-bf-black shadow-[2px_2px_0_#1A1A1A] inline-flex items-center gap-1.5">
-                    🍔 O Guardião da Receita Secreta
-                  </span>
-                  <span className="bg-bf-yellow text-bf-black border-2 border-bf-black px-3.5 py-1.5 rounded-full text-xs font-baloo-caps font-black shadow-[2px_2px_0_#1A1A1A] inline-flex items-center gap-1.5">
-                    <Camera className="w-3.5 h-3.5" />
-                    <span>Adora Tirar Fotos com as Crianças</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <p>
-            Hoje, contamos com duas unidades temáticas pensadas para acolher tanto os moradores locais quanto os turistas que visitam a nossa bela região. Seja no nosso pub acolhedor ou através do nosso delivery ultra veloz direto para o seu hotel, casa ou pousada, garantimos um espetáculo de sabor quentinho na sua mesa.
+            Hoje, contamos com duas unidades temáticas pensadas para acolher tanto os moradores locais quanto os turistas que visitam a nossa bela região. Seja no nosso pub acolhedor ou através do nosso delivery ultra veloz direto para o seu hotel, casa ou pousada, garantimos um espetáculo de sabor quentinho na sua mesa com a recepção inconfundível do nosso querido mascote oficial!
           </p>
         </div>
 
@@ -163,6 +104,27 @@ export default function QuemSomos({ onNavigate }: PageProps) {
             <p className="text-xs text-gray-500 font-baloo leading-relaxed">
               Atendimento alegre, descontraído e focado em fazer você se sentir um verdadeiro astro de Hollywood.
             </p>
+          </div>
+        </div>
+
+        {/* Mascote Oficial Burger Films sobrepondo no canto da página */}
+        <div className="absolute -bottom-10 sm:-bottom-12 -right-3 sm:-right-8 md:-right-12 w-32 sm:w-44 md:w-52 pointer-events-none z-30 select-none">
+          <div className="relative">
+            {/* Balãozinho divertido estilo gibi de cinema */}
+            <div className="absolute -top-7 -left-10 sm:-left-16 bg-bf-yellow text-bf-black font-baloo-caps text-[9px] sm:text-[11px] font-black px-2.5 sm:px-3 py-1 rounded-full border-2 border-bf-black shadow-[2px_2px_0_#1A1A1A] whitespace-nowrap flex items-center gap-1">
+              <Sparkles className="w-3 h-3 text-bf-red shrink-0" />
+              <span>DIRETO DE HOLLYWOOD! 🎬</span>
+            </div>
+
+            <img
+              src="https://img.supremasite.com.br/burguer/bg.webp"
+              alt="Personagem Oficial Burger Films"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
+              }}
+              className="w-full h-auto object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)] transform -rotate-3 transition-transform"
+            />
           </div>
         </div>
 
