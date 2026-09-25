@@ -523,28 +523,34 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM MARSHALL',
-    subtitle: 'O dálmata bombeiro mais corajoso da Patrulha Canina chega para animar a criançada com muita aventura e fotos!',
-    image: '/personagem-marshall.svg',
-    dateBadge: '18/09',
+    title: 'PERSONAGEM SUPER MARIO',
+    subtitle: 'O encanador mais famoso e carismático dos games e do cinema chega para encantar a criançada com muita aventura e fotos!',
+    image: '/personagem-mario.svg',
+    dateBadge: '25/09',
+    time: 'A partir das 19h00',
+    location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM CHASE',
-    subtitle: 'O cão policial líder da Patrulha Canina em uma missão especial cheia de carisma e diversão no nosso Pub!',
-    image: '/personagem-chase.svg',
-    dateBadge: '19/09',
+    title: 'PERSONAGEM SONIC',
+    subtitle: 'A supervelocidade e a energia contagiante do ouriço azul mais amado do mundo em uma sessão especial e divertida no Pub!',
+    image: '/personagem-sonic.svg',
+    dateBadge: '26/09',
+    time: 'A partir das 19h00',
+    location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
   },
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM WOODY',
-    subtitle: 'O xerife mais amado do cinema vem trazer toda a magia, carisma e diversão de Toy Story para toda a família!',
-    image: '/personagem-woody.svg',
-    dateBadge: '20/09',
+    title: 'HOMENAGEM AYRTON SENNA',
+    subtitle: 'Uma homenagem emocionante e inesquecível ao maior ícone das pistas e tricampeão mundial com momentos marcantes para toda a família!',
+    image: '/personagem-senna.svg',
+    dateBadge: '27/09',
+    time: 'A partir das 19h00',
+    location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
   }
 ];
@@ -556,8 +562,9 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     id: 'quarta',
     day: 'QUARTA',
     title: 'PUB FECHADO',
-    subtitle: 'Dia de recarregar as energias e preparar a cozinha para um final de semana estelar!',
-    image: 'https://img.supremasite.com.br/burguer/bgsc.webp'
+    subtitle: 'Dia de recarregar as energias e preparar a cozinha para um final de semana estelar no Burger Film\'s!',
+    image: 'https://img.supremasite.com.br/burguer/bgsc.webp',
+    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC'
   },
   {
     id: 'sexta',
@@ -565,22 +572,29 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     title: 'NOITE DA PIZZA',
     subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas de cinema!',
     image: '/agenda-noite-pizza.svg',
-    tagBadge: 'PIZZA FILM\'S'
+    tagBadge: 'PIZZA FILM\'S',
+    time: 'A partir das 18h00',
+    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'COMBOS DE CINEMA E CERVEJA AMANTEIGADA',
-    subtitle: 'Combos temáticos inspirados nas maiores sagas das telonas acompanhados da famosa e mágica Cerveja Amanteigada!',
-    image: '/agenda-cerveja-amanteigada.svg',
+    title: 'MÚSICA AO VIVO COM PAULINHO GOUVÊA',
+    subtitle: 'Uma noite inesquecível de música ao vivo, grandes sucessos, muito chopp artesanal e os melhores burgers da região!',
+    image: '/agenda-musica-aovivo.svg',
+    tagBadge: 'AO VIVO',
+    time: 'A partir das 19h30',
+    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC',
     highlight: true
   },
   {
     id: 'domingo-quinta',
     day: 'DOMINGO A QUINTA',
     title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em tamanhos colecionáveis!',
-    image: '/agenda-rodizio-miniburger.svg'
+    subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em versões colecionáveis!',
+    image: '/agenda-rodizio-miniburger.svg',
+    time: 'A partir das 18h00',
+    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC'
   }
 ];
 
@@ -594,6 +608,18 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   
   if (text.includes('fechado') || text.includes('quarta') || text.includes('recarregar') || text.includes('intervalo')) {
     return 'https://img.supremasite.com.br/burguer/bgsc.webp';
+  }
+  if (text.includes('mario') || text.includes('super mario')) {
+    return '/personagem-mario.svg';
+  }
+  if (text.includes('sonic') || text.includes('ouriço') || text.includes('ourico')) {
+    return '/personagem-sonic.svg';
+  }
+  if (text.includes('senna') || text.includes('ayrton') || text.includes('piloto') || text.includes('homenagem ayrton')) {
+    return '/personagem-senna.svg';
+  }
+  if (text.includes('paulinho') || text.includes('gouvêa') || text.includes('gouvea') || text.includes('música ao vivo') || text.includes('musica ao vivo') || text.includes('show')) {
+    return '/agenda-musica-aovivo.svg';
   }
   if (text.includes('marshall') || text.includes('dálmata') || text.includes('dalmata') || text.includes('bombeiro')) {
     return '/personagem-marshall.svg';

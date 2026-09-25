@@ -18,4 +18,6 @@ export interface AgendaItem {
   tagBadge?: string;
   highlight?: boolean;
   hasFlags?: boolean;
+  time?: string;
+  location?: string;
 }

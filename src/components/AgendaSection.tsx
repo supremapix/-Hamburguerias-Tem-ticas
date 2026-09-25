@@ -1,28 +1,54 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AGENDA_PERSONAGENS, AGENDA_SEMANAL, getAgendaEmulatedImage } from '../data';
-import { MapPin, Sparkles, Smile, Calendar, Clapperboard, Star, MessageCircle, Flame, Ticket, Navigation } from 'lucide-react';
+import { MapPin, Sparkles, Smile, Calendar, Clapperboard, Star, MessageCircle, Flame, Ticket, Navigation, Clock } from 'lucide-react';
 
 export default function AgendaSection() {
   const [activeTab, setActiveTab] = useState<'personagens' | 'semanal'>('personagens');
-  const [hoveredItemId, setHoveredItemId] = useState<string | null>(null);
+  const [, setHoveredItemId] = useState<string | null>(null);
 
   const currentItems = activeTab === 'personagens' ? AGENDA_PERSONAGENS : AGENDA_SEMANAL;
-  const currentAddress = activeTab === 'personagens' ? 'AV. ALFREDO BRUNETTI, 631' : 'AV. EUGÊNIO KRAUSE, 3045';
-  const currentDetails = activeTab === 'personagens' 
-    ? 'Penha - SC (Pertinho do Beto Carrero World!)' 
-    : 'Penha - SC (No Coração da Armação!)';
+  const currentAddress = 'AV. ALFREDO BRUNETTI, 631';
+  const currentDetails = 'Penha - SC (Pertinho do Beto Carrero World!)';
   
-  const googleMapsUrl = activeTab === 'personagens'
-    ? 'https://maps.google.com/?q=Av.+Alfredo+Brunetti,+631+-+Armacao,+Penha+-+SC'
-    : 'https://maps.google.com/?q=Av.+Eugenio+Krause,+3045+-+Armacao,+Penha+-+SC';
+  const googleMapsUrl = 'https://maps.google.com/?q=Av.+Alfredo+Brunetti,+631+-+Armacao,+Penha+-+SC';
 
   const reservationMessage = encodeURIComponent(
     `Olá Burger Film's! 🎬 Gostaria de reservar uma mesa para a programação de ${
-      activeTab === 'personagens' ? 'Personagens (Unidade Beto Carrero)' : 'Agenda Semanal (Unidade Centro/Armação)'
+      activeTab === 'personagens' ? 'Personagens (Unidade Beto Carrero)' : 'Agenda Semanal (Unidade Beto Carrero)'
     }!`
   );
   const whatsappUrl = `https://wa.me/5547992155989?text=${reservationMessage}`;
+
+  // Itens para o ticker rotativo de cinema gerados dinamicamente
+  const tickerItems = [
+    ...AGENDA_PERSONAGENS.map((p) => {
+      const lower = p.title.toLowerCase();
+      let icon = '🎭';
+      if (lower.includes('mario')) icon = '🍄';
+      else if (lower.includes('sonic')) icon = '🦔';
+      else if (lower.includes('senna')) icon = '🏎️';
+      else if (lower.includes('marshall')) icon = '🚒';
+      else if (lower.includes('chase')) icon = '👮';
+      else if (lower.includes('woody')) icon = '🤠';
+      return {
+        icon,
+        text: `${p.title}${p.dateBadge ? ` ${p.dateBadge}` : ''}`
+      };
+    }),
+    ...AGENDA_SEMANAL.map((s) => {
+      const lower = s.title.toLowerCase();
+      let icon = '🍔';
+      if (lower.includes('paulinho') || lower.includes('música') || lower.includes('musica')) icon = '🎸';
+      else if (lower.includes('pizza')) icon = '🍕';
+      else if (lower.includes('fechado')) icon = '⛔';
+      else if (lower.includes('cerveja')) icon = '🍺';
+      return {
+        icon,
+        text: `${s.title} (${s.day})`
+      };
+    })
+  ];
 
   return (
     <section id="agenda" className="py-24 bg-bf-cream relative overflow-hidden">
@@ -92,29 +118,12 @@ export default function AgendaSection() {
         {/* Cinema Marquee Ticker Banner */}
         <div className="mb-8 overflow-hidden rounded-xl bg-bf-black border-3 border-bf-yellow py-2 text-bf-yellow shadow-[4px_4px_0px_0px_#1A1A1A]">
           <div className="animate-marquee-ticker font-baloo-caps text-xs font-black tracking-widest uppercase">
-            <span className="mx-4 flex items-center gap-2">🚒 PERSONAGEM MARSHALL 18/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">👮 PERSONAGEM CHASE 19/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🤠 PERSONAGEM WOODY 20/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍕 NOITE DA PIZZA TODA SEXTA</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍺 COMBOS DE CINEMA & CERVEJA AMANTEIGADA</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍔 RODÍZIO DE MINI BURGERS DOM A QUI</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🚒 PERSONAGEM MARSHALL 18/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">👮 PERSONAGEM CHASE 19/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🤠 PERSONAGEM WOODY 20/09</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍕 NOITE DA PIZZA TODA SEXTA</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍺 COMBOS DE CINEMA & CERVEJA AMANTEIGADA</span>
-            <span className="mx-4 text-bf-red">•</span>
-            <span className="mx-4 flex items-center gap-2">🍔 RODÍZIO DE MINI BURGERS DOM A QUI</span>
+            {[...tickerItems, ...tickerItems].map((item, idx) => (
+              <span key={idx} className="mx-4 inline-flex items-center gap-2">
+                <span>{item.icon} {item.text}</span>
+                <span className="text-bf-red ml-4">•</span>
+              </span>
+            ))}
           </div>
         </div>
 
@@ -261,6 +270,13 @@ export default function AgendaSection() {
                               ★ IMPERDÍVEL
                             </span>
                           )}
+
+                          {item.time && (
+                            <span className="bg-gray-100 text-gray-700 border border-gray-300 text-[10px] font-baloo font-bold px-2 py-0.5 rounded-full inline-flex items-center gap-1">
+                              <Clock className="w-2.5 h-2.5 text-bf-red" />
+                              <span>{item.time}</span>
+                            </span>
+                          )}
                         </div>
                         
                         {/* Main Title */}
@@ -272,6 +288,14 @@ export default function AgendaSection() {
                         {item.subtitle && (
                           <p className="text-gray-700 text-xs sm:text-sm font-semibold font-baloo mt-0.5 line-clamp-2">
                             {item.subtitle}
+                          </p>
+                        )}
+
+                        {/* Optional Location */}
+                        {item.location && (
+                          <p className="text-bf-red text-[11px] font-baloo font-bold mt-1 flex items-center gap-1">
+                            <MapPin className="w-3 h-3 shrink-0" />
+                            <span>{item.location}</span>
                           </p>
                         )}
                       </div>
