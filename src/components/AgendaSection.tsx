@@ -30,6 +30,7 @@ export default function AgendaSection() {
       else if (lower.includes('senna')) icon = '🏎️';
       else if (lower.includes('marshall')) icon = '🚒';
       else if (lower.includes('chase')) icon = '👮';
+      else if (lower.includes('aranha') || lower.includes('spider')) icon = '🕷️';
       else if (lower.includes('woody')) icon = '🤠';
       return {
         icon,

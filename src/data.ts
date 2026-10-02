@@ -523,10 +523,10 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM SUPER MARIO',
-    subtitle: 'O encanador mais famoso e carismático dos games e do cinema chega para encantar a criançada com muita aventura e fotos!',
-    image: '/personagem-mario.svg',
-    dateBadge: '25/09',
+    title: 'PERSONAGEM CHASE',
+    subtitle: 'O destemido cão policial da Patrulha Canina chega com toda a energia para fotos, diversão e brincadeiras com toda a família!',
+    image: '/personagem-chase.svg',
+    dateBadge: '02/10',
     time: 'A partir das 19h00',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
@@ -534,10 +534,10 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM SONIC',
-    subtitle: 'A supervelocidade e a energia contagiante do ouriço azul mais amado do mundo em uma sessão especial e divertida no Pub!',
-    image: '/personagem-sonic.svg',
-    dateBadge: '26/09',
+    title: 'PERSONAGEM MARSHALL',
+    subtitle: 'O dálmata bombeiro mais alegre da Patrulha Canina está pronto para salvar a noite com muita diversão, sorrisos e momentos mágicos!',
+    image: '/personagem-marshall.svg',
+    dateBadge: '03/10',
     time: 'A partir das 19h00',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
@@ -545,10 +545,10 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'HOMENAGEM AYRTON SENNA',
-    subtitle: 'Uma homenagem emocionante e inesquecível ao maior ícone das pistas e tricampeão mundial com momentos marcantes para toda a família!',
-    image: '/personagem-senna.svg',
-    dateBadge: '27/09',
+    title: 'PERSONAGEM HOMEM ARANHA',
+    subtitle: 'O super-herói amigo da vizinhança salta direto das telonas para uma sessão inesquecível de aventuras, fotos e muita adrenalina!',
+    image: '/personagem-aranha.svg',
+    dateBadge: '04/10',
     time: 'A partir das 19h00',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
@@ -609,6 +609,15 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   if (text.includes('fechado') || text.includes('quarta') || text.includes('recarregar') || text.includes('intervalo')) {
     return 'https://img.supremasite.com.br/burguer/bgsc.webp';
   }
+  if (text.includes('aranha') || text.includes('spider') || text.includes('peter')) {
+    return '/personagem-aranha.svg';
+  }
+  if (text.includes('marshall') || text.includes('dálmata') || text.includes('dalmata') || text.includes('bombeiro')) {
+    return '/personagem-marshall.svg';
+  }
+  if (text.includes('chase') || text.includes('policial') || text.includes('pastor alemão') || text.includes('pastor alemao')) {
+    return '/personagem-chase.svg';
+  }
   if (text.includes('mario') || text.includes('super mario')) {
     return '/personagem-mario.svg';
   }
@@ -620,12 +629,6 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   }
   if (text.includes('paulinho') || text.includes('gouvêa') || text.includes('gouvea') || text.includes('música ao vivo') || text.includes('musica ao vivo') || text.includes('show')) {
     return '/agenda-musica-aovivo.svg';
-  }
-  if (text.includes('marshall') || text.includes('dálmata') || text.includes('dalmata') || text.includes('bombeiro')) {
-    return '/personagem-marshall.svg';
-  }
-  if (text.includes('chase') || text.includes('policial') || text.includes('pastor alemão') || text.includes('pastor alemao')) {
-    return '/personagem-chase.svg';
   }
   if (text.includes('woody') || text.includes('xerife') || text.includes('toy story')) {
     return '/personagem-woody.svg';
