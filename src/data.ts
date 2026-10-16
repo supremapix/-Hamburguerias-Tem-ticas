@@ -523,10 +523,10 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM CHASE',
-    subtitle: 'O destemido cão policial da Patrulha Canina chega com toda a energia para fotos, diversão e brincadeiras com toda a família!',
-    image: '/personagem-chase.svg',
-    dateBadge: '02/10',
+    title: 'PERSONAGEM PERNALONGA',
+    subtitle: 'O coelho mais esperto e hilário das telonas chega ao Pub para uma noite cheia de diversão, cenouras e muitas fotos!',
+    image: '/personagem-pernalonga.svg',
+    dateBadge: '16/10',
     time: 'A partir das 19h00',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
@@ -534,10 +534,10 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM MARSHALL',
-    subtitle: 'O dálmata bombeiro mais alegre da Patrulha Canina está pronto para salvar a noite com muita diversão, sorrisos e momentos mágicos!',
-    image: '/personagem-marshall.svg',
-    dateBadge: '03/10',
+    title: 'PERSONAGEM WOODY',
+    subtitle: 'Tem uma cobra na minha bota! O xerife mais querido de Toy Story chega para encantar a criançada com fotos e grandes aventuras!',
+    image: '/personagem-woody.svg',
+    dateBadge: '17/10',
     time: 'A partir das 19h00',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
@@ -545,10 +545,10 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'domingo',
     day: 'DOMINGO',
-    title: 'PERSONAGEM HOMEM ARANHA',
-    subtitle: 'O super-herói amigo da vizinhança salta direto das telonas para uma sessão inesquecível de aventuras, fotos e muita adrenalina!',
-    image: '/personagem-aranha.svg',
-    dateBadge: '04/10',
+    title: 'PERSONAGEM BARBIE',
+    subtitle: 'O encanto e glamour do mundo cor-de-rosa desembarcam no Pub em uma sessão mágica e inesquecível para toda a família!',
+    image: '/personagem-barbie.svg',
+    dateBadge: '18/10',
     time: 'A partir das 19h00',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
@@ -564,7 +564,7 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     title: 'PUB FECHADO',
     subtitle: 'Dia de recarregar as energias e preparar a cozinha para um final de semana estelar no Burger Film\'s!',
     image: 'https://img.supremasite.com.br/burguer/bgsc.webp',
-    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC'
+    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
   },
   {
     id: 'sexta',
@@ -573,18 +573,20 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas de cinema!',
     image: '/agenda-noite-pizza.svg',
     tagBadge: 'PIZZA FILM\'S',
+    dateBadge: '16/10',
     time: 'A partir das 18h00',
-    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC'
+    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'MÚSICA AO VIVO COM PAULINHO GOUVÊA',
-    subtitle: 'Uma noite inesquecível de música ao vivo, grandes sucessos, muito chopp artesanal e os melhores burgers da região!',
+    title: 'MÚSICA AO VIVO COM AQUINO',
+    subtitle: 'Uma noite inesquecível de música ao vivo com o cantor Aquino, grandes sucessos, muito chopp artesanal e os melhores burgers da região!',
     image: '/agenda-musica-aovivo.svg',
     tagBadge: 'AO VIVO',
+    dateBadge: '17/10',
     time: 'A partir das 19h30',
-    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC',
+    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC',
     highlight: true
   },
   {
@@ -594,7 +596,7 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em versões colecionáveis!',
     image: '/agenda-rodizio-miniburger.svg',
     time: 'A partir das 18h00',
-    location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC'
+    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
   }
 ];
 
@@ -609,6 +611,30 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   if (text.includes('fechado') || text.includes('quarta') || text.includes('recarregar') || text.includes('intervalo')) {
     return 'https://img.supremasite.com.br/burguer/bgsc.webp';
   }
+  if (text.includes('pernalonga') || text.includes('bugs') || text.includes('coelho')) {
+    return '/personagem-pernalonga.svg';
+  }
+  if (text.includes('barbie')) {
+    return '/personagem-barbie.svg';
+  }
+  if (text.includes('woody') || text.includes('xerife') || text.includes('toy story')) {
+    return '/personagem-woody.svg';
+  }
+  if (text.includes('aquino') || text.includes('paulinho') || text.includes('gouvêa') || text.includes('gouvea') || text.includes('música ao vivo') || text.includes('musica ao vivo') || text.includes('show')) {
+    return '/agenda-musica-aovivo.svg';
+  }
+  if (text.includes('esponja') || text.includes('bob') || text.includes('spongebob')) {
+    return '/personagem-bob-esponja.svg';
+  }
+  if (text.includes('buzz') || text.includes('lightyear')) {
+    return '/personagem-buzz.svg';
+  }
+  if (text.includes('ferro') || text.includes('iron') || text.includes('homem de ferro')) {
+    return '/personagem-homem-de-ferro.svg';
+  }
+  if (text.includes('mario') || text.includes('super mario')) {
+    return '/personagem-mario.svg';
+  }
   if (text.includes('aranha') || text.includes('spider') || text.includes('peter')) {
     return '/personagem-aranha.svg';
   }
@@ -618,20 +644,11 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   if (text.includes('chase') || text.includes('policial') || text.includes('pastor alemão') || text.includes('pastor alemao')) {
     return '/personagem-chase.svg';
   }
-  if (text.includes('mario') || text.includes('super mario')) {
-    return '/personagem-mario.svg';
-  }
   if (text.includes('sonic') || text.includes('ouriço') || text.includes('ourico')) {
     return '/personagem-sonic.svg';
   }
   if (text.includes('senna') || text.includes('ayrton') || text.includes('piloto') || text.includes('homenagem ayrton')) {
     return '/personagem-senna.svg';
-  }
-  if (text.includes('paulinho') || text.includes('gouvêa') || text.includes('gouvea') || text.includes('música ao vivo') || text.includes('musica ao vivo') || text.includes('show')) {
-    return '/agenda-musica-aovivo.svg';
-  }
-  if (text.includes('woody') || text.includes('xerife') || text.includes('toy story')) {
-    return '/personagem-woody.svg';
   }
   if (text.includes('pizza') || text.includes('forno')) {
     return '/agenda-noite-pizza.svg';

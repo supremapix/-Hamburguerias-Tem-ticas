@@ -8,14 +8,20 @@ export default function AgendaSection() {
   const [, setHoveredItemId] = useState<string | null>(null);
 
   const currentItems = activeTab === 'personagens' ? AGENDA_PERSONAGENS : AGENDA_SEMANAL;
-  const currentAddress = 'AV. ALFREDO BRUNETTI, 631';
-  const currentDetails = 'Penha - SC (Pertinho do Beto Carrero World!)';
+  const currentAddress = activeTab === 'personagens' ? 'AV. ALFREDO BRUNETTI, 631' : 'AV. EUGÊNIO KRAUSE, 3045';
+  const currentDetails = activeTab === 'personagens' 
+    ? 'Penha - SC (Pertinho do Beto Carrero World!)'
+    : 'Centro, Penha - SC';
   
-  const googleMapsUrl = 'https://maps.google.com/?q=Av.+Alfredo+Brunetti,+631+-+Armacao,+Penha+-+SC';
+  const googleMapsUrl = activeTab === 'personagens'
+    ? 'https://maps.google.com/?q=Av.+Alfredo+Brunetti,+631+-+Armacao,+Penha+-+SC'
+    : 'https://maps.google.com/?q=Av.+Eug%C3%AAnio+Krause,+3045+-+Centro,+Penha+-+SC';
 
   const reservationMessage = encodeURIComponent(
     `Olá Burger Film's! 🎬 Gostaria de reservar uma mesa para a programação de ${
-      activeTab === 'personagens' ? 'Personagens (Unidade Beto Carrero)' : 'Agenda Semanal (Unidade Beto Carrero)'
+      activeTab === 'personagens' 
+        ? 'Personagens (Unidade Beto Carrero • Av. Alfredo Brunetti, 631)' 
+        : 'Agenda Semanal (Unidade Centro • Av. Eugênio Krause, 3045)'
     }!`
   );
   const whatsappUrl = `https://wa.me/5547992155989?text=${reservationMessage}`;
@@ -25,13 +31,18 @@ export default function AgendaSection() {
     ...AGENDA_PERSONAGENS.map((p) => {
       const lower = p.title.toLowerCase();
       let icon = '🎭';
-      if (lower.includes('mario')) icon = '🍄';
+      if (lower.includes('pernalonga') || lower.includes('bugs')) icon = '🥕';
+      else if (lower.includes('barbie')) icon = '💖';
+      else if (lower.includes('woody')) icon = '🤠';
+      else if (lower.includes('esponja') || lower.includes('bob')) icon = '🧽';
+      else if (lower.includes('buzz')) icon = '🚀';
+      else if (lower.includes('ferro') || lower.includes('iron')) icon = '🦾';
+      else if (lower.includes('mario')) icon = '🍄';
       else if (lower.includes('sonic')) icon = '🦔';
       else if (lower.includes('senna')) icon = '🏎️';
       else if (lower.includes('marshall')) icon = '🚒';
       else if (lower.includes('chase')) icon = '👮';
       else if (lower.includes('aranha') || lower.includes('spider')) icon = '🕷️';
-      else if (lower.includes('woody')) icon = '🤠';
       return {
         icon,
         text: `${p.title}${p.dateBadge ? ` ${p.dateBadge}` : ''}`
@@ -40,7 +51,7 @@ export default function AgendaSection() {
     ...AGENDA_SEMANAL.map((s) => {
       const lower = s.title.toLowerCase();
       let icon = '🍔';
-      if (lower.includes('paulinho') || lower.includes('música') || lower.includes('musica')) icon = '🎸';
+      if (lower.includes('aquino') || lower.includes('paulinho') || lower.includes('música') || lower.includes('musica')) icon = '🎸';
       else if (lower.includes('pizza')) icon = '🍕';
       else if (lower.includes('fechado')) icon = '⛔';
       else if (lower.includes('cerveja')) icon = '🍺';
