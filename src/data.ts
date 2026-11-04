@@ -7,7 +7,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: 'Fun Burger Halloween',
     description: 'Pão Black C/ Gergelim, 2 Burgers de Fraldinha 90g Cada, Queijo Cheddar, Alface, Tomate e Repolho Roxo',
     price: 44.90,
-    image: 'https://img.supremasite.com.br/burguer/hambueguer-hallowen-burguer-films.webp',
+    image: '/fun-burger-halloween.webp',
     category: 'lanches',
     subcategory: 'cinema'
   },

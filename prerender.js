@@ -28,7 +28,7 @@ for (const view of routes) {
     ...(view === 'not-found' ? [] : [`<script data-rh="true" type="application/ld+json">${JSON.stringify(meta.structuredData).replaceAll('<', '\\u003c')}</script>`]),
     '<link rel="preconnect" href="https://fonts.googleapis.com">',
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-    ...(view === 'home' ? ['<link rel="preload" as="image" href="https://img.supremasite.com.br/burguer/hambueguer-hallowen-burguer-films.webp" fetchpriority="high">'] : [])
+    ...(view === 'home' ? ['<link rel="preload" as="image" href="/fun-burger-halloween.webp" fetchpriority="high">'] : [])
   ];
   html = html.replace('</head>', () => `${tags.join('\n')}\n</head>`);
   const directory = view === 'home' ? dist : path.join(dist, view);

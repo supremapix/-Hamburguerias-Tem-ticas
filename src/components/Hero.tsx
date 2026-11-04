@@ -431,7 +431,7 @@ export default function Hero() {
             {/* Core Hero Burger Image with Float Animation */}
             <div className="relative z-10 w-full max-w-[280px] md:max-w-[320px] aspect-square flex items-center justify-center my-2 group-hover:scale-105 transition-transform duration-300">
               <img
-                src="https://img.supremasite.com.br/burguer/hambueguer-hallowen-burguer-films.webp"
+                src="/fun-burger-halloween.webp"
                 alt="Fun Burger Halloween - Burger Films Penha"
                 width={320}
                 height={320}
