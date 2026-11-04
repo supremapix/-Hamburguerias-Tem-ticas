@@ -1,27 +1,13 @@
 import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { GLOBAL_SEO_DATA, NEIGHBORHOODS, SEOMetadata } from '../seoData';
+import { getPageMetadata } from '../pageMetadata';
 
 interface EnhancedSEOProps {
   view: string;
 }
 
 export default function EnhancedSEO({ view }: EnhancedSEOProps) {
-  // Find metadata for current page view
-  let meta: SEOMetadata | undefined = GLOBAL_SEO_DATA[view];
-
-  // If view is a neighborhood slug (e.g. 'bairro-centro'), find its SEO
-  if (!meta && view.startsWith('bairro-')) {
-    const neighborhood = NEIGHBORHOODS.find(n => n.slug === view);
-    if (neighborhood) {
-      meta = neighborhood.seo;
-    }
-  }
-
-  // Fallback to home if page metadata is not found
-  if (!meta) {
-    meta = GLOBAL_SEO_DATA['home'];
-  }
+  const meta = getPageMetadata(view);
 
   // Unregister any legacy service worker to ensure real-time preview and updates
   useEffect(() => {
@@ -40,14 +26,14 @@ export default function EnhancedSEO({ view }: EnhancedSEOProps) {
       <title>{meta.title}</title>
       <meta name="description" content={meta.description} />
       <meta name="keywords" content={meta.keywords} />
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-      <link rel="canonical" href={meta.canonicalUrl} />
+      <meta name="robots" content={view === 'not-found' ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+      {view !== 'not-found' && <link rel="canonical" href={meta.canonicalUrl} />}
       
       {/* Theme Color */}
       <meta name="theme-color" content="#1A1A1A" />
 
       {/* Open Graph / Facebook / WhatsApp / LinkedIn / Pinterest */}
-      <meta property="og:type" content="restaurant" />
+      <meta property="og:type" content="website" />
       <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
       <meta property="og:image" content={meta.ogImage || "https://img.supremasite.com.br/burguer/img-og.webp"} />
@@ -70,17 +56,6 @@ export default function EnhancedSEO({ view }: EnhancedSEOProps) {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://img.burgerfilms.com.br" />
       
-      {/* Font Preloads and Optimization */}
-      <link 
-        rel="preload" 
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" 
-        as="style" 
-      />
-      <link 
-        rel="stylesheet" 
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" 
-      />
-
       {/* Critical CSS Reset inline optimization */}
       <style>{`
         /* Critical CSS reset for fast FCP */
@@ -106,9 +81,9 @@ export default function EnhancedSEO({ view }: EnhancedSEOProps) {
       `}</style>
 
       {/* Structured Data completos JSON-LD */}
-      <script type="application/ld+json">
+      {view !== 'not-found' && <script type="application/ld+json">
         {JSON.stringify(meta.structuredData)}
-      </script>
+      </script>}
     </Helmet>
   );
 }

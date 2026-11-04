@@ -433,6 +433,11 @@ export default function Hero() {
               <img
                 src="https://img.supremasite.com.br/burguer/hambueguer-hallowen-burguer-films.webp"
                 alt="Fun Burger Halloween - Burger Films Penha"
+                width={320}
+                height={320}
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
                 referrerPolicy="no-referrer"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';

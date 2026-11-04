@@ -269,17 +269,17 @@ export default function Footer({ onNavigate }: FooterProps) {
         transition={{ type: "spring", stiffness: 90, damping: 16 }}
         className="relative bg-bf-black text-bf-white pt-24 pb-8 rounded-t-[40px] border-t-4 border-bf-black shadow-[0_-8px_24px_rgba(0,0,0,0.2)] overflow-hidden"
       >
-        
+
         {/* Festoon / Checkered Flags at the top border */}
         <div className="absolute top-0 left-0 right-0 overflow-hidden flex justify-center pointer-events-none">
-          <svg 
-            className="w-full max-w-4xl h-24 animate-flag-swing origin-top" 
-            viewBox="0 0 800 120" 
-            fill="none" 
+          <svg
+            className="w-full max-w-4xl h-24 animate-flag-swing origin-top"
+            viewBox="0 0 800 120"
+            fill="none"
             preserveAspectRatio="none"
           >
             <path d="M10,15 Q400,80 790,15" stroke="#FFB800" strokeWidth="4" strokeLinecap="round" fill="none" />
-            
+
             {/* Flags */}
             <polygon points="100,28 140,32 120,85" fill="#E63946" stroke="#1A1A1A" strokeWidth="2.5" />
             <polygon points="200,42 240,44 220,95" fill="#FFB800" stroke="#1A1A1A" strokeWidth="2.5" />
@@ -292,19 +292,16 @@ export default function Footer({ onNavigate }: FooterProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 items-start relative z-10">
-          
+
           {/* Column 1: Info and Socials (lg:col-span-5) */}
           <div className="lg:col-span-5 flex flex-col gap-6">
             <div className="flex flex-col gap-3 items-start">
-              <button 
-                onClick={() => {
-                  onNavigate('home');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+              <a href="/"
+
                 className="origin-left focus:outline-none cursor-pointer"
               >
                 <Logo size="md" />
-              </button>
+              </a>
               <span className="text-xs font-baloo uppercase text-gray-400 tracking-wider">
                 A Sua Sessão Diária de Sabor em Penha-SC
               </span>
@@ -345,8 +342,8 @@ export default function Footer({ onNavigate }: FooterProps) {
             <ul className="flex flex-col gap-3 font-baloo">
               {navigationLinks.map((link, i) => (
                 <li key={i}>
-                  <button
-                    onClick={() => handleLinkClick(link)}
+                  <a href={`${link.view === 'home' ? '/' : `/${link.view}`}${link.anchor ? `#${link.anchor}` : ''}`}
+
                     className="group flex items-center gap-1.5 text-sm text-gray-300 hover:text-bf-yellow transition-all duration-200 cursor-pointer text-left focus:outline-none"
                   >
                     <span className="opacity-0 group-hover:opacity-100 text-bf-yellow transform -translate-x-2 group-hover:translate-x-0 transition-all duration-200">
@@ -355,23 +352,20 @@ export default function Footer({ onNavigate }: FooterProps) {
                     <span className="group-hover:translate-x-1.5 transition-all duration-200">
                       {link.label}
                     </span>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
 
             {/* Highlighted print menu and desfalque triggers */}
             <div className="mt-4 pt-4 border-t border-dashed border-gray-800 flex flex-col gap-2.5">
-              <button
-                onClick={() => {
-                  onNavigate('cardapio-imprimir');
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
+              <a href="/cardapio-imprimir"
+
                 className="group flex items-center gap-2 text-xs font-baloo-caps font-black text-bf-yellow hover:text-bf-black hover:bg-bf-yellow bg-bf-white/5 border border-bf-yellow px-3.5 py-2 rounded-xl transition-all cursor-pointer focus:outline-none"
               >
                 <Printer className="w-3.5 h-3.5 shrink-0" />
                 <span>IMPRIMIR CARDÁPIO (A4) 🖨️</span>
-              </button>
+              </a>
 
               <button
                 onClick={() => setShowDesfalqueModal(true)}
@@ -392,15 +386,12 @@ export default function Footer({ onNavigate }: FooterProps) {
             <address className="not-italic flex flex-col gap-5 text-sm text-gray-300 font-baloo">
               {/* Unit 1 */}
               <div className="flex flex-col gap-1 border-l-2 border-bf-yellow pl-3">
-                <button
-                  onClick={() => {
-                    onNavigate('unidade-alfredo');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/unidade-alfredo"
+
                   className="font-extrabold text-bf-yellow text-xs uppercase tracking-wider block text-left hover:underline cursor-pointer focus:outline-none"
                 >
                   Unidade 1 — Alfredo Brunetti (Armação) ➔
-                </button>
+                </a>
                 <div className="flex items-start gap-2 mt-1">
                   <MapPin className="w-4.5 h-4.5 text-bf-yellow shrink-0 mt-0.5" />
                   <div className="flex flex-col">
@@ -416,15 +407,12 @@ export default function Footer({ onNavigate }: FooterProps) {
 
               {/* Unit 2 */}
               <div className="flex flex-col gap-1 border-l-2 border-bf-red pl-3">
-                <button
-                  onClick={() => {
-                    onNavigate('unidade-eugenio');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/unidade-eugenio"
+
                   className="font-extrabold text-bf-red text-xs uppercase tracking-wider block text-left hover:underline cursor-pointer focus:outline-none"
                 >
                   Unidade 2 — Armação (Eugênio Krause) ➔
-                </button>
+                </a>
                 <div className="flex items-start gap-2 mt-1">
                   <MapPin className="w-4.5 h-4.5 text-bf-yellow shrink-0 mt-0.5" />
                   <div className="flex flex-col">

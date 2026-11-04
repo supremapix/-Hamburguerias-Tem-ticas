@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/centro-penha", "destination": "/bairro-centro", "permanent": true },
+    { "source": "/localidade/armacao-penha", "destination": "/bairro-armacao", "permanent": true },
+    { "source": "/localidade/sao-cristovao-penha", "destination": "/bairro-sao-cristovao", "permanent": true }
+  ]
+}

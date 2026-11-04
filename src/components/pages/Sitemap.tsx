@@ -8,7 +8,7 @@ interface PageProps {
 }
 
 export default function Sitemap({ onNavigate }: PageProps) {
-  
+
   const handleAnchorClick = (anchorId: string) => {
     onNavigate('home');
     // Scroll to anchor after navigation completes slightly
@@ -19,24 +19,21 @@ export default function Sitemap({ onNavigate }: PageProps) {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       className="max-w-4xl mx-auto px-6 py-32 relative z-10 font-baloo"
     >
-      
+
       {/* Back to home button */}
-      <button
-        onClick={() => {
-          onNavigate('home');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+      <a href="/"
+
         className="inline-flex items-center gap-2 bg-bf-white hover:bg-bf-yellow text-bf-black font-baloo-caps text-xs font-black px-4 py-2.5 rounded-full border-2 border-bf-black shadow-[2px_2px_0px_#1A1A1A] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer mb-8"
       >
         <ArrowLeft className="w-4 h-4 stroke-[3px]" />
         <span>VOLTAR PARA A HOME</span>
-      </button>
+      </a>
 
       {/* Header Section */}
       <div className="text-center mb-12">
@@ -54,7 +51,7 @@ export default function Sitemap({ onNavigate }: PageProps) {
 
       {/* Sitemap container - styled like a film reel storyboard with visual separators */}
       <div className="bg-bf-white border-4 border-bf-black rounded-[32px] p-8 md:p-12 shadow-[8px_8px_0px_#1A1A1A] mb-8 relative overflow-hidden">
-        
+
         {/* Animated film stripes on top and bottom borders */}
         <div className="flex justify-between gap-1 mb-8 opacity-10">
           {Array.from({ length: 24 }).map((_, i) => (
@@ -63,7 +60,7 @@ export default function Sitemap({ onNavigate }: PageProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          
+
           {/* Main Pages */}
           <div className="space-y-5">
             <h3 className="font-display text-xl text-bf-black uppercase flex items-center gap-2 border-b-2 border-dashed border-gray-200 pb-2">
@@ -73,52 +70,40 @@ export default function Sitemap({ onNavigate }: PageProps) {
 
             <ul className="space-y-4 font-semibold text-sm">
               <li>
-                <button
-                  onClick={() => {
-                    onNavigate('home');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/"
+
                   className="group flex items-center gap-2 text-gray-700 hover:text-bf-red transition-colors text-left cursor-pointer"
                 >
                   <Link2 className="w-4 h-4 text-bf-yellow-deep group-hover:rotate-45 transition-transform" />
                   <span>Página Inicial (Home)</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    onNavigate('quem-somos');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/quem-somos"
+
                   className="group flex items-center gap-2 text-gray-700 hover:text-bf-red transition-colors text-left cursor-pointer"
                 >
                   <Link2 className="w-4 h-4 text-bf-yellow-deep group-hover:rotate-45 transition-transform" />
                   <span>Quem Somos (Nossa História)</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    onNavigate('contato');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/contato"
+
                   className="group flex items-center gap-2 text-gray-700 hover:text-bf-red transition-colors text-left cursor-pointer"
                 >
                   <Link2 className="w-4 h-4 text-bf-yellow-deep group-hover:rotate-45 transition-transform" />
                   <span>Contato & Formulário de Roteiros</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    onNavigate('sitemap');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/sitemap"
+
                   className="group flex items-center gap-2 text-bf-red font-extrabold text-left cursor-pointer"
                 >
                   <Link2 className="w-4 h-4 text-bf-yellow-deep rotate-45" />
                   <span>Mapa do Site (Você está aqui!)</span>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -179,28 +164,22 @@ export default function Sitemap({ onNavigate }: PageProps) {
 
             <ul className="space-y-4 font-semibold text-sm">
               <li>
-                <button
-                  onClick={() => {
-                    onNavigate('unidade-alfredo');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/unidade-alfredo"
+
                   className="group flex items-center gap-2 text-gray-700 hover:text-bf-red transition-colors text-left cursor-pointer"
                 >
                   <Link2 className="w-4 h-4 text-bf-yellow-deep group-hover:rotate-45 transition-transform" />
                   <span>Unidade Alfredo Brunetti (perto Beto Carrero)</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    onNavigate('unidade-eugenio');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
+                <a href="/unidade-eugenio"
+
                   className="group flex items-center gap-2 text-gray-700 hover:text-bf-red transition-colors text-left cursor-pointer"
                 >
                   <Link2 className="w-4 h-4 text-bf-yellow-deep group-hover:rotate-45 transition-transform" />
                   <span>Unidade Eugênio Krause (centro Armação)</span>
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -211,7 +190,7 @@ export default function Sitemap({ onNavigate }: PageProps) {
               <Compass className="w-5 h-5 text-bf-yellow-deep" />
               <span>Roteiros de Entrega (Delivery nos Bairros)</span>
             </h3>
-            
+
             <p className="text-xs text-gray-500 font-medium -mt-2">
               Páginas de entrega especializadas com tempo de atendimento local e taxas exclusivas por bairro de Penha-SC:
             </p>
@@ -227,16 +206,13 @@ export default function Sitemap({ onNavigate }: PageProps) {
                 { name: 'Praia de São Miguel', slug: 'bairro-sao-miguel' },
               ].map((bairro) => (
                 <li key={bairro.slug}>
-                  <button
-                    onClick={() => {
-                      onNavigate(bairro.slug);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
+                  <a href={`/${bairro.slug}`}
+
                     className="group w-full flex items-center gap-2 text-gray-700 hover:text-bf-red transition-colors text-left cursor-pointer bg-bf-white p-2.5 rounded-lg border border-gray-200 hover:border-bf-black/25 shadow-sm hover:shadow"
                   >
                     <Link2 className="w-3.5 h-3.5 text-bf-yellow-deep group-hover:rotate-45 transition-transform" />
                     <span>Delivery {bairro.name}</span>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -251,7 +227,7 @@ export default function Sitemap({ onNavigate }: PageProps) {
 
             <ul className="space-y-4 font-semibold text-sm">
               <li>
-                <a 
+                <a
                   href="https://wa.me/5547992155989"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -262,7 +238,7 @@ export default function Sitemap({ onNavigate }: PageProps) {
                 </a>
               </li>
               <li>
-                <a 
+                <a
                   href="https://www.instagram.com/burgerfilms_/"
                   target="_blank"
                   rel="noopener noreferrer"
