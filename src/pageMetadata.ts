@@ -2,6 +2,9 @@ import { GLOBAL_SEO_DATA, NEIGHBORHOODS, type SEOMetadata } from './seoData';
 
 // The build and client use one source of metadata. Delivery areas are not branches.
 export function getPageMetadata(view: string): SEOMetadata {
+  if (view === 'cardapio-imprimir') {
+    return { ...GLOBAL_SEO_DATA.home, title: 'Cardápio para imprimir | Burger Films', canonicalUrl: 'https://www.burgerfilms.com.br/cardapio-imprimir' };
+  }
   const neighborhood = NEIGHBORHOODS.find(item => item.slug === view);
   const original = neighborhood?.seo ?? GLOBAL_SEO_DATA[view] ?? GLOBAL_SEO_DATA['not-found'];
   const meta = { ...original, ogImage: 'https://img.supremasite.com.br/burguer/img-og.webp' };

@@ -6,10 +6,11 @@ import { getPageMetadata } from './src/pageMetadata.ts';
 const dist = path.resolve('dist');
 const template = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
 const escape = value => String(value).replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
-const routes = [...Object.keys(GLOBAL_SEO_DATA), ...NEIGHBORHOODS.map(item => item.slug)];
+const routes = [...Object.keys(GLOBAL_SEO_DATA), ...NEIGHBORHOODS.map(item => item.slug), 'cardapio-imprimir'];
 
 for (const view of routes) {
   const meta = getPageMetadata(view);
+  const noindex = view === 'not-found' || view === 'cardapio-imprimir';
   // Helmet owns these tags after navigation, so static home data cannot persist.
   let html = template
     .replace(/<title>[\s\S]*?<\/title>/gi, '')
@@ -20,7 +21,7 @@ for (const view of routes) {
     `<title>${escape(meta.title)}</title>`,
     `<meta data-rh="true" name="description" content="${escape(meta.description)}">`,
     `<meta data-rh="true" name="keywords" content="${escape(meta.keywords)}">`,
-    `<meta data-rh="true" name="robots" content="${view === 'not-found' ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}">`,
+    `<meta data-rh="true" name="robots" content="${noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}">`,
     ...(view === 'not-found' ? [] : [`<link data-rh="true" rel="canonical" href="${escape(meta.canonicalUrl)}">`]),
     ...Object.entries({ type: 'website', title: meta.title, description: meta.description, url: meta.canonicalUrl, image: meta.ogImage, locale: 'pt_BR', site_name: 'Burger Films Pub & Delivery' }).map(([key, value]) => `<meta data-rh="true" property="og:${key}" content="${escape(value)}">`),
     ...Object.entries({ card: 'summary_large_image', title: meta.title, description: meta.description, image: meta.ogImage }).map(([key, value]) => `<meta data-rh="true" name="twitter:${key}" content="${escape(value)}">`),

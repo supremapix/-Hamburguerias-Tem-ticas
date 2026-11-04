@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Clock, Phone, ArrowLeft, ShieldCheck, Heart, Sparkles, Navigation, DollarSign, Bike } from 'lucide-react';
-import EnhancedSEO from '../EnhancedSEO';
 
 interface LocationPageProps {
   slug: string;
@@ -30,9 +29,6 @@ export default function LocationPage({
 
   return (
     <>
-      {/* Dynamic SEO configuration injection */}
-      <EnhancedSEO view={slug} />
-
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

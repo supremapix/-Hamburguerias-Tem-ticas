@@ -4,7 +4,7 @@ import { JSDOM } from 'jsdom';
 import { GLOBAL_SEO_DATA, NEIGHBORHOODS } from '../src/seoData';
 import { getPageMetadata } from '../src/pageMetadata';
 
-const routes = [...Object.keys(GLOBAL_SEO_DATA), ...NEIGHBORHOODS.map(item => item.slug)];
+const routes = [...Object.keys(GLOBAL_SEO_DATA), ...NEIGHBORHOODS.map(item => item.slug), 'cardapio-imprimir'];
 for (const route of routes) {
   const html = fs.readFileSync(`dist/${route === 'home' ? '' : `${route}/`}index.html`, 'utf8');
   const document = new JSDOM(html).window.document;
@@ -29,6 +29,7 @@ for (const route of routes) {
     assert.equal(metadata.structuredData.about['@type'], 'Service');
     assert.equal(metadata.structuredData.about.address, undefined);
   }
+  if (route === 'cardapio-imprimir') assert.match(document.querySelector('meta[name="robots"]')!.getAttribute('content')!, /noindex/);
 }
 const { redirects } = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
 assert.equal(redirects.length, 3);

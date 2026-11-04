@@ -26,7 +26,7 @@ export default function EnhancedSEO({ view }: EnhancedSEOProps) {
       <title>{meta.title}</title>
       <meta name="description" content={meta.description} />
       <meta name="keywords" content={meta.keywords} />
-      <meta name="robots" content={view === 'not-found' ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+      <meta name="robots" content={view === 'not-found' || view === 'cardapio-imprimir' ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
       {view !== 'not-found' && <link rel="canonical" href={meta.canonicalUrl} />}
       
       {/* Theme Color */}
