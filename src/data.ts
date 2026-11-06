@@ -519,26 +519,26 @@ export const MENU_ITEMS: MenuItem[] = [
   }
 ];
 
+// Programação de 6 a 8 de novembro de 2026, conforme os cartazes oficiais.
+// Os cartazes não informam horários; não reaproveitar os da agenda anterior.
 export const AGENDA_PERSONAGENS: AgendaItem[] = [
   {
     id: 'sexta',
     day: 'SEXTA',
-    title: 'PERSONAGEM PERNALONGA',
-    subtitle: 'O coelho mais esperto e hilário das telonas chega ao Pub para uma noite cheia de diversão, cenouras e muitas fotos!',
-    image: '/personagem-pernalonga.svg',
-    dateBadge: '16/10',
-    time: 'A partir das 19h00',
+    title: 'PERSONAGEM MÁRIO',
+    subtitle: 'Mário na programação de sexta-feira da unidade Beto Carrero.',
+    image: '/personagem-mario.svg',
+    dateBadge: '06/11',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'PERSONAGEM WOODY',
-    subtitle: 'Tem uma cobra na minha bota! O xerife mais querido de Toy Story chega para encantar a criançada com fotos e grandes aventuras!',
-    image: '/personagem-woody.svg',
-    dateBadge: '17/10',
-    time: 'A partir das 19h00',
+    title: 'PERSONAGEM SONIC',
+    subtitle: 'Sonic na programação de sábado da unidade Beto Carrero.',
+    image: '/personagem-sonic.svg',
+    dateBadge: '07/11',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
   },
@@ -546,10 +546,9 @@ export const AGENDA_PERSONAGENS: AgendaItem[] = [
     id: 'domingo',
     day: 'DOMINGO',
     title: 'PERSONAGEM BARBIE',
-    subtitle: 'O encanto e glamour do mundo cor-de-rosa desembarcam no Pub em uma sessão mágica e inesquecível para toda a família!',
+    subtitle: 'Barbie na programação de domingo da unidade Beto Carrero.',
     image: '/personagem-barbie.svg',
-    dateBadge: '18/10',
-    time: 'A partir das 19h00',
+    dateBadge: '08/11',
     location: 'Unidade Beto Carrero • Av. Alfredo Brunetti, 631',
     highlight: true
   }
@@ -562,7 +561,7 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     id: 'quarta',
     day: 'QUARTA',
     title: 'PUB FECHADO',
-    subtitle: 'Dia de recarregar as energias e preparar a cozinha para um final de semana estelar no Burger Film\'s!',
+    subtitle: 'O Pub não abre às quartas-feiras.',
     image: 'https://img.supremasite.com.br/burguer/bgsc.webp',
     location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
   },
@@ -570,22 +569,20 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     id: 'sexta',
     day: 'SEXTA',
     title: 'NOITE DA PIZZA',
-    subtitle: 'Deliciosas pizzas artesanais temáticas com molhos especiais e bordas recheadas de cinema!',
+    subtitle: 'Sexta-feira é noite de pizza no Pub & Delivery.',
     image: '/agenda-noite-pizza.svg',
     tagBadge: 'PIZZA FILM\'S',
-    dateBadge: '16/10',
-    time: 'A partir das 18h00',
+    dateBadge: '06/11',
     location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
   },
   {
     id: 'sabado',
     day: 'SÁBADO',
-    title: 'MÚSICA AO VIVO COM AQUINO',
-    subtitle: 'Uma noite inesquecível de música ao vivo com o cantor Aquino, grandes sucessos, muito chopp artesanal e os melhores burgers da região!',
+    title: 'MÚSICA AO VIVO COM PAULINHO GOUVÊA',
+    subtitle: 'Música ao vivo com Paulinho Gouvêa no Pub & Delivery.',
     image: '/agenda-musica-aovivo.svg',
     tagBadge: 'AO VIVO',
-    dateBadge: '17/10',
-    time: 'A partir das 19h30',
+    dateBadge: '07/11',
     location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC',
     highlight: true
   },
@@ -593,9 +590,8 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
     id: 'domingo-quinta',
     day: 'DOMINGO A QUINTA',
     title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: '(EXCETO NA QUARTA) - Experimente toda a nossa seleção estelar em versões colecionáveis!',
+    subtitle: 'Exceto às quartas-feiras, quando o Pub está fechado.',
     image: '/agenda-rodizio-miniburger.svg',
-    time: 'A partir das 18h00',
     location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
   }
 ];
@@ -608,7 +604,7 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
 export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string; day?: string; id?: string; image?: string }): string {
   const text = `${item.title || ''} ${item.subtitle || ''} ${item.day || ''} ${item.id || ''}`.toLowerCase();
   
-  if (text.includes('fechado') || text.includes('quarta') || text.includes('recarregar') || text.includes('intervalo')) {
+  if (item.title?.toLowerCase().includes('fechado') || item.day?.toLowerCase() === 'quarta') {
     return 'https://img.supremasite.com.br/burguer/bgsc.webp';
   }
   if (text.includes('pernalonga') || text.includes('bugs') || text.includes('coelho')) {
@@ -632,7 +628,7 @@ export function getAgendaEmulatedImage(item: { title?: string; subtitle?: string
   if (text.includes('ferro') || text.includes('iron') || text.includes('homem de ferro')) {
     return '/personagem-homem-de-ferro.svg';
   }
-  if (text.includes('mario') || text.includes('super mario')) {
+  if (text.includes('mario') || text.includes('mário')) {
     return '/personagem-mario.svg';
   }
   if (text.includes('aranha') || text.includes('spider') || text.includes('peter')) {
