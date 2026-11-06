@@ -37,7 +37,7 @@ export default function AgendaSection() {
       else if (lower.includes('esponja') || lower.includes('bob')) icon = '🧽';
       else if (lower.includes('buzz')) icon = '🚀';
       else if (lower.includes('ferro') || lower.includes('iron')) icon = '🦾';
-      else if (lower.includes('mario')) icon = '🍄';
+      else if ((lower.includes('mario') || lower.includes('mário'))) icon = '🍄';
       else if (lower.includes('sonic')) icon = '🦔';
       else if (lower.includes('senna')) icon = '🏎️';
       else if (lower.includes('marshall')) icon = '🚒';
