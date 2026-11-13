@@ -18,7 +18,7 @@ export default function AgendaSection() {
     : 'https://maps.google.com/?q=Av.+Eug%C3%AAnio+Krause,+3045+-+Centro,+Penha+-+SC';
 
   const reservationMessage = encodeURIComponent(
-    `Olá Burger Film's! 🎬 Gostaria de reservar uma mesa para a programação de ${
+    `Olá Burger Film's! 🎬 Gostaria de consultar as próximas datas e a disponibilidade da programação de ${
       activeTab === 'personagens' 
         ? 'Personagens (Unidade Beto Carrero • Av. Alfredo Brunetti, 631)' 
         : 'Agenda Semanal (Unidade Centro • Av. Eugênio Krause, 3045)'
@@ -45,7 +45,7 @@ export default function AgendaSection() {
       else if (lower.includes('aranha') || lower.includes('spider')) icon = '🕷️';
       return {
         icon,
-        text: `${p.title}${p.dateBadge ? ` ${p.dateBadge}` : ''}`
+        text: `Programação anterior: ${p.title}${p.dateBadge ? ` ${p.dateBadge}` : ''}`
       };
     }),
     ...AGENDA_SEMANAL.map((s) => {
@@ -109,7 +109,7 @@ export default function AgendaSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-bf-red"></span>
             </span>
-            <span className="tracking-wider">PROGRAMAÇÃO OFICIAL ATUALIZADA</span>
+            <span className="tracking-wider">AGENDA: CONSULTE AS PRÓXIMAS DATAS</span>
             <Flame className="w-3.5 h-3.5 text-bf-red animate-bounce" />
           </motion.div>
         </div>
@@ -150,10 +150,10 @@ export default function AgendaSection() {
             }`}
           >
             <Smile className={`w-5 h-5 ${activeTab === 'personagens' ? 'text-bf-red animate-bounce' : ''}`} />
-            <span>🎭 AGENDA DE PERSONAGENS</span>
+            <span>🎭 PROGRAMAÇÃO ANTERIOR</span>
             {activeTab === 'personagens' && (
               <span className="absolute -top-2 -right-2 bg-bf-red text-white text-[9px] px-2 py-0.5 rounded-full font-black animate-pulse-whatsapp border border-bf-black">
-                VIP
+                HISTÓRICO
               </span>
             )}
           </button>
@@ -205,12 +205,12 @@ export default function AgendaSection() {
           <div className="text-center pt-2 pb-4">
             <h3 className="text-2xl sm:text-3xl font-display uppercase tracking-wider text-bf-yellow flex items-center justify-center gap-2">
               <Sparkles className="w-6 h-6 text-bf-yellow animate-pulse" />
-              <span>{activeTab === 'personagens' ? 'AGENDA DE PERSONAGENS' : 'AGENDA SEMANAL'}</span>
+              <span>{activeTab === 'personagens' ? 'PROGRAMAÇÃO ANTERIOR' : 'AGENDA SEMANAL'}</span>
               <Sparkles className="w-6 h-6 text-bf-yellow animate-pulse" />
             </h3>
             <p className="text-xs sm:text-sm font-baloo text-gray-300 font-semibold mt-1">
               {activeTab === 'personagens'
-                ? 'Encontros especiais, sessões de fotos e momentos inesquecíveis'
+                ? 'Agenda de personagens de 6 a 8 de novembro de 2026. Estas datas já passaram; consulte as próximas pelo WhatsApp.'
                 : 'Pizzas artesanais, rodízio de mini burgers e experiências gastronômicas'}
             </p>
           </div>
@@ -279,7 +279,7 @@ export default function AgendaSection() {
 
                           {item.highlight && (
                             <span className="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-baloo-caps font-bold px-2 py-0.5 rounded-full hidden sm:inline-block">
-                              ★ IMPERDÍVEL
+                              {activeTab === 'personagens' ? 'DATA PASSADA' : '★ DESTAQUE'}
                             </span>
                           )}
 
@@ -364,7 +364,7 @@ export default function AgendaSection() {
               className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-bf-yellow to-amber-500 text-bf-black font-baloo-caps text-xs sm:text-sm font-black border-3 border-bf-black shadow-[4px_4px_0px_0px_#FFFFFF] hover:shadow-[2px_2px_0px_0px_#FFFFFF] transition-all flex items-center justify-center gap-2 shrink-0 group cursor-pointer"
             >
               <Ticket className="w-5 h-5 text-bf-black group-hover:rotate-12 transition-transform" />
-              <span>GARANTIR MESA / RESERVAR VIA WHATSAPP</span>
+              <span>CONSULTAR PRÓXIMAS DATAS</span>
               <MessageCircle className="w-4 h-4 text-bf-black ml-1" />
             </motion.a>
 
