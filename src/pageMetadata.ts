@@ -1,7 +1,15 @@
+import {getBlogPostForView} from './blogArticles';
 import { GLOBAL_SEO_DATA, NEIGHBORHOODS, type SEOMetadata } from './seoData';
 
 // The build and client use one source of metadata. Delivery areas are not branches.
 export function getPageMetadata(view: string): SEOMetadata {
+  const post=getBlogPostForView(view);
+  if(post){
+    const origin='https://www.burgerfilms.com.br';
+    const canonicalUrl=origin+'/blog/'+post.slug;
+    const image=post.image.startsWith('/')?origin+post.image:post.image;
+    return {...GLOBAL_SEO_DATA.blog,title:post.title+' | Burger Films',description:post.excerpt,canonicalUrl,ogImage:image,keywords:'Burger Films, gastronomia em Penha, Penha SC, Armação', structuredData:{'@context':'https://schema.org','@graph':[{'@type':'BlogPosting','@id':canonicalUrl+'#article',url:canonicalUrl,headline:post.title,description:post.excerpt,datePublished:post.dateIso,image,mainEntityOfPage:canonicalUrl,inLanguage:'pt-BR',publisher:{'@type':'Organization',name:'Burger Films',url:origin+'/'}},{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Início',item:origin+'/'},{'@type':'ListItem',position:2,name:'Blog',item:origin+'/blog'},{'@type':'ListItem',position:3,name:post.title,item:canonicalUrl}]}]}};
+  }
   if (view === 'cardapio-imprimir') {
     return { ...GLOBAL_SEO_DATA.home, title: 'Cardápio para imprimir | Burger Films', canonicalUrl: 'https://www.burgerfilms.com.br/cardapio-imprimir' };
   }

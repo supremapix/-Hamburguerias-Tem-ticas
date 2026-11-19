@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Film, ArrowLeft, Calendar, User, Clock, ChevronRight, Search, Heart, Share2, Sparkles, Star, Trophy, Utensils, AlertCircle } from 'lucide-react';
+import {NEW_BLOG_POSTS} from '../../blogArticles';
 import { PROMOCOES_PASSADAS_COPA, PastPromotionBurger } from '../../data';
 
 interface PageProps {
   onNavigate: (view: any) => void;
   key?: string;
+  initialSlug?: string;
 }
 
 interface BlogPost {
@@ -19,6 +21,9 @@ interface BlogPost {
   date: string;
   author: string;
   readTime: string;
+  dateIso?: string;
+  imageAlt?: string;
+  links?: string[][];
   isPastPromoCollection?: boolean;
   pastPromosList?: PastPromotionBurger[];
 }
@@ -114,10 +119,10 @@ const ORIGINAL_BLOG_POSTS: BlogPost[] = [
   }
 ];
 
-const BLOG_POSTS: BlogPost[] = [SINGLE_PAST_PROMO_POST, ...ORIGINAL_BLOG_POSTS];
+const BLOG_POSTS: BlogPost[] = [...NEW_BLOG_POSTS.map(p=>p as BlogPost), SINGLE_PAST_PROMO_POST, ...ORIGINAL_BLOG_POSTS];
 
-export default function Blog({ onNavigate }: PageProps) {
-  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+export default function Blog({ onNavigate, initialSlug }: PageProps) {
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(()=>BLOG_POSTS.find(p=>p.slug===initialSlug)??null);
   const [activeCategory, setActiveCategory] = useState<string>('Todos');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [likes, setLikes] = useState<Record<string, number>>({
@@ -141,24 +146,25 @@ export default function Blog({ onNavigate }: PageProps) {
   const handleLike = (postId: string, e: React.MouseEvent) => {
     e.stopPropagation();
     if (hasLiked[postId]) {
-      setLikes(prev => ({ ...prev, [postId]: prev[postId] - 1 }));
+      setLikes(prev => ({ ...prev, [postId]: (prev[postId]??1) - 1 }));
       setHasLiked(prev => ({ ...prev, [postId]: false }));
     } else {
-      setLikes(prev => ({ ...prev, [postId]: prev[postId] + 1 }));
+      setLikes(prev => ({ ...prev, [postId]: (prev[postId]??0) + 1 }));
       setHasLiked(prev => ({ ...prev, [postId]: true }));
     }
   };
 
   const handleShare = (post: BlogPost, e: React.MouseEvent) => {
     e.stopPropagation();
+    const url = `${window.location.origin}/blog${post.dateIso ? '/'+post.slug : '?post='+post.slug}`;
     if (navigator.share) {
       navigator.share({
         title: post.title,
         text: post.excerpt,
-        url: window.location.href
+        url
       }).catch(console.error);
     } else {
-      navigator.clipboard.writeText(`${window.location.origin}/blog?post=${post.slug}`);
+      navigator.clipboard.writeText(url);
       alert('Link do artigo copiado com sucesso! Compartilhe com os amigos 🎬');
     }
   };
@@ -234,6 +240,7 @@ export default function Blog({ onNavigate }: PageProps) {
                   <motion.article
                     key={post.id}
                     onClick={() => {
+                      if(post.dateIso){onNavigate('blog/'+post.slug);return;}
                       setSelectedPost(post);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
@@ -247,7 +254,7 @@ export default function Blog({ onNavigate }: PageProps) {
                       <div className="relative h-48 md:h-56 overflow-hidden border-b-3 border-bf-black">
                         <img
                           src={post.image}
-                          alt={post.title}
+                          alt={post.imageAlt??post.title}
                           referrerPolicy="no-referrer"
                           onError={(e) => {
                             (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
@@ -288,10 +295,10 @@ export default function Blog({ onNavigate }: PageProps) {
 
                     {/* Footer Interactions */}
                     <div className="px-6 md:px-7 pb-6 pt-4 border-t border-dashed border-gray-200 flex items-center justify-between">
-                      <div className="flex items-center gap-1.5 font-baloo-caps font-extrabold text-xs text-bf-red group-hover:translate-x-1 transition-transform">
+                      {post.dateIso ? <a href={'/blog/'+post.slug} onClick={e=>{if(e.ctrlKey||e.metaKey||e.shiftKey||e.altKey){e.stopPropagation();return;}e.preventDefault();e.stopPropagation();onNavigate('blog/'+post.slug);}} className="inline-flex min-h-11 items-center gap-1.5 font-baloo-caps font-extrabold text-xs text-bf-red"><span>Ler matéria</span><ChevronRight className="w-3.5 h-3.5" aria-hidden="true"/></a> : <div className="flex items-center gap-1.5 font-baloo-caps font-extrabold text-xs text-bf-red group-hover:translate-x-1 transition-transform">
                         <span>Luz, Câmera, Ler</span>
                         <ChevronRight className="w-3.5 h-3.5" />
-                      </div>
+                      </div> }
 
                       <div className="flex items-center gap-3">
                         <button
@@ -303,7 +310,7 @@ export default function Blog({ onNavigate }: PageProps) {
                           }`}
                         >
                           <Heart className={`w-3.5 h-3.5 ${hasLiked[post.id] ? 'fill-current text-bf-red' : ''}`} />
-                          <span>{likes[post.id]}</span>
+                          <span>{(likes[post.id]??0)}</span>
                         </button>
                         <button
                           onClick={(e) => handleShare(post, e)}
@@ -339,7 +346,7 @@ export default function Blog({ onNavigate }: PageProps) {
             <div className="relative h-64 md:h-96 w-full border-b-3 border-bf-black">
               <img
                 src={selectedPost.image}
-                alt={selectedPost.title}
+                alt={selectedPost.imageAlt??selectedPost.title}
                 referrerPolicy="no-referrer"
                 onError={(e) => {
                   (e.currentTarget as HTMLImageElement).src = 'https://img.supremasite.com.br/burguer/bgsc.webp';
@@ -350,7 +357,7 @@ export default function Blog({ onNavigate }: PageProps) {
               
               {/* Back Button */}
               <button
-                onClick={() => setSelectedPost(null)}
+                onClick={() => {if(initialSlug){onNavigate('blog');return;}setSelectedPost(null);}}
                 className="absolute top-4 left-4 flex items-center gap-2 bg-bf-white text-bf-black hover:bg-bf-yellow font-baloo-caps text-xs font-black px-4 py-2 rounded-full border-2 border-bf-black shadow-[2px_2px_0_#1a1a1a] transition-all cursor-pointer focus:outline-none"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
@@ -415,6 +422,10 @@ export default function Blog({ onNavigate }: PageProps) {
                 ))}
               </div>
 
+              {selectedPost.links?.length ? <section aria-label="Links e fontes" className="mt-7 border-t border-gray-200 pt-5 font-baloo">
+                <h2 className="text-lg font-bold mb-2">Links e fontes</h2>
+                <ul className="space-y-2">{selectedPost.links.map(([label,href])=><li key={href}><a className="underline text-bf-black" href={href} {...(href.startsWith('https:')?{target:'_blank',rel:'noopener noreferrer'}:{})}>{label}</a></li>)}</ul>
+              </section> : null}
               {/* Grid of All 8 Past Promotion Burgers */}
               {selectedPost.isPastPromoCollection && selectedPost.pastPromosList && (
                 <div className="my-10 not-prose">
@@ -518,7 +529,7 @@ export default function Blog({ onNavigate }: PageProps) {
               {/* Article Footer Controls */}
               <div className="mt-12 pt-8 border-t border-dashed border-gray-200 flex flex-wrap gap-4 items-center justify-between">
                 <button
-                  onClick={() => setSelectedPost(null)}
+                  onClick={() => {if(initialSlug){onNavigate('blog');return;}setSelectedPost(null);}}
                   className="flex items-center gap-2 text-xs font-baloo-caps font-black text-gray-500 hover:text-bf-red transition-all cursor-pointer focus:outline-none"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
@@ -535,7 +546,7 @@ export default function Blog({ onNavigate }: PageProps) {
                     }`}
                   >
                     <Heart className={`w-3.5 h-3.5 ${hasLiked[selectedPost.id] ? 'fill-current text-bf-white' : ''}`} />
-                    <span>Curtir ({likes[selectedPost.id]})</span>
+                    <span>Curtir ({(likes[selectedPost.id]??0)})</span>
                   </button>
                   <button
                     onClick={(e) => handleShare(selectedPost, e)}

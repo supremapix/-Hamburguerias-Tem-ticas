@@ -23,6 +23,7 @@ import UnidadeEugenio from './components/pages/UnidadeEugenio';
 import Sitemap from './components/pages/Sitemap';
 import CardapioImprimir from './components/pages/CardapioImprimir';
 import Blog from './components/pages/Blog';
+import {getBlogPostForView} from './blogArticles';
 import NotFound from './components/pages/NotFound';
 
 // Import newly created neighborhood pages
@@ -50,6 +51,7 @@ type ViewType =
   | 'bairro-sao-cristovao'
   | 'bairro-sao-miguel'
   | 'blog'
+  | `blog/${string}`
   | 'not-found';
 
 const getInitialView = (): ViewType => {
@@ -63,7 +65,7 @@ const getInitialView = (): ViewType => {
     'bairro-santa-lidia', 'bairro-sao-cristovao', 'bairro-sao-miguel', 'blog', 'not-found'
   ];
 
-  if (validViews.includes(path as ViewType)) {
+  if (validViews.includes(path as ViewType) || getBlogPostForView(path)) {
     return path as ViewType;
   }
   return 'not-found';
@@ -173,8 +175,8 @@ export default function App() {
               <CardapioImprimir key="cardapio-imprimir" onNavigate={handleNavigate} />
             )}
 
-            {currentView === 'blog' && (
-              <Blog key="blog" onNavigate={handleNavigate} />
+            {(currentView === 'blog' || currentView.startsWith('blog/')) && (
+              <Blog key={currentView} initialSlug={currentView==='blog'?new URLSearchParams(window.location.search).get('post')??undefined:currentView.slice(5)} onNavigate={handleNavigate} />
             )}
 
             {currentView === 'not-found' && (
