@@ -1,5 +1,50 @@
 export const NEW_BLOG_POSTS = [
   {
+    "id": "natal-encantado-penha-2026",
+    "slug": "natal-encantado-penha-roteiro-jantar-na-armacao",
+    "title": "Natal Encantado em Penha: como combinar o passeio com um jantar na Armação",
+    "category": "Dicas",
+    "excerpt": "Vai passear pela Avenida Alfredo Brunetti? Veja como planejar o jantar na Armação e onde conferir a programação municipal.",
+    "image": "https://burgerfilms.chefware.com.br/25/600/0/de-volta-para-as-batatas-fritas.jpg",
+    "imageAlt": "Porção de batatas da Burger Films, imagem ilustrativa do roteiro",
+    "date": "23 de novembro de 2026",
+    "dateIso": "2026-11-23",
+    "author": "Equipe Burger Films",
+    "readTime": "2 min de leitura",
+    "content": [
+      "A Prefeitura de Penha anunciou a edição de 2026 do Natal Encantado. A Avenida Alfredo Brunetti aparece entre os locais previstos no calendário municipal. Antes de sair, confira o dia, o horário e o trecho do evento nos canais da Secretaria de Turismo: a programação pode mudar.",
+      "Quer combinar o passeio com um jantar? A unidade Alfredo Brunetti da Burger Films fica na Avenida Alfredo Brunetti, 631, na Armação. Use esse endereço para planejar o trajeto. A unidade Eugênio Krause fica em outro ponto de Penha.",
+      "Se for com crianças ou em grupo, decida de antemão se prefere jantar antes do passeio ou parar para comer na volta. Combine um ponto de encontro e deixe tempo para o deslocamento. Confira o cardápio, a disponibilidade e o horário da unidade escolhida antes de sair.",
+      "Este é um roteiro de passeio e gastronomia, não um anúncio de programação na hamburgueria. A agenda do Natal Encantado é municipal. Para atrações da Burger Films, confira o Instagram oficial da casa."
+    ],
+    "links": [
+      [
+        "Consultar a Secretaria de Turismo de Penha",
+        "https://penha.atende.net/cidadao/pagina/secretaria-de-turismo"
+      ],
+      [
+        "Ver o comunicado municipal sobre o Natal Encantado",
+        "https://penha.atende.net/cidadao/noticia/penha-abre-chamamento-publico-para-captacao-de-patrocinios-do-natal-encantado-2026"
+      ],
+      [
+        "Conhecer a unidade Alfredo Brunetti",
+        "/unidade-alfredo"
+      ],
+      [
+        "Ver o cardápio da Burger Films",
+      "/#menu"
+    ],
+    [
+      "Guia de gastronomia na Armação",
+        "/blog/gastronomia-na-armacao-o-que-conferir-em-penha"
+      ],
+      [
+        "Ver a agenda da Burger Films",
+        "https://www.instagram.com/burgerfilms_/"
+      ]
+    ]
+  },
+  {
     "id": "agenda-personagens-nov-2026",
     "slug": "agenda-personagens-brunetti-novembro-2026",
     "title": "Personagens na Burger Films: o que a Brunetti anunciou para novembro",
