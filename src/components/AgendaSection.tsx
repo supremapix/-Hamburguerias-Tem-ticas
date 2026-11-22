@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AGENDA_SEMANAL, getAgendaEmulatedImage } from '../data';
 import type { AgendaItem } from '../types';
-import { BURGER_INSTAGRAM, SURPRISE_ARTICLE, SURPRISE_WHATSAPP, getUpcomingSurpriseDates } from '../surpriseAgenda';
+import { BRUNETTI_AGENDA_LABEL, BURGER_INSTAGRAM, SURPRISE_ARTICLE, SURPRISE_WHATSAPP, getUpcomingSurpriseDates } from '../surpriseAgenda';
 import { MapPin, Sparkles, Smile, Calendar, Clapperboard, Star, MessageCircle, Flame, Ticket, Navigation, Clock } from 'lucide-react';
 
 export default function AgendaSection() {
@@ -17,7 +17,7 @@ export default function AgendaSection() {
   const isSurprise = activeTab === 'personagens';
   const currentItems: (AgendaItem & { dateIso?: string })[] = isSurprise
     ? upcomingDates.map(({date,day,badge}) => ({
-        id: date, day, title: 'Personagem surpresa', image: '', dateBadge: badge, dateIso: date,
+        id: date, day, title: BRUNETTI_AGENDA_LABEL, image: '', dateBadge: badge, dateIso: date,
         subtitle: 'Encontro presencial na unidade Alfredo Brunetti.',
         location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC',
       }))
@@ -33,7 +33,7 @@ export default function AgendaSection() {
 
   const whatsappUrl = isSurprise ? SURPRISE_WHATSAPP : `https://wa.me/5547992155989?text=${encodeURIComponent('Olá! Gostaria de consultar a programação atual da unidade da Av. Eugênio Krause, 3045.')}`;
   const tickerItems = [
-    ...(isSurprise ? [{ icon: '🎭', text: 'Personagem surpresa às sextas, sábados e domingos • Unidade Brunetti' }] : []),
+    ...(isSurprise ? [{ icon: '🎭', text: `${BRUNETTI_AGENDA_LABEL} às sextas, sábados e domingos • Unidade Brunetti` }] : []),
     ...AGENDA_SEMANAL.map(item => ({
       icon: item.id === 'sexta' ? '🍕' : item.id === 'sabado' ? '🎸' : item.id === 'domingo-quinta' ? '🍔' : 'ℹ️',
       text: item.id === 'quarta' ? 'Confira os horários do pub' : item.id === 'domingo-quinta' ? 'Consulte a disponibilidade do rodízio' : item.title
@@ -128,7 +128,7 @@ export default function AgendaSection() {
             }`}
           >
             <Smile className={`w-5 h-5 ${activeTab === 'personagens' ? 'text-bf-red animate-bounce' : ''}`} />
-            <span>🎭 PERSONAGEM SURPRESA</span>
+            <span>🎭 {BRUNETTI_AGENDA_LABEL}</span>
             {activeTab === 'personagens' && (
               <span className="absolute -top-2 -right-2 bg-bf-red text-white text-[9px] px-2 py-0.5 rounded-full font-black animate-pulse-whatsapp border border-bf-black">
                 PRESENCIAL
@@ -183,7 +183,7 @@ export default function AgendaSection() {
           <div className="text-center pt-2 pb-4">
             <h3 className="text-2xl sm:text-3xl font-display uppercase tracking-wider text-bf-yellow flex items-center justify-center gap-2">
               <Sparkles className="w-6 h-6 text-bf-yellow animate-pulse" />
-              <span>{activeTab === 'personagens' ? 'PERSONAGEM SURPRESA' : 'AGENDA SEMANAL'}</span>
+              <span>{activeTab === 'personagens' ? BRUNETTI_AGENDA_LABEL : 'AGENDA SEMANAL'}</span>
               <Sparkles className="w-6 h-6 text-bf-yellow animate-pulse" />
             </h3>
             <p className="text-xs sm:text-sm font-baloo text-gray-300 font-semibold mt-1">
