@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { GLOBAL_SEO_DATA, NEIGHBORHOODS } from './src/seoData.ts';
 import { getPageMetadata } from './src/pageMetadata.ts';
+import { SURPRISE_ARTICLE, SURPRISE_WHATSAPP, BURGER_INSTAGRAM } from './src/surpriseAgenda.ts';
 import { TRAVEL_GUIDES, TRAVEL_HUB, NEIGHBORHOOD_VIDEO_NOTES, PARK_DIRECTIONS, PARK_LODGING, SHORT_URL, getTravelGuide, guidePath } from './src/travelGuides.ts';
 
 const dist = path.resolve('dist');
@@ -33,6 +34,10 @@ for (const view of routes) {
     '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
   ];
   html = html.replace('</head>', () => `${tags.join('\n')}\n</head>`);
+  if (view === 'home') {
+    const agenda = `<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><h1>Hamburgueria temática em Penha, SC</h1><p>Conheça as unidades na Armação e confira o <a href="/guia-beto-carrero">guia do Beto Carrero</a>.</p><section id="agenda"><h2>Personagem surpresa: consulte se haverá encontro presencial</h2><p>Consulte a unidade da Av. Alfredo Brunetti, 631, Armação. Não há sessão confirmada nesta agenda. Antes de sair, confirme dia, horário e reserva com a casa.</p><ul><li><a href="${escape(SURPRISE_WHATSAPP)}">Consultar no WhatsApp oficial</a></li><li><a href="${BURGER_INSTAGRAM}">Instagram oficial</a></li><li><a href="${SURPRISE_ARTICLE}">Guia para planejar a visita</a></li></ul></section></main>`;
+    html = html.replace(/<div id="root"><\/div>/, () => '<div id="root">' + agenda + '</div>');
+  }
   if(post){
     const readable=`<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><a href="/blog">Voltar ao blog</a><article><h1>${escape(post.title)}</h1><p>${escape(post.excerpt)}</p><img style="max-width:100%;height:auto" decoding="async" src="${escape(post.image)}" alt="${escape(post.imageAlt)}">${post.content.map(p=>`<p>${escape(p)}</p>`).join('')}<h2>Links e fontes</h2><ul>${post.links.map(([t,url])=>`<li><a href="${escape(url)}">${escape(t)}</a></li>`).join('')}</ul></article></main>`;
     html=html.replace(/<div id="root"><\/div>/,()=>'<div id="root">'+readable+'</div>');

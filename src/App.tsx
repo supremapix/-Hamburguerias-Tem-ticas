@@ -85,6 +85,13 @@ export default function App() {
 
   const guide = getTravelGuide(currentView);
 
+  // Links to the public agenda keep the same fragment before and after mounting.
+  useEffect(() => {
+    if (currentView !== 'home' || window.location.hash !== '#agenda') return;
+    const frame = window.requestAnimationFrame(() => document.getElementById('agenda')?.scrollIntoView({ block: 'start' }));
+    return () => window.cancelAnimationFrame(frame);
+  }, [currentView]);
+
   // Sync state with back/forward history buttons
   useEffect(() => {
     const handlePopState = () => {

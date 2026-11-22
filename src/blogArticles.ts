@@ -1,21 +1,62 @@
 export const NEW_BLOG_POSTS = [
   {
+    "id": "personagem-surpresa-penha-visita",
+    "slug": "personagem-surpresa-em-penha-como-planejar-a-visita",
+    "title": "Personagem surpresa em Penha: como organizar a visita com crianças",
+    "category": "Dicas",
+    "excerpt": "Quer saber se haverá personagem presencial na Burger Films? Veja o que confirmar com a unidade Alfredo Brunetti e como organizar o jantar sem depender da atração.",
+    "image": "/android-chrome-512x512.png",
+    "imageAlt": "Logotipo da Burger Films em Penha",
+    "date": "21 de novembro de 2026",
+    "dateIso": "2026-11-21",
+    "author": "Equipe Burger Films",
+    "readTime": "3 min de leitura",
+    "content": [
+      "Personagem surpresa é um encontro presencial, quando a casa confirma uma sessão, sem divulgar antes quem vai aparecer. A agenda do site indica dias para planejar a consulta, não uma atração garantida. Pergunte especificamente pela unidade da Av. Alfredo Brunetti, 631, na Armação, em Penha. A Av. Eugênio Krause, 3045, é o endereço da outra unidade.",
+      "Ao pedir confirmação pelo WhatsApp, diga a data e quantas pessoas vão. Pergunte se haverá sessão nesse dia, qual o horário e se é preciso reservar. Se a experiência com fotos for importante, pergunte também se haverá uma fila ou outra orientação. Sem resposta afirmativa da casa para a sua data, planeje o jantar sem contar com a atividade.",
+      "Se o passeio vier depois do Beto Carrero, deixe margem entre a saída do parque e o jantar. Escolha um horário que faça sentido para o grupo mesmo que não haja sessão. Com crianças pequenas, vale combinar antes se elas querem se aproximar do personagem ou preferem só observar. Se o ambiente ou o tamanho do grupo fizer diferença, avise a equipe ao consultar.",
+      "Se não houver sessão no dia, o plano ainda pode funcionar: consulte o cardápio e escolha a unidade que encaixa no trajeto até a hospedagem. Use o guia do parque para montar a logística da viagem e abra a agenda da Burger Films para ver os canais da casa. Assim, o jantar não depende de uma atração que pode mudar."
+    ],
+    "links": [
+      [
+        "Consultar a agenda da Burger Films",
+        "/#agenda"
+      ],
+      [
+        "Confirmar a visita pelo WhatsApp oficial",
+        "https://wa.me/5547992155989?text=Ol%C3%A1%21%20Haver%C3%A1%20personagem%20surpresa%20na%20unidade%20Alfredo%20Brunetti%20na%20data%20da%20minha%20visita%3F"
+      ],
+      [
+        "Instagram da Burger Films",
+        "https://www.instagram.com/burgerfilms_/"
+      ],
+      [
+        "Conhecer a unidade Alfredo Brunetti",
+        "/unidade-alfredo"
+      ],
+      [
+        "Guia de visita ao Beto Carrero e Penha",
+        "/guia-beto-carrero"
+      ]
+    ]
+  },
+  {
     "id": "agenda-personagens-nov-2026",
     "slug": "agenda-personagens-brunetti-novembro-2026",
     "title": "Personagens na Burger Films: o que a Brunetti anunciou para novembro",
     "category": "Eventos",
-    "excerpt": "O perfil oficial divulgou uma programação de personagens de 13 a 22 de novembro na unidade Alfredo Brunetti, em Penha. Confira a publicação e confirme os detalhes antes da visita.",
-    "image": "/personagem-burger-films.webp",
-    "imageAlt": "Arte temática da Burger Films usada para ilustrar o guia",
+    "excerpt": "Registro da divulgação de 13 a 22 de novembro de 2026 na unidade Alfredo Brunetti, em Penha. Esta publicação não confirma sessões individuais nem futuras.",
+    "image": "/android-chrome-512x512.png",
+    "imageAlt": "Logotipo da Burger Films em Penha",
     "date": "19 de novembro de 2026",
     "dateIso": "2026-11-19",
     "author": "Equipe Burger Films",
     "readTime": "2 min de leitura",
     "content": [
       "A Burger Films divulgou no Instagram uma programação de personagens entre 13 e 22 de novembro de 2026. A publicação indica a filial da Avenida Alfredo Brunetti, 631, em Penha, próxima ao Beto Carrero World. O anúncio é dessa edição, não uma programação recorrente.",
-      "Quem pretende ir no fim da série anunciada deve consultar o post oficial e confirmar com a unidade se a sessão continua prevista no dia escolhido. O anúncio não detalha personagem ou horário para cada dia, nem informa condições de reservas ou fotos.",
+      "O anúncio original não confirma uma sessão individual para a data que você pretende visitar, nem detalha horários, reservas ou fotos. Não use esse registro como agenda atual.",
       "Se a ideia é jantar depois do parque, deixe margem para o deslocamento e confirme o endereço da Brunetti. A Eugênio Krause é outra unidade: não presuma que ela repita a programação divulgada para a Brunetti.",
-      "Se você chegou depois de 22 de novembro, trate esta matéria como registro da divulgação. Para próximas datas, confira o destaque Agenda no Instagram da casa."
+      "O período divulgado terminava em 22 de novembro de 2026. Para outras datas, abra a agenda atual e pergunte à unidade se haverá encontro no dia da visita."
     ],
     "links": [
       [
@@ -29,7 +70,8 @@ export const NEW_BLOG_POSTS = [
       [
         "Conhecer a unidade Alfredo Brunetti",
         "/unidade-alfredo"
-      ]
+      ],
+      ["Consultar a agenda atual", "/#agenda"]
     ]
   },
   {

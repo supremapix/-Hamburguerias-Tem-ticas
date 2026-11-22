@@ -1,54 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { AGENDA_PERSONAGENS, AGENDA_SEMANAL, getAgendaEmulatedImage } from '../data';
+import { AGENDA_SEMANAL, getAgendaEmulatedImage } from '../data';
+import { BURGER_INSTAGRAM, SURPRISE_ARTICLE, SURPRISE_WHATSAPP, getWeekendConsultation } from '../surpriseAgenda';
 import { MapPin, Sparkles, Smile, Calendar, Clapperboard, Star, MessageCircle, Flame, Ticket, Navigation, Clock } from 'lucide-react';
 
 export default function AgendaSection() {
   const [activeTab, setActiveTab] = useState<'personagens' | 'semanal'>('personagens');
   const [, setHoveredItemId] = useState<string | null>(null);
 
-  const currentItems = activeTab === 'personagens' ? AGENDA_PERSONAGENS : AGENDA_SEMANAL;
+  const [weekend, setWeekend] = useState(getWeekendConsultation);
+  useEffect(() => {
+    const interval = window.setInterval(() => setWeekend(getWeekendConsultation()), 60_000);
+    return () => window.clearInterval(interval);
+  }, []);
+  const isSurprise = activeTab === 'personagens';
+  const currentItems = isSurprise ? [] : AGENDA_SEMANAL;
   const currentAddress = activeTab === 'personagens' ? 'AV. ALFREDO BRUNETTI, 631' : 'AV. EUGÊNIO KRAUSE, 3045';
   const currentDetails = activeTab === 'personagens' 
     ? 'Penha - SC (Pertinho do Beto Carrero World!)'
-    : 'Centro, Penha - SC';
+    : 'Armação, Penha - SC';
   
   const googleMapsUrl = activeTab === 'personagens'
     ? 'https://maps.google.com/?q=Av.+Alfredo+Brunetti,+631+-+Armacao,+Penha+-+SC'
-    : 'https://maps.google.com/?q=Av.+Eug%C3%AAnio+Krause,+3045+-+Centro,+Penha+-+SC';
+    : 'https://maps.google.com/?q=Av.+Eug%C3%AAnio+Krause,+3045+-+Armacao,+Penha+-+SC';
 
-  const reservationMessage = encodeURIComponent(
-    `Olá Burger Film's! 🎬 Gostaria de consultar as próximas datas e a disponibilidade da programação de ${
-      activeTab === 'personagens' 
-        ? 'Personagens (Unidade Beto Carrero • Av. Alfredo Brunetti, 631)' 
-        : 'Agenda Semanal (Unidade Centro • Av. Eugênio Krause, 3045)'
-    }!`
-  );
-  const whatsappUrl = `https://wa.me/5547992155989?text=${reservationMessage}`;
-
-  // Itens para o ticker rotativo de cinema gerados dinamicamente
+  const whatsappUrl = isSurprise ? SURPRISE_WHATSAPP : `https://wa.me/5547992155989?text=${encodeURIComponent('Olá! Gostaria de consultar a programação atual da unidade da Av. Eugênio Krause, 3045.')}`;
   const tickerItems = [
-    ...AGENDA_PERSONAGENS.map((p) => {
-      const lower = p.title.toLowerCase();
-      let icon = '🎭';
-      if (lower.includes('pernalonga') || lower.includes('bugs')) icon = '🥕';
-      else if (lower.includes('barbie')) icon = '💖';
-      else if (lower.includes('woody')) icon = '🤠';
-      else if (lower.includes('esponja') || lower.includes('bob')) icon = '🧽';
-      else if (lower.includes('buzz')) icon = '🚀';
-      else if (lower.includes('ferro') || lower.includes('iron')) icon = '🦾';
-      else if ((lower.includes('mario') || lower.includes('mário'))) icon = '🍄';
-      else if (lower.includes('sonic')) icon = '🦔';
-      else if (lower.includes('senna')) icon = '🏎️';
-      else if (lower.includes('marshall')) icon = '🚒';
-      else if (lower.includes('chase')) icon = '👮';
-      else if (lower.includes('aranha') || lower.includes('spider')) icon = '🕷️';
-      return {
-        icon,
-        text: `Programação anterior: ${p.title}${p.dateBadge ? ` ${p.dateBadge}` : ''}`
-      };
-    }),
-    ...AGENDA_SEMANAL.map((s) => {
+    { icon: '🎭', text: 'Personagem surpresa: confira a disponibilidade com a unidade Brunetti' },
+    ...AGENDA_SEMANAL.filter(s => !s.dateBadge).map((s) => {
       const lower = s.title.toLowerCase();
       let icon = '🍔';
       if (lower.includes('aquino') || lower.includes('paulinho') || lower.includes('música') || lower.includes('musica')) icon = '🎸';
@@ -63,7 +42,7 @@ export default function AgendaSection() {
   ];
 
   return (
-    <section id="agenda" className="py-24 bg-bf-cream relative overflow-hidden">
+    <section id="agenda" className="scroll-mt-24 py-24 bg-bf-cream relative overflow-hidden">
       
       {/* Hollywood Cinema Spotlight Beams */}
       <div className="absolute -top-32 -left-20 w-96 h-[600px] bg-gradient-to-b from-yellow-300/35 via-amber-400/10 to-transparent blur-3xl pointer-events-none origin-top animate-cinema-spotlight-l" />
@@ -150,10 +129,10 @@ export default function AgendaSection() {
             }`}
           >
             <Smile className={`w-5 h-5 ${activeTab === 'personagens' ? 'text-bf-red animate-bounce' : ''}`} />
-            <span>🎭 PROGRAMAÇÃO ANTERIOR</span>
+            <span>🎭 PERSONAGEM SURPRESA</span>
             {activeTab === 'personagens' && (
               <span className="absolute -top-2 -right-2 bg-bf-red text-white text-[9px] px-2 py-0.5 rounded-full font-black animate-pulse-whatsapp border border-bf-black">
-                HISTÓRICO
+                CONSULTE
               </span>
             )}
           </button>
@@ -205,12 +184,12 @@ export default function AgendaSection() {
           <div className="text-center pt-2 pb-4">
             <h3 className="text-2xl sm:text-3xl font-display uppercase tracking-wider text-bf-yellow flex items-center justify-center gap-2">
               <Sparkles className="w-6 h-6 text-bf-yellow animate-pulse" />
-              <span>{activeTab === 'personagens' ? 'PROGRAMAÇÃO ANTERIOR' : 'AGENDA SEMANAL'}</span>
+              <span>{activeTab === 'personagens' ? 'PERSONAGEM SURPRESA' : 'AGENDA SEMANAL'}</span>
               <Sparkles className="w-6 h-6 text-bf-yellow animate-pulse" />
             </h3>
             <p className="text-xs sm:text-sm font-baloo text-gray-300 font-semibold mt-1">
               {activeTab === 'personagens'
-                ? 'Agenda de personagens de 6 a 8 de novembro de 2026. Estas datas já passaram; consulte as próximas pelo WhatsApp.'
+                ? 'Encontro presencial na Unidade Alfredo Brunetti, quando confirmado pela equipe. A identidade do personagem não é anunciada aqui.'
                 : 'Pizzas artesanais, rodízio de mini burgers e experiências gastronômicas'}
             </p>
           </div>
@@ -225,6 +204,20 @@ export default function AgendaSection() {
               transition={{ duration: 0.25 }}
               className="flex flex-col gap-6 md:gap-8 my-4 pl-3 pr-3 sm:px-6"
             >
+              {isSurprise && (
+                <div className="rounded-2xl border-2 border-bf-yellow bg-bf-white p-5 text-bf-black sm:p-7">
+                  <h4 className="font-display text-xl">Consulte o fim de semana</h4>
+                  <ul className="my-3 flex flex-wrap gap-2" aria-label="Dias para consulta, sem sessão confirmada">
+                    {weekend.map(({date,label}) => <li key={date}><time dateTime={date} className="inline-block rounded-lg bg-bf-cream px-3 py-2 font-bold capitalize">{label}</time></li>)}
+                  </ul>
+                  <p className="text-base font-bold">Nenhuma sessão está confirmada nesta agenda.</p>
+                  <p className="mt-2 text-sm leading-relaxed">Os dias acima são só para planejar a consulta. Antes de sair, pergunte à casa se haverá personagem no seu dia, em que horário e se precisa reservar.</p>
+                  <p className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm font-bold">
+                    <a className="underline" href={BURGER_INSTAGRAM} target="_blank" rel="noopener noreferrer">Instagram oficial</a>
+                    <a className="underline" href={SURPRISE_ARTICLE}>Guia para planejar a visita</a>
+                  </p>
+                </div>
+              )}
               {currentItems.map((item, i) => (
                 <motion.div
                   key={item.id}
@@ -277,9 +270,9 @@ export default function AgendaSection() {
                             </span>
                           )}
 
-                          {item.highlight && (
-                            <span className="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-baloo-caps font-bold px-2 py-0.5 rounded-full hidden sm:inline-block">
-                              {activeTab === 'personagens' ? 'DATA PASSADA' : '★ DESTAQUE'}
+                          {(item.highlight || item.dateBadge) && (
+                            <span className="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-baloo-caps font-bold px-2 py-0.5 rounded-full inline-block">
+                              {item.dateBadge ? 'DATA PASSADA · NOV/2026' : '★ DESTAQUE'}
                             </span>
                           )}
 
@@ -343,7 +336,7 @@ export default function AgendaSection() {
                 <MapPin className="w-5 h-5 text-bf-yellow" />
               </div>
               <div className="text-left">
-                <p className="text-xs text-gray-400 font-baloo uppercase tracking-wider font-semibold">Local do Evento:</p>
+                <p className="text-xs text-gray-400 font-baloo uppercase tracking-wider font-semibold">{isSurprise ? 'Unidade para consulta:' : 'Endereço da unidade:'}</p>
                 <p className="text-sm sm:text-base font-display tracking-wider text-bf-yellow group-hover:underline flex items-center gap-1">
                   <span>{currentAddress}</span>
                   <Navigation className="w-3.5 h-3.5 inline opacity-70" />
@@ -364,7 +357,7 @@ export default function AgendaSection() {
               className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-bf-yellow to-amber-500 text-bf-black font-baloo-caps text-xs sm:text-sm font-black border-3 border-bf-black shadow-[4px_4px_0px_0px_#FFFFFF] hover:shadow-[2px_2px_0px_0px_#FFFFFF] transition-all flex items-center justify-center gap-2 shrink-0 group cursor-pointer"
             >
               <Ticket className="w-5 h-5 text-bf-black group-hover:rotate-12 transition-transform" />
-              <span>CONSULTAR PRÓXIMAS DATAS</span>
+              <span>{isSurprise ? 'CONFIRMAR NO WHATSAPP' : 'CONSULTAR PRÓXIMAS DATAS'}</span>
               <MessageCircle className="w-4 h-4 text-bf-black ml-1" />
             </motion.a>
 
@@ -379,4 +372,3 @@ export default function AgendaSection() {
     </section>
   );
 }
-
