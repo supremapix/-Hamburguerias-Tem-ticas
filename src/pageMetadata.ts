@@ -1,4 +1,5 @@
 import {getBlogPostForView} from './blogArticles';
+import { BF_ORIGIN, TRAVEL_HUB, getTravelGuide } from './travelGuides';
 import { GLOBAL_SEO_DATA, NEIGHBORHOODS, type SEOMetadata } from './seoData';
 
 // The build and client use one source of metadata. Delivery areas are not branches.
@@ -9,6 +10,30 @@ export function getPageMetadata(view: string): SEOMetadata {
     const canonicalUrl=origin+'/blog/'+post.slug;
     const image=post.image.startsWith('/')?origin+post.image:post.image;
     return {...GLOBAL_SEO_DATA.blog,title:post.title+' | Burger Films',description:post.excerpt,canonicalUrl,ogImage:image,keywords:'Burger Films, gastronomia em Penha, Penha SC, Armação', structuredData:{'@context':'https://schema.org','@graph':[{'@type':'BlogPosting','@id':canonicalUrl+'#article',url:canonicalUrl,headline:post.title,description:post.excerpt,datePublished:post.dateIso,image,mainEntityOfPage:canonicalUrl,inLanguage:'pt-BR',publisher:{'@type':'Organization',name:'Burger Films',url:origin+'/'}},{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Início',item:origin+'/'},{'@type':'ListItem',position:2,name:'Blog',item:origin+'/blog'},{'@type':'ListItem',position:3,name:post.title,item:canonicalUrl}]}]}};
+  }
+  const guide = getTravelGuide(view);
+  if (guide || view === TRAVEL_HUB) {
+    const canonicalUrl = BF_ORIGIN + '/' + view;
+    const heading = guide?.title ?? 'Guia do Beto Carrero e Burger Films em Penha';
+    const description = guide?.description ?? 'Roteiros para visitar o Beto Carrero World e comer em Penha. Confira os endereços da Burger Films e veja a unidade da Armação em vídeo.';
+    return {
+      ...GLOBAL_SEO_DATA.home,
+      title: heading + ' | Burger Films',
+      description, canonicalUrl,
+      keywords: 'Beto Carrero World, Penha SC, Armação, Burger Films',
+      ogImage: 'https://img.supremasite.com.br/burguer/img-og.webp',
+      structuredData: {
+        '@context': 'https://schema.org',
+        '@graph': [
+          { '@type': 'WebPage', '@id': canonicalUrl + '#webpage', url: canonicalUrl, name: heading, description, inLanguage: 'pt-BR' },
+          { '@type': 'BreadcrumbList', itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Início', item: BF_ORIGIN + '/' },
+            { '@type': 'ListItem', position: 2, name: 'Guia Beto Carrero', item: BF_ORIGIN + '/' + TRAVEL_HUB },
+            ...(guide ? [{ '@type': 'ListItem', position: 3, name: guide.origin, item: canonicalUrl }] : [])
+          ] }
+        ]
+      }
+    };
   }
   if (view === 'cardapio-imprimir') {
     return { ...GLOBAL_SEO_DATA.home, title: 'Cardápio para imprimir | Burger Films', canonicalUrl: 'https://www.burgerfilms.com.br/cardapio-imprimir' };

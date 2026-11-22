@@ -69,6 +69,7 @@ export default function Sitemap({ onNavigate }: PageProps) {
             </h3>
 
             <ul className="space-y-4 font-semibold text-sm">
+              <li><a href="/guia-beto-carrero" className="inline-flex min-h-11 items-center gap-2 font-bold text-bf-black underline"><MapPin className="h-4 w-4" aria-hidden="true" /> Guias para visitar o Beto Carrero</a></li>
               <li>
                 <a href="/"
 

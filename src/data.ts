@@ -1,16 +1,7 @@
 import { MenuItem, AgendaItem } from './types';
 
 export const MENU_ITEMS: MenuItem[] = [
-  // --- Burgers de Cinema (Especial Halloween + Linha Fixa) ---
-  {
-    id: 'fun-burger-halloween',
-    name: 'Fun Burger Halloween',
-    description: 'Pão Black C/ Gergelim, 2 Burgers de Fraldinha 90g Cada, Queijo Cheddar, Alface, Tomate e Repolho Roxo',
-    price: 44.90,
-    image: '/fun-burger-halloween.webp',
-    category: 'lanches',
-    subcategory: 'cinema'
-  },
+  // --- Burgers de Cinema ---
   {
     id: 'hulk-smash',
     name: 'Hulk Smash',

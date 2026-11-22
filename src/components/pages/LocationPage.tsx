@@ -1,4 +1,6 @@
 import React from 'react';
+import SupremaShort from '../SupremaShort';
+import { NEIGHBORHOOD_VIDEO_NOTES, TRAVEL_HUB } from '../../travelGuides';
 import { motion } from 'motion/react';
 import { MapPin, Clock, Phone, ArrowLeft, ShieldCheck, Heart, Sparkles, Navigation, DollarSign, Bike } from 'lucide-react';
 
@@ -72,6 +74,11 @@ export default function LocationPage({
           <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto mt-3 font-medium">
             Sabor de cinema e blends suculentos sem sair de casa! Entregamos com rapidez no bairro {name} em Penha-SC.
           </p>
+        </div>
+
+        <div className="mb-9">
+          <SupremaShort note={NEIGHBORHOOD_VIDEO_NOTES[slug]} />
+          <a href={`/${TRAVEL_HUB}`} className="mt-4 inline-flex min-h-11 items-center font-bold underline">Veja também os roteiros do Beto Carrero até a Burger Films</a>
         </div>
 
         {/* Main Feature Layout */}

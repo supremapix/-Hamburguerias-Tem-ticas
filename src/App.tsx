@@ -4,6 +4,8 @@ import { HelmetProvider } from 'react-helmet-async';
 import Header from './components/Header';
 import MobileMenu from './components/MobileMenu';
 import Hero from './components/Hero';
+import TravelGuidePage from './components/pages/TravelGuide';
+import { TRAVEL_HUB, getTravelGuide } from './travelGuides';
 import AgendaSection from './components/AgendaSection';
 import MenuSection from './components/MenuSection';
 import FAQSection from './components/FAQSection';
@@ -52,6 +54,12 @@ type ViewType =
   | 'bairro-sao-miguel'
   | 'blog'
   | `blog/${string}`
+  | 'guia-beto-carrero'
+  | `guia-beto-carrero/de-${string}`
+  | 'praia-alegre-penha'
+  | 'nossa-senhora-de-fatima-penha'
+  | 'sao-francisco-de-assis-penha'
+  | 'sao-nicolau-penha'
   | 'not-found';
 
 const getInitialView = (): ViewType => {
@@ -65,7 +73,7 @@ const getInitialView = (): ViewType => {
     'bairro-santa-lidia', 'bairro-sao-cristovao', 'bairro-sao-miguel', 'blog', 'not-found'
   ];
 
-  if (validViews.includes(path as ViewType) || getBlogPostForView(path)) {
+  if (validViews.includes(path as ViewType) || getBlogPostForView(path) || path === TRAVEL_HUB || getTravelGuide(path)) {
     return path as ViewType;
   }
   return 'not-found';
@@ -74,6 +82,8 @@ const getInitialView = (): ViewType => {
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentView, setCurrentView] = useState<ViewType>(getInitialView);
+
+  const guide = getTravelGuide(currentView);
 
   // Sync state with back/forward history buttons
   useEffect(() => {
@@ -177,6 +187,10 @@ export default function App() {
 
             {(currentView === 'blog' || currentView.startsWith('blog/')) && (
               <Blog key={currentView} initialSlug={currentView==='blog'?new URLSearchParams(window.location.search).get('post')??undefined:currentView.slice(5)} onNavigate={handleNavigate} />
+            )}
+
+            {(currentView === TRAVEL_HUB || guide) && (
+              <TravelGuidePage key={currentView} guide={guide} />
             )}
 
             {currentView === 'not-found' && (
