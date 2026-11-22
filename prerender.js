@@ -35,7 +35,7 @@ for (const view of routes) {
   ];
   html = html.replace('</head>', () => `${tags.join('\n')}\n</head>`);
   if (view === 'home') {
-    const agenda = `<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><h1>Hamburgueria temática em Penha, SC</h1><p>Conheça as unidades na Armação e confira o <a href="/guia-beto-carrero">guia do Beto Carrero</a>.</p><section id="agenda"><h2>${escape(BRUNETTI_AGENDA_LABEL)}</h2><p>Programação recorrente às sextas, sábados e domingos na unidade da Av. Alfredo Brunetti, 631, Armação. Confira as próximas datas na agenda ao carregar a página. Horários e programação podem mudar.</p><ul><li><a href="${escape(SURPRISE_WHATSAPP)}">Consultar no WhatsApp oficial</a></li><li><a href="${BURGER_INSTAGRAM}">Instagram oficial</a></li><li><a href="${SURPRISE_ARTICLE}">Guia para planejar a visita</a></li></ul></section></main>`;
+    const agenda = `<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><h1>Hamburgueria temática em Penha, SC</h1><p>Conheça as unidades na Armação e confira o <a href="/guia-beto-carrero">guia do Beto Carrero</a>.</p><section id="agenda"><h2>${escape(BRUNETTI_AGENDA_LABEL)}</h2><p>Programação recorrente às sextas, sábados e domingos na unidade da Av. Alfredo Brunetti, 631, Armação. Horários e programação podem mudar.</p><ul><li><a href="${escape(SURPRISE_WHATSAPP)}">Consultar no WhatsApp oficial</a></li><li><a href="${BURGER_INSTAGRAM}">Instagram oficial</a></li><li><a href="${SURPRISE_ARTICLE}">Guia para planejar a visita</a></li></ul></section></main>`;
     html = html.replace(/<div id="root"><\/div>/, () => '<div id="root">' + agenda + '</div>');
   }
   if(post){

@@ -1,23 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { AGENDA_SEMANAL, getAgendaEmulatedImage } from '../data';
 import type { AgendaItem } from '../types';
-import { BRUNETTI_AGENDA_LABEL, BURGER_INSTAGRAM, SURPRISE_ARTICLE, SURPRISE_WHATSAPP, getUpcomingSurpriseDates } from '../surpriseAgenda';
+import { BRUNETTI_AGENDA_DAYS, BRUNETTI_AGENDA_LABEL, BURGER_INSTAGRAM, SURPRISE_ARTICLE, SURPRISE_WHATSAPP } from '../surpriseAgenda';
 import { MapPin, Sparkles, Smile, Calendar, Clapperboard, Star, MessageCircle, Flame, Ticket, Navigation, Clock } from 'lucide-react';
 
 export default function AgendaSection() {
   const [activeTab, setActiveTab] = useState<'personagens' | 'semanal'>('personagens');
   const [, setHoveredItemId] = useState<string | null>(null);
 
-  const [upcomingDates, setUpcomingDates] = useState(getUpcomingSurpriseDates);
-  useEffect(() => {
-    const interval = window.setInterval(() => setUpcomingDates(getUpcomingSurpriseDates()), 60_000);
-    return () => window.clearInterval(interval);
-  }, []);
   const isSurprise = activeTab === 'personagens';
-  const currentItems: (AgendaItem & { dateIso?: string })[] = isSurprise
-    ? upcomingDates.map(({date,day,badge}) => ({
-        id: date, day, title: BRUNETTI_AGENDA_LABEL, image: '', dateBadge: badge, dateIso: date,
+  const currentItems: AgendaItem[] = isSurprise
+    ? BRUNETTI_AGENDA_DAYS.map(day => ({
+        id: day, day, title: BRUNETTI_AGENDA_LABEL, image: '',
         subtitle: 'Encontro presencial na unidade Alfredo Brunetti.',
         location: 'Av. Alfredo Brunetti, 631 • Armação, Penha - SC',
       }))
@@ -87,7 +82,7 @@ export default function AgendaSection() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-bf-red"></span>
             </span>
-            <span className="tracking-wider">AGENDA: VEJA AS PRÓXIMAS DATAS</span>
+            <span className="tracking-wider">AGENDA: VEJA A PROGRAMAÇÃO</span>
             <Flame className="w-3.5 h-3.5 text-bf-red animate-bounce" />
           </motion.div>
         </div>
@@ -293,14 +288,6 @@ export default function AgendaSection() {
                           </p>
                         )}
                       </div>
-
-                      {/* Right Date Badge */}
-                      {item.dateBadge && (
-                        <div className="absolute right-3 sm:right-6 top-3 sm:top-1/2 sm:-translate-y-1/2 bg-bf-red text-bf-white text-xs sm:text-sm font-baloo-caps font-extrabold px-3 py-1.5 rounded-full border-2 border-bf-black shadow-lg rotate-3 group-hover:rotate-12 group-hover:scale-110 transition-transform duration-200 select-none flex items-center gap-1">
-                          <span>📅</span>
-                          <time dateTime={item.dateIso}>{item.dateBadge}</time>
-                        </div>
-                      )}
 
                     </div>
 
