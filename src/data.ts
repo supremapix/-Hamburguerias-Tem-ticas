@@ -549,8 +549,16 @@ export const DEFAULT_FALLBACK_IMAGE = 'https://img.supremasite.com.br/burguer/bg
 
 export const AGENDA_SEMANAL: AgendaItem[] = [
   {
+    id: 'quarta',
+    day: 'QUARTA',
+    title: 'Pub fechado',
+    subtitle: 'Consulte os horários de funcionamento da unidade antes de sair. Este cartão não indica o status de agora.',
+    image: 'https://img.supremasite.com.br/burguer/bgsc.webp',
+    location: 'Av. Eugênio Krause, 3045 • Armação, Penha - SC'
+  },
+  {
     id: 'sexta',
-    day: 'PIZZA',
+    day: 'SEXTA',
     title: 'Noite da Pizza',
     subtitle: 'Consulte com a unidade quando será a próxima Noite da Pizza.',
     image: '/agenda-noite-pizza.svg',
@@ -558,12 +566,20 @@ export const AGENDA_SEMANAL: AgendaItem[] = [
   },
   {
     id: 'sabado',
-    day: 'AO VIVO',
+    day: 'SÁBADO',
     title: 'Música ao Vivo',
     subtitle: 'Consulte com a unidade as próximas apresentações e horários.',
     image: '/agenda-musica-aovivo.svg',
     location: 'Av. Eugênio Krause, 3045 • Armação, Penha - SC',
     highlight: true
+  },
+  {
+    id: 'domingo-quinta',
+    day: 'DOMINGO A QUINTA',
+    title: 'Rodízio de Mini Burgers',
+    subtitle: 'Consulte com a equipe se o rodízio está disponível nesta unidade.',
+    image: '/agenda-rodizio-miniburger.svg',
+    location: 'Av. Eugênio Krause, 3045 • Armação, Penha - SC'
   },
 ];
 

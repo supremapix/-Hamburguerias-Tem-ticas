@@ -8,8 +8,10 @@ assert.deepEqual(AGENDA_PERSONAGENS.map(({ day, title, dateBadge }) => ({ day, t
   { day: 'DOMINGO', title: 'PERSONAGEM BARBIE', dateBadge: '08/11' },
 ]);
 assert.deepEqual(AGENDA_SEMANAL.map(({ day, title, dateBadge }) => ({ day, title, dateBadge })), [
-  { day: 'PIZZA', title: 'Noite da Pizza', dateBadge: undefined },
-  { day: 'AO VIVO', title: 'Música ao Vivo', dateBadge: undefined },
+  { day: 'QUARTA', title: 'Pub fechado', dateBadge: undefined },
+  { day: 'SEXTA', title: 'Noite da Pizza', dateBadge: undefined },
+  { day: 'SÁBADO', title: 'Música ao Vivo', dateBadge: undefined },
+  { day: 'DOMINGO A QUINTA', title: 'Rodízio de Mini Burgers', dateBadge: undefined },
 ]);
 for (const item of AGENDA_PERSONAGENS) assert.match(item.location!, /Alfredo Brunetti, 631/);
 for (const item of AGENDA_SEMANAL) assert.match(item.location!, /Eugênio Krause, 3045/);
@@ -18,4 +20,4 @@ for (const item of [...AGENDA_PERSONAGENS, ...AGENDA_SEMANAL]) {
   assert.equal(getAgendaEmulatedImage(item), item.image, `Imagem de ${item.title}`);
   if (item.image.startsWith('/')) assert(fs.existsSync(`public${item.image}`));
 }
-console.log('Agenda checks passed: 3 legacy source cards preserved, 2 undated weekly items, addresses and no unconfirmed times.');
+console.log('Agenda checks passed: 3 legacy source cards preserved, 4 undated weekly items, addresses and no unconfirmed times.');

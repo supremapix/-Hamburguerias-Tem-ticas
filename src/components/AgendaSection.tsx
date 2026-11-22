@@ -33,10 +33,10 @@ export default function AgendaSection() {
 
   const whatsappUrl = isSurprise ? SURPRISE_WHATSAPP : `https://wa.me/5547992155989?text=${encodeURIComponent('Olá! Gostaria de consultar a programação atual da unidade da Av. Eugênio Krause, 3045.')}`;
   const tickerItems = [
-    { icon: '🎭', text: 'Personagem surpresa às sextas, sábados e domingos • Unidade Brunetti' },
+    ...(isSurprise ? [{ icon: '🎭', text: 'Personagem surpresa às sextas, sábados e domingos • Unidade Brunetti' }] : []),
     ...AGENDA_SEMANAL.map(item => ({
-      icon: item.id === 'sexta' ? '🍕' : '🎸',
-      text: item.title
+      icon: item.id === 'sexta' ? '🍕' : item.id === 'sabado' ? '🎸' : item.id === 'domingo-quinta' ? '🍔' : 'ℹ️',
+      text: item.id === 'quarta' ? 'Confira os horários do pub' : item.id === 'domingo-quinta' ? 'Consulte a disponibilidade do rodízio' : item.title
     }))
   ];
 
@@ -189,7 +189,7 @@ export default function AgendaSection() {
             <p className="text-xs sm:text-sm font-baloo text-gray-300 font-semibold mt-1">
               {activeTab === 'personagens'
                 ? 'Encontros presenciais às sextas, sábados e domingos. A identidade é surpresa. Horários e programação podem mudar.'
-                : 'Noite da Pizza e Música ao Vivo na unidade da Av. Eugênio Krause.'}
+                : 'Consulte o funcionamento e as atrações da unidade da Av. Eugênio Krause.'}
             </p>
           </div>
 
