@@ -38,8 +38,11 @@ export default function EnhancedSEO({ view }: EnhancedSEOProps) {
       <meta property="og:description" content={meta.description} />
       <meta property="og:image" content={meta.ogImage || "https://img.supremasite.com.br/burguer/img-og.webp"} />
       <meta property="og:image:secure_url" content={meta.ogImage || "https://img.supremasite.com.br/burguer/img-og.webp"} />
-      {!view.startsWith("blog/") && <><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /></>}
-      <meta property="og:image:alt" content="Burger Films - Hamburgueria Temática em Penha SC perto do Beto Carrero" />
+      {meta.ogImageWidth && meta.ogImageHeight ? <>
+        <meta property="og:image:width" content={String(meta.ogImageWidth)} />
+        <meta property="og:image:height" content={String(meta.ogImageHeight)} />
+      </> : !view.startsWith("blog/") && <><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /></>}
+      <meta property="og:image:alt" content={meta.ogImageAlt || "Burger Films - Hamburgueria Temática em Penha SC perto do Beto Carrero"} />
       <meta property="og:url" content={meta.canonicalUrl} />
       <meta property="og:site_name" content="Burger Films Pub & Delivery" />
       <meta property="og:locale" content="pt_BR" />

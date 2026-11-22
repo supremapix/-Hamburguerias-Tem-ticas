@@ -23,6 +23,8 @@ interface BlogPost {
   readTime: string;
   dateIso?: string;
   imageAlt?: string;
+  imageCaption?: string;
+  sections?: string[][];
   links?: string[][];
   isPastPromoCollection?: boolean;
   pastPromosList?: PastPromotionBurger[];
@@ -369,6 +371,8 @@ export default function Blog({ onNavigate, initialSlug }: PageProps) {
               </span>
             </div>
 
+            {selectedPost.imageCaption && <p className="px-6 pt-3 text-sm text-gray-600 md:px-10">{selectedPost.imageCaption}</p>}
+
             {/* Post Metadata & Article */}
             <div className="p-6 md:p-10">
               <div className="flex flex-wrap items-center gap-4 md:gap-6 text-gray-500 font-baloo text-xs md:text-sm font-medium mb-6">
@@ -421,6 +425,13 @@ export default function Blog({ onNavigate, initialSlug }: PageProps) {
                   </p>
                 ))}
               </div>
+
+              {selectedPost.sections?.length ? <div className="mt-8 space-y-7 font-baloo text-base leading-relaxed text-gray-700">
+                {selectedPost.sections.map(([heading, paragraph]) => <section key={heading}>
+                  <h2 className="mb-2 font-display text-xl text-bf-black md:text-2xl">{heading}</h2>
+                  <p>{paragraph}</p>
+                </section>)}
+              </div> : null}
 
               {selectedPost.links?.length ? <section aria-label="Links e fontes" className="mt-7 border-t border-gray-200 pt-5 font-baloo">
                 <h2 className="text-lg font-bold mb-2">Links e fontes</h2>
