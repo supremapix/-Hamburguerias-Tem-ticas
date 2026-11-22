@@ -4,6 +4,9 @@ export interface SEOMetadata {
   keywords: string;
   canonicalUrl: string;
   ogImage: string;
+  ogImageAlt?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   structuredData: any;
 }
 

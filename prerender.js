@@ -27,7 +27,7 @@ for (const view of routes) {
     `<meta data-rh="true" name="keywords" content="${escape(meta.keywords)}">`,
     `<meta data-rh="true" name="robots" content="${noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'}">`,
     ...(view === 'not-found' ? [] : [`<link data-rh="true" rel="canonical" href="${escape(meta.canonicalUrl)}">`]),
-    ...Object.entries({ type: post?'article':'website', title: meta.title, description: meta.description, url: meta.canonicalUrl, image: meta.ogImage, locale: 'pt_BR', site_name: 'Burger Films Pub & Delivery' }).map(([key, value]) => `<meta data-rh="true" property="og:${key}" content="${escape(value)}">`),
+    ...Object.entries({ type: post?'article':'website', title: meta.title, description: meta.description, url: meta.canonicalUrl, image: meta.ogImage, ...(meta.ogImageWidth && meta.ogImageHeight ? {'image:width': meta.ogImageWidth, 'image:height': meta.ogImageHeight} : {}), ...(meta.ogImageAlt ? {'image:alt': meta.ogImageAlt} : {}), locale: 'pt_BR', site_name: 'Burger Films Pub & Delivery' }).map(([key, value]) => `<meta data-rh="true" property="og:${key}" content="${escape(value)}">`),
     ...Object.entries({ card: 'summary_large_image', title: meta.title, description: meta.description, image: meta.ogImage }).map(([key, value]) => `<meta data-rh="true" name="twitter:${key}" content="${escape(value)}">`),
     ...(view === 'not-found' ? [] : [`<script data-rh="true" type="application/ld+json">${JSON.stringify(meta.structuredData).replaceAll('<', '\\u003c')}</script>`]),
     '<link rel="preconnect" href="https://fonts.googleapis.com">',
@@ -38,8 +38,12 @@ for (const view of routes) {
     const agenda = `<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><h1>Hamburgueria temática em Penha, SC</h1><p>Conheça as unidades na Armação e confira o <a href="/guia-beto-carrero">guia do Beto Carrero</a>.</p><section id="agenda"><h2>${escape(BRUNETTI_AGENDA_LABEL)}</h2><p>Programação recorrente às sextas, sábados e domingos na unidade da Av. Alfredo Brunetti, 631, Armação. Horários e programação podem mudar.</p><ul><li><a href="${escape(SURPRISE_WHATSAPP)}">Consultar no WhatsApp oficial</a></li><li><a href="${BURGER_INSTAGRAM}">Instagram oficial</a></li><li><a href="${SURPRISE_ARTICLE}">Guia para planejar a visita</a></li></ul></section></main>`;
     html = html.replace(/<div id="root"><\/div>/, () => '<div id="root">' + agenda + '</div>');
   }
+  if(view === 'blog') {
+    const index = `<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><h1>Blog da Burger Films</h1><ul>${NEW_BLOG_POSTS.map(item => `<li><a href="/blog/${escape(item.slug)}">${escape(item.title)}</a></li>`).join('')}</ul></main>`;
+    html=html.replace(/<div id="root"><\/div>/,()=>'<div id="root">'+index+'</div>');
+  }
   if(post){
-    const readable=`<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><a href="/blog">Voltar ao blog</a><article><h1>${escape(post.title)}</h1><p>${escape(post.excerpt)}</p><img style="max-width:100%;height:auto" decoding="async" src="${escape(post.image)}" alt="${escape(post.imageAlt)}">${post.content.map(p=>`<p>${escape(p)}</p>`).join('')}<h2>Links e fontes</h2><ul>${post.links.map(([t,url])=>`<li><a href="${escape(url)}">${escape(t)}</a></li>`).join('')}</ul></article></main>`;
+    const readable=`<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><a href="/blog">Voltar ao blog</a><article><h1>${escape(post.title)}</h1><p>${escape(post.excerpt)}</p><figure><img style="max-width:100%;height:auto" decoding="async" src="${escape(post.image)}" alt="${escape(post.imageAlt)}"${post.imageWidth && post.imageHeight ? ` width="${post.imageWidth}" height="${post.imageHeight}"` : ''}>${post.imageCaption ? `<figcaption>${escape(post.imageCaption)}</figcaption>` : ''}</figure>${post.content.map(p=>`<p>${escape(p)}</p>`).join('')}${post.sections?.map(([t,p])=>`<section><h2>${escape(t)}</h2><p>${escape(p)}</p></section>`).join('') ?? ''}<h2>Links e fontes</h2><ul>${post.links.map(([t,url])=>`<li><a href="${escape(url)}">${escape(t)}</a></li>`).join('')}</ul></article></main>`;
     html=html.replace(/<div id="root"><\/div>/,()=>'<div id="root">'+readable+'</div>');
   }
   const guide = getTravelGuide(view);

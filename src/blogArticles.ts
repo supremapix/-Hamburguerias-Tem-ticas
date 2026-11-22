@@ -1,5 +1,88 @@
 export const NEW_BLOG_POSTS = [
   {
+    "id": "historia-burger-films-penha",
+    "slug": "historia-burger-films-em-penha",
+    "title": "Do cinema à mesa: a história da Burger Films em Penha",
+    "category": "Bastidores",
+    "excerpt": "Uma história contada a partir de registros: o cardápio inspirado em filmes, as duas unidades de Penha e a estreia da casa no circuito Penha à Mesa.",
+    "image": "/historia-burger-films-penha.webp",
+    "imageAlt": "Hambúrguer sobre a mesa de um salão imaginário com cortinas vermelhas e luz de projetor",
+    "imageCaption": "Imagem ilustrativa. Não retrata uma unidade nem um lanche específico da Burger Films.",
+    "imageWidth": 1672,
+    "imageHeight": 940,
+    "date": "22 de novembro de 2026",
+    "dateIso": "2026-11-22",
+    "author": "Equipe Burger Films",
+    "readTime": "4 min de leitura",
+    "content": [
+      "Na Burger Films, o primeiro sinal de que cinema e cozinha dividem o mesmo endereço aparece no cardápio. Basta ler um nome como Coração Valente e descobrir, na linha seguinte, um hambúrguer de fraldinha com corações de frango. A brincadeira não termina no título: o nome ajuda a contar o que está no prato."
+    ],
+    "sections": [
+      [
+        "Outubro de 2024: o cinema no cardápio da Brunetti",
+        "Em outubro de 2024, um vídeo de divulgação da casa já apresentava hambúrgueres inspirados em filmes na Avenida Alfredo Brunetti, 631, na Armação. É um registro de que a proposta já estava em prática naquela data, não a data de fundação. A ideia aparece também no cardápio de pedidos, que reúne os lanches temáticos em uma seção própria."
+      ],
+      [
+        "Agosto de 2026: dois endereços e um festival",
+        "O catálogo da primeira edição do Penha à Mesa registra a participação da Burger Film’s e da Burger Film’s Pub. Na unidade da Brunetti, o festival apresentou um brioche com fraldinha, queijo coalho, camarão rosa crocante e geleia de maracujá, entre outros ingredientes. Foi uma forma de levar referências do litoral ao sanduíche. A receita integra o registro daquele festival; não é anúncio de disponibilidade no cardápio atual."
+      ],
+      [
+        "Antes do cardápio temático: a comida já fazia parte da saída",
+        "Nos Estados Unidos, o pós-guerra popularizou restaurantes drive-in, em que o pedido chegava ao carro estacionado. Um cartão-postal de cerca de 1958, preservado pelo museu The Henry Ford, registra uma curiosidade: o Garth’s Drive-In anunciava espaço para servir 97 carros e destacava seu Pizzaburger. No mesmo período, famílias e adolescentes também adotavam o cinema drive-in. Eram experiências distintas, não a origem da Burger Films, mas mostram como o lugar e o jeito de comer podem virar parte da lembrança da noite."
+      ],
+      [
+        "Como escolher a unidade em Penha",
+        "A casa tem páginas próprias para a Avenida Alfredo Brunetti, 631, e a Avenida Eugênio Krause, 3045. Se a ideia é jantar depois do Beto Carrero, confira qual endereço encaixa melhor no seu trajeto e consulte o cardápio antes de sair, especialmente se estiver procurando um lanche específico. A hamburgueria fica fora do parque."
+      ]
+    ],
+    "links": [
+      [
+        "Vídeo da unidade Brunetti (Suprema Vídeos, outubro de 2024)",
+        "https://www.youtube.com/watch?v=0o_XKKUh21s"
+      ],
+      [
+        "Primeira edição do Penha à Mesa (Prefeitura e Sebrae/SC)",
+        "https://penhaamesa.festivaisgastronomicos.com.br/"
+      ],
+      [
+        "Lista oficial de participantes, com as duas unidades",
+        "https://penhaamesa.festivaisgastronomicos.com.br/participantes"
+      ],
+      [
+        "Receita da unidade Brunetti no catálogo do festival",
+        "https://penhaamesa.festivaisgastronomicos.com.br/burger-film-s"
+      ],
+      [
+        "Cardápio de pedidos da Burger Films Pub & Delivery",
+        "https://burgerfilms.chefware.com.br/"
+      ],
+      [
+        "Acervo The Henry Ford: Garth’s Drive-In, cerca de 1958",
+        "https://www.thehenryford.org/collections/explore/artifact/210547"
+      ],
+      [
+        "Exposição The Henry Ford: cultura do cinema drive-in",
+        "https://www.thehenryford.org/visit/venues/henry-ford-museum-of-american-innovation/driving-america"
+      ],
+      [
+        "Unidade Alfredo Brunetti",
+        "/unidade-alfredo"
+      ],
+      [
+        "Unidade Eugênio Krause",
+        "/unidade-eugenio"
+      ],
+      [
+        "Cardápio no site",
+        "/#menu"
+      ],
+      [
+        "Guia para quem visita o Beto Carrero",
+        "/guia-beto-carrero"
+      ]
+    ]
+  },
+  {
     "id": "personagem-surpresa-penha-visita",
     "slug": "personagem-surpresa-em-penha-como-planejar-a-visita",
     "title": "Personagem surpresa em Penha: como organizar a visita com crianças",
