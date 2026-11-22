@@ -549,42 +549,22 @@ export const DEFAULT_FALLBACK_IMAGE = 'https://img.supremasite.com.br/burguer/bg
 
 export const AGENDA_SEMANAL: AgendaItem[] = [
   {
-    id: 'quarta',
-    day: 'QUARTA',
-    title: 'PUB FECHADO',
-    subtitle: 'O Pub não abre às quartas-feiras.',
-    image: 'https://img.supremasite.com.br/burguer/bgsc.webp',
-    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
-  },
-  {
     id: 'sexta',
-    day: 'SEXTA',
-    title: 'NOITE DA PIZZA',
-    subtitle: 'Sexta-feira é noite de pizza no Pub & Delivery.',
+    day: 'PIZZA',
+    title: 'Noite da Pizza',
+    subtitle: 'Consulte com a unidade quando será a próxima Noite da Pizza.',
     image: '/agenda-noite-pizza.svg',
-    tagBadge: 'PIZZA FILM\'S',
-    dateBadge: '06/11',
-    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
+    location: 'Av. Eugênio Krause, 3045 • Armação, Penha - SC'
   },
   {
     id: 'sabado',
-    day: 'SÁBADO',
-    title: 'MÚSICA AO VIVO COM PAULINHO GOUVÊA',
-    subtitle: 'Música ao vivo com Paulinho Gouvêa no Pub & Delivery.',
+    day: 'AO VIVO',
+    title: 'Música ao Vivo',
+    subtitle: 'Consulte com a unidade as próximas apresentações e horários.',
     image: '/agenda-musica-aovivo.svg',
-    tagBadge: 'AO VIVO',
-    dateBadge: '07/11',
-    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC',
+    location: 'Av. Eugênio Krause, 3045 • Armação, Penha - SC',
     highlight: true
   },
-  {
-    id: 'domingo-quinta',
-    day: 'DOMINGO A QUINTA',
-    title: 'RODÍZIO DE MINI BURGERS',
-    subtitle: 'Exceto às quartas-feiras, quando o Pub está fechado.',
-    image: '/agenda-rodizio-miniburger.svg',
-    location: 'Av. Eugênio Krause, 3045 • Centro, Penha - SC'
-  }
 ];
 
 /**
