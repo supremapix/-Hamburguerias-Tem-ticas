@@ -87,8 +87,9 @@ export default function App() {
 
   // Links to the public agenda keep the same fragment before and after mounting.
   useEffect(() => {
-    if (currentView !== 'home' || window.location.hash !== '#agenda') return;
-    const frame = window.requestAnimationFrame(() => document.getElementById('agenda')?.scrollIntoView({ block: 'start' }));
+    const fragment = window.location.hash;
+    if (currentView !== 'home' || !['#agenda', '#karate-burgers'].includes(fragment)) return;
+    const frame = window.requestAnimationFrame(() => document.getElementById(fragment.slice(1))?.scrollIntoView({ block: 'start' }));
     return () => window.cancelAnimationFrame(frame);
   }, [currentView]);
 

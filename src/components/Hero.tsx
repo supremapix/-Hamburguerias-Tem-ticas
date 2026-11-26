@@ -1,4 +1,5 @@
 import { ArrowRight, Clapperboard, MapPin } from 'lucide-react';
+import KarateHeroSlider from './KarateHeroSlider';
 
 export default function Hero() {
   return (
@@ -22,14 +23,7 @@ export default function Hero() {
             </a>
           </div>
         </div>
-        <div className="relative mx-auto flex w-full max-w-[440px] items-center gap-5 rounded-[28px] border-2 border-bf-yellow/80 bg-white/5 p-5 sm:p-7">
-          <img src="/android-chrome-512x512.png" width="112" height="112" alt="" decoding="async" className="size-20 shrink-0 rounded-2xl sm:size-28" />
-          <div>
-            <p className="text-xs font-black uppercase tracking-widest text-bf-yellow">Burger Films</p>
-            <p className="mt-1 font-display text-2xl leading-tight">Seu lanche depois do parque</p>
-            <p className="mt-1 text-sm text-white/80">Armação • Penha • Santa Catarina</p>
-          </div>
-        </div>
+        <KarateHeroSlider />
       </div>
     </section>
   );

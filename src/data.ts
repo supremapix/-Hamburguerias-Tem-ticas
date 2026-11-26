@@ -1,6 +1,9 @@
 import { MenuItem, AgendaItem } from './types';
 
+import { KARATE_BURGERS } from './karateBurgers';
+
 export const MENU_ITEMS: MenuItem[] = [
+  ...KARATE_BURGERS,
   // --- Burgers de Cinema ---
   {
     id: 'hulk-smash',

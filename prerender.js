@@ -1,5 +1,6 @@
 import {NEW_BLOG_POSTS,getBlogPostForView} from './src/blogArticles.ts';
 import fs from 'node:fs';
+import { formatMenuPrice, KARATE_BURGERS, KARATE_INTRO, KARATE_NOTE } from './src/karateBurgers.ts';
 import path from 'node:path';
 import { GLOBAL_SEO_DATA, NEIGHBORHOODS } from './src/seoData.ts';
 import { getPageMetadata } from './src/pageMetadata.ts';
@@ -35,7 +36,8 @@ for (const view of routes) {
   ];
   html = html.replace('</head>', () => `${tags.join('\n')}\n</head>`);
   if (view === 'home') {
-    const agenda = `<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><h1>Hamburgueria temática em Penha, SC</h1><p>Conheça as unidades na Armação e confira o <a href="/guia-beto-carrero">guia do Beto Carrero</a>.</p><section id="agenda"><h2>${escape(BRUNETTI_AGENDA_LABEL)}</h2><p>Programação recorrente às sextas, sábados e domingos na unidade da Av. Alfredo Brunetti, 631, Armação. Horários e programação podem mudar.</p><ul><li><a href="${escape(SURPRISE_WHATSAPP)}">Consultar no WhatsApp oficial</a></li><li><a href="${BURGER_INSTAGRAM}">Instagram oficial</a></li><li><a href="${SURPRISE_ARTICLE}">Guia para planejar a visita</a></li></ul></section></main>`;
+    const newMenu = `<section id="karate-burgers"><h2>Karatê Burgers</h2><p>${escape(KARATE_INTRO)}</p><ul>${KARATE_BURGERS.map(item => `<li><strong>${escape(item.name)} · ${escape(formatMenuPrice(item.price))}</strong><br>${escape(item.description)}</li>`).join('')}</ul><p>${escape(KARATE_NOTE)}</p></section>`;
+    const agenda = `<main style="max-width:780px;margin:4rem auto;padding:1rem;font:1rem/1.7 system-ui"><h1>Hamburgueria temática em Penha, SC</h1><p>Conheça as unidades na Armação e confira o <a href="/guia-beto-carrero">guia do Beto Carrero</a>.</p>${newMenu}<section id="agenda"><h2>${escape(BRUNETTI_AGENDA_LABEL)}</h2><p>Programação recorrente às sextas, sábados e domingos na unidade da Av. Alfredo Brunetti, 631, Armação. Horários e programação podem mudar.</p><ul><li><a href="${escape(SURPRISE_WHATSAPP)}">Consultar no WhatsApp oficial</a></li><li><a href="${BURGER_INSTAGRAM}">Instagram oficial</a></li><li><a href="${SURPRISE_ARTICLE}">Guia para planejar a visita</a></li></ul></section></main>`;
     html = html.replace(/<div id="root"><\/div>/, () => '<div id="root">' + agenda + '</div>');
   }
   if(view === 'blog') {
