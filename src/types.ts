@@ -5,7 +5,7 @@ export interface MenuItem {
   price: number;
   image: string;
   category: 'lanches' | 'combos' | 'petiscos' | 'pizzas' | 'bebidas' | 'sobremesas' | 'guloseimas';
-  subcategory?: 'minions' | 'cinema' | 'copa';
+  subcategory?: 'minions' | 'cinema' | 'copa' | 'karate';
 }
 
 export interface AgendaItem {

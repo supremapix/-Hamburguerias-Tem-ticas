@@ -17,6 +17,8 @@ import {
   Eye 
 } from 'lucide-react';
 import ProductModal from './ProductModal';
+import KarateMenu from './KarateMenu';
+import { karateWhatsApp } from '../karateBurgers';
 
 // Category Sections structure
 const CATEGORY_SECTIONS = [
@@ -117,6 +119,7 @@ export default function MenuSection() {
   const getSubcategoryLabel = (item: typeof MENU_ITEMS[0]) => {
     if (item.subcategory === 'minions') return 'Rodízio';
     if (item.subcategory === 'cinema') return 'Cinema';
+    if (item.subcategory === 'karate') return 'Karatê Burgers';
     return undefined;
   };
 
@@ -142,6 +145,8 @@ export default function MenuSection() {
             Selecione uma categoria ou pesquise para encontrar as melhores produções gastronômicas!
           </p>
         </div>
+
+        <KarateMenu />
 
         {/* Search Bar & Categories Tabs wrapper */}
         <div className="flex flex-col gap-6 items-center justify-between mb-12 max-w-5xl mx-auto">
@@ -321,13 +326,13 @@ export default function MenuSection() {
 
                                 {/* Order Action Link */}
                                 <a
-                                  href="https://burgerfilms.chefware.com.br/"
+                                  href={item.subcategory === 'karate' ? karateWhatsApp(item.name) : 'https://burgerfilms.chefware.com.br/'}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="flex items-center gap-1.5 bg-bf-black hover:bg-bf-yellow text-bf-yellow hover:text-bf-black font-baloo-caps text-[10px] md:text-xs px-3.5 py-2.5 rounded-full border-2 border-bf-black shadow-[2px_2px_0px_#1A1A1A] transition-all cursor-pointer hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
                                 >
                                   <Utensils className="w-3.5 h-3.5 shrink-0" />
-                                  <span>PEDIR ONLINE</span>
+                                  <span>{item.subcategory === 'karate' ? 'CONSULTAR' : 'PEDIR ONLINE'}</span>
                                 </a>
                               </div>
                             </div>
@@ -439,13 +444,13 @@ export default function MenuSection() {
 
                         {/* Order Action Link */}
                         <a
-                          href="https://burgerfilms.chefware.com.br/"
+                          href={item.subcategory === 'karate' ? karateWhatsApp(item.name) : 'https://burgerfilms.chefware.com.br/'}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 bg-bf-black hover:bg-bf-yellow text-bf-yellow hover:text-bf-black font-baloo-caps text-xs px-4 py-3 rounded-full border-2 border-bf-black shadow-[2px_2px_0px_#1A1A1A] transition-all cursor-pointer hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
                         >
                           <Utensils className="w-3.5 h-3.5 shrink-0" />
-                          <span>PEDIR ONLINE</span>
+                          <span>{item.subcategory === 'karate' ? 'CONSULTAR' : 'PEDIR ONLINE'}</span>
                         </a>
 
                       </div>

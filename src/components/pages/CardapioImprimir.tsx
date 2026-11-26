@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Printer, ArrowLeft, Film, Trophy, Flame, Gift, Star, Clock, Sparkles } from 'lucide-react';
 import { MENU_ITEMS } from '../../data';
 import Logo from '../Logo';
+import { formatMenuPrice, KARATE_BURGERS, KARATE_NOTE, KARATE_PARTNERS } from '../../karateBurgers';
 
 interface PageProps {
   onNavigate: (view: any) => void;
@@ -116,6 +117,20 @@ export default function CardapioImprimir({ onNavigate }: PageProps) {
             <span>⭐ @burgerfilms.penha</span>
           </div>
         </div>
+
+        <section className="mb-8 break-inside-avoid rounded-xl border-2 border-current p-4" aria-labelledby="karate-a4">
+          <h2 id="karate-a4" className={`font-display text-xl uppercase ${ecoMode ? 'text-black' : 'text-bf-yellow'} print:text-black`}>Karatê Burgers</h2>
+          <p className="mb-3 text-xs font-bold">{KARATE_PARTNERS}</p>
+          <ul className="grid gap-x-5 gap-y-3 md:grid-cols-2 print:grid-cols-2">
+            {KARATE_BURGERS.map(item => (
+              <li key={item.id}>
+                <p className="flex justify-between gap-2 text-sm font-black"><span>{item.name}</span><span className="shrink-0">{formatMenuPrice(item.price)}</span></p>
+                <p className="text-xs">{item.description}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs">{KARATE_NOTE}</p>
+        </section>
 
         {/* A4 Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-left">
