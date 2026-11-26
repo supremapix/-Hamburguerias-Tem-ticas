@@ -1,5 +1,50 @@
 export const NEW_BLOG_POSTS = [
   {
+    "id": "natal-encantado-penha-2026",
+    "slug": "natal-encantado-penha-roteiro-jantar-na-armacao",
+    "title": "Natal Encantado em Penha: como combinar o passeio com um jantar na Armação",
+    "category": "Dicas",
+    "excerpt": "A Prefeitura divulgou o Natal Encantado de 5 a 23 de dezembro. Veja como encaixar o passeio e o jantar na Armação, em Penha.",
+    "image": "https://burgerfilms.chefware.com.br/25/600/0/de-volta-para-as-batatas-fritas.jpg",
+    "imageAlt": "Porção de batatas da Burger Films, imagem ilustrativa do roteiro",
+    "date": "26 de novembro de 2026",
+    "dateIso": "2026-11-26",
+    "author": "Equipe Burger Films",
+    "readTime": "2 min de leitura",
+    "content": [
+      "O Natal Encantado de Penha está programado de 5 a 23 de dezembro de 2026. No anúncio da Prefeitura de 24 de novembro, a Avenida Alfredo Brunetti, na Armação, recebe atrações a partir das 20h. A Cantata de Natal de 18 de dezembro está anunciada para o Centro, não para a avenida. Consulte a programação oficial para saber o que acontece em cada dia e confirmar o trecho antes de sair.",
+      "Quer combinar o passeio com um jantar? A unidade Alfredo Brunetti da Burger Films fica na Avenida Alfredo Brunetti, 631, na Armação. Use esse endereço para planejar o trajeto. A unidade Eugênio Krause fica em outro ponto de Penha.",
+      "Se for com crianças ou em grupo, decida de antemão se prefere jantar antes do passeio ou parar para comer na volta. Combine um ponto de encontro e deixe tempo para o deslocamento. Confira o cardápio, a disponibilidade e o horário da unidade escolhida antes de sair.",
+      "O Natal Encantado é um evento municipal, separado da programação da hamburgueria. Confira a agenda da própria Burger Films para saber o que está previsto em cada unidade."
+    ],
+    "links": [
+      [
+        "Consultar a Secretaria de Turismo de Penha",
+        "https://penha.atende.net/cidadao/pagina/secretaria-de-turismo"
+      ],
+      [
+        "Conferir o anúncio da Prefeitura de Penha",
+        "https://ws-penha.atende.net/cidadao/noticia/natal-encantado-penha-2026-tera-espetaculos-desfiles-natalinos-feira-arte-e-raiz-e-vila-do-noel"
+      ],
+      [
+        "Conhecer a unidade Alfredo Brunetti",
+        "/unidade-alfredo"
+      ],
+      [
+        "Ver o cardápio da Burger Films",
+        "/#menu"
+      ],
+      [
+        "Guia de gastronomia na Armação",
+        "/blog/gastronomia-na-armacao-o-que-conferir-em-penha"
+      ],
+      [
+        "Ver a agenda da Burger Films",
+        "/#agenda"
+      ]
+    ]
+  },
+  {
     "id": "historia-burger-films-penha",
     "slug": "historia-burger-films-em-penha",
     "title": "Do cinema à mesa: a história da Burger Films em Penha",
